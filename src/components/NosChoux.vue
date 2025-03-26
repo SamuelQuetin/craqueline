@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-5">
+  <v-container class="pa-5" max-width="80em">
     <h2 class="pb-2">Nos Choux</h2>
     <v-row cols="12">
       <v-col cols="4">
@@ -27,7 +27,7 @@
         <v-img src="@/assets/photo/parfums.png" max-width="30em"></v-img>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 <script setup>
 
