@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-5" max-width="80em">
+
     <h2 class="pb-2">Bienvenue</h2>
     <p class="py-2"> Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressional
      stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore
@@ -26,7 +26,6 @@
         <v-img src="@/assets/photo/SelfiBertMel.png" max-width="30em"></v-img>
       </v-col>
     </v-row>
-  </v-container>
 </template>
 <script setup>
 
