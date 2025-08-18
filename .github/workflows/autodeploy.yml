@@ -2,7 +2,7 @@ name: Deploy to OVH (FTP)
 
 on:
   push:
-    branches: [ main ]   # déploie à chaque push sur main
+    branches: [ master ]   # déploie à chaque push sur main
   workflow_dispatch:      # permet un déclenchement manuel
 
 concurrency:
@@ -19,8 +19,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # si tu as un .nvmrc, garde la ligne ci-dessous, sinon remplace par '18'
-          node-version-file: '.nvmrc'
+          node-version-file: '18'
           cache: 'npm'
 
       - name: Install deps
