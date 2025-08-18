@@ -1,0 +1,43 @@
+name: Deploy to OVH (FTP)
+
+on:
+  push:
+    branches: [ main ]   # déploie à chaque push sur main
+  workflow_dispatch:      # permet un déclenchement manuel
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          # si tu as un .nvmrc, garde la ligne ci-dessous, sinon remplace par '18'
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        # si ton build sort ailleurs que "dist", adapte la suite
+
+      - name: Deploy via FTP to OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server:   ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port:     ${{ secrets.FTP_PORT || 21 }}
+          local-dir: dist/
+          server-dir: ${{ secrets.FTP_DIR || '/www/' }}
+          # supprime les anciens fichiers pour éviter les artefacts
+          dangerous-clean-slate: true
