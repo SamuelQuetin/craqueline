@@ -1,32 +1,37 @@
 <template>
+  <v-app class="app-bg">
+    <v-main>
+      <v-parallax
+        src="@/assets/photo/parallax.png"
+        height="100vh"
+        class="parallax"
+    >
+      <div class="d-flex flex-column fill-height justify-center align-center parallax-content text-center text-white">
+        <img src="@/assets/photo/title.png"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
+        <p>Montpellier</p>
+      </div>
+      <div class="parallax_blur" aria-hidden="true"></div>
 
-  <v-parallax
-      src="@/assets/photo/parallax.png"
-      height="100vh"
-      class="parallax"
-  >
-    <div class="d-flex flex-column fill-height justify-center align-center parallax-content">
-      <img src="@/assets/photo/title.png"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
-    </div>
-    <div class="parallax_blur" aria-hidden="true"></div>
+      <div class="scroll-cue"
+           :style="scrollCueStyle"
+           @click="scrollTo('#section-1')"
+           aria-label="Faites défiler">
+        <v-icon size="28">mdi-chevron-down</v-icon>
+        <small>Faites défiler</small>
+      </div>
+    </v-parallax>
 
-    <div class="scroll-cue"
-         :style="scrollCueStyle"
-         @click="scrollTo('#section-1')"
-         aria-label="Faites défiler">
-      <v-icon size="28">mdi-chevron-down</v-icon>
-      <small>Faites défiler</small>
-    </div>
-  </v-parallax>
 
-  <v-container class="pa-5" max-width="80em">
-    <section id="section-1">
-      <Bienvenue></Bienvenue>
-    </section>
-    <NosChoux></NosChoux>
-    <LaBoutique></LaBoutique>
-  </v-container>
-  <MaintenanceBanner v-model="isMaintenance" ></MaintenanceBanner>
+    <v-container class=" mt-5 pa-5 bg_blur" max-width="80em">
+      <section id="section-1">
+        <Bienvenue></Bienvenue>
+      </section>
+      <NosChoux></NosChoux>
+      <LaBoutique></LaBoutique>
+    </v-container>
+    <MaintenanceBanner v-model="isMaintenance" ></MaintenanceBanner>
+    </v-main>
+  </v-app>
 </template>
 <script setup>
 import Bienvenue from './components/Bienvenue.vue';
@@ -39,9 +44,7 @@ const isMaintenance = ref(false);
 
 const cueOpacity = ref(1)
 
-const { mobile } = useDisplay()
-
-const isMobile = ref(mobile)
+const { mobile: isMobile } = useDisplay()
 
 const updateOpacity = () => {
   const y = window.scrollY || 0
@@ -121,4 +124,27 @@ const scrollCueStyle = computed(() => ({
   0%,100%{ transform: translateY(0); }
   50%{ transform: translateY(6px); }
 }
+
+.app-bg{
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+.app-bg::before{
+  content: "";
+  position: fixed;          /* reste collé au viewport */
+  inset: 0;
+  z-index: 0;              /* derrière le contenu */
+  background: url('@/assets/photo/background1.png') center / cover no-repeat fixed;
+  /* facultatif : un peu plus de contraste/luminosité */
+  filter: grayscale(100%) brightness(1.5);
+}
+
+.bg_blur{
+  z-index: 1;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 </style>

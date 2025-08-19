@@ -1,15 +1,27 @@
 <template>
   <h2 class="pb-2">Nos Choux</h2>
   <v-row cols="12">
-    <v-col cols="4">
-      <v-img src="@/assets/photo/choux1.png" max-width="30em"></v-img>
-    </v-col>
-    <v-col cols="4">
-      <v-img src="@/assets/photo/choux2.png" max-width="30em"></v-img>
-    </v-col>
-    <v-col cols="4">
-      <v-img src="@/assets/photo/choux3.png" max-width="30em"></v-img>
-    </v-col>
+    <v-carousel
+      cycle
+      interval="5000"
+      show-arrows="hover"
+    >
+      <v-carousel-item
+          src="@/assets/photo/choux1.png"
+          cover
+      >
+      </v-carousel-item>
+      <v-carousel-item
+          src="@/assets/photo/choux2.png"
+          cover
+      >
+      </v-carousel-item>
+      <v-carousel-item
+          src="@/assets/photo/choux3.png"
+          cover
+      >
+      </v-carousel-item>
+    </v-carousel>
   </v-row>
   <v-row>
     <v-col>
