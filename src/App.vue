@@ -7,8 +7,10 @@
         class="parallax"
     >
       <div class="d-flex flex-column fill-height justify-center align-center parallax-content text-center text-white">
-        <img src="@/assets/photo/title.png"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
-        <p>Montpellier</p>
+<!--        <img src="@/assets/photo/title.png"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>-->
+<!--        <p>Montpellier</p>-->
+
+        <img src="@/assets/logoCraque.svg"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
       </div>
       <div class="parallax_blur" aria-hidden="true"></div>
 
