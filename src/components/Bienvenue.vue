@@ -1,26 +1,14 @@
 <template>
 
     <h2 class="pb-2">Bienvenue</h2>
-    <p class="py-2"> Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressional
-     stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore
-      populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.</p>
+    <p class="py-2"> « S’il fallait préciser quand l’idée de Craqueline a germé dans nos esprits, nous dirions que ce fut dès l’enfance. Mamie mettait toujours un point d’honneur à terminer ses repas de fêtes par un Saint–Honoré. Le feuilletage croustillant, les choux moelleux au caramel craquant et la crème délicatement parfumée à la vanille… C’est notre madeleine de Proust à nous. C’est l’essence même de Craqueline : le désir qu’une bouchée suffise à retomber en enfance. »</p>
     <v-row cols="12">
       <v-col cols="8">
-        <p> Quapropter a natura mihi videtur potius quam ab indigentia orta amicitia, applicatione magis animi cum
-          quodam
-          sensu amandi quam cogitatione quantum illa res utilitatis esset habitura. Quod quidem quale sit, etiam in
-          bestiis
-          quibusdam animadverti potest, quae ex se natos ita amant ad quoddam tempus et ab eis ita amantur ut facile
-          earum
-          sensus appareat. Quod in homine multo est evidentius, primum ex ea caritate quae est inter natos et parentes,
-          quae
-          dirimi nisi detestabili scelere non potest; deinde cum similis sensus exstitit amoris, si aliquem nacti sumus
-          cuius
-          cum moribus et natura congruamus, quod in eo quasi lumen aliquod probitatis et virtutis perspicere
-          videamur.</p>
+        <p> Bertille et Mélissa, ce sont deux cousines liées par leur grand-mère Jacqueline. Cuisinière et pâtissière passionnée, elle sera une véritable source d’inspiration pour Bertille qui décide de se former en cuisine, puis en pâtisserie et en chocolaterie.
+          10 plus tard, riche de son expérience – tantôt en pâtisserie de boutique, tantôt en restaurant gastronomique – elle quitte son emploi avant que Mélissa ne la rejoigne avec enthousiasme dans cette aventure.
+        </p>
         <br/>
-        <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma, ingenuos advenas plerique
-          nobilium, ut Homerici bacarum suavitate Lotophagi, humanitatis multiformibus officiis retentabant.</p>
+        <p> C’est ainsi qu’elles créent Craqueline, nommé ainsi d’après la contraction de craquelin (nom du biscuit que l’on dépose sur la pâte à chou avant de la cuire) et de Jacqueline.</p>
       </v-col>
       <v-col cols="4">
         <v-img src="@/assets/photo/SelfiBertMel.png" max-width="30em"></v-img>
