@@ -6,7 +6,7 @@
       class="parallax"
   >
     <div class="d-flex flex-column fill-height justify-center align-center parallax-content">
-      <img src="@/assets/photo/title.png"  width="70%" alt="CRAQUELINE"/>
+      <img src="@/assets/photo/title.png"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
     </div>
     <div class="parallax_blur" aria-hidden="true"></div>
 
@@ -33,11 +33,15 @@ import Bienvenue from './components/Bienvenue.vue';
 import NosChoux from "@/components/NosChoux.vue";
 import MaintenanceBanner from "@/components/MaintenanceBanner.vue";
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useDisplay } from 'vuetify'
 import LaBoutique from "@/components/LaBoutique.vue";
-
 const isMaintenance = ref(false);
 
 const cueOpacity = ref(1)
+
+const { mobile } = useDisplay()
+
+const isMobile = ref(mobile)
 
 const updateOpacity = () => {
   const y = window.scrollY || 0
