@@ -2,9 +2,11 @@
   <h2 class="pb-2">Nos Choux</h2>
   <v-row cols="12">
     <v-carousel
-      cycle
-      interval="5000"
-      show-arrows="hover"
+        height="700"
+        cycle
+        interval="5000"
+        show-arrows="hover"
+        touch
     >
       <v-carousel-item
           src="@/assets/photo/choux1.png"
