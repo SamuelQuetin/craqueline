@@ -20,9 +20,9 @@
         ADRESSE
       </h3>
       <div class="text-center">
-        <div class="text-subtitle-1 font-weight-medium">CRAQUELINE</div>
-        <div class="text-body-2">1 BOULEVARD DU JEU DE PAUMES</div>
-        <div class="text-body-2">MONTPELLIER (FRANCE)</div>
+        <p>CRAQUELINE</p>
+        <p>1 BOULEVARD DU JEU DE PAUMES</p>
+        <p class="text-body-2">MONTPELLIER (FRANCE)</p>
       </div>
       <v-divider class="my-6" />
 
@@ -34,10 +34,10 @@
           <template #prepend>
             <v-icon>mdi-clock-outline</v-icon>
           </template>
-          <v-list-item-title class="font-weight-medium">
-            Du Mardi au Vendredi
+          <v-list-item-title class="">
+            <p>Du Mardi au Vendredi</p>
           </v-list-item-title>
-          <v-list-item-subtitle>10h – 18h</v-list-item-subtitle>
+          <v-list-item-subtitle><p>10h – 18h</p></v-list-item-subtitle>
         </v-list-item>
 
         <v-list-item>
@@ -45,14 +45,14 @@
             <v-icon>mdi-clock-outline</v-icon>
           </template>
           <v-list-item-title class="font-weight-medium">
-            Samedi
+            <p>Samedi</p>
           </v-list-item-title>
-          <v-list-item-subtitle>10h – 19h</v-list-item-subtitle>
+          <v-list-item-subtitle><p>10h – 19h</p></v-list-item-subtitle>
         </v-list-item>
       </v-list>
 
       <v-alert color="info" variant="tonal" class="mt-4">
-        Fermé le Dimanche et Lundi.
+        <p>Fermé le Dimanche et Lundi.</p>
       </v-alert>
     </v-col>
   </v-row>

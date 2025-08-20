@@ -138,13 +138,15 @@ const scrollCueStyle = computed(() => ({
   position: fixed;          /* reste collé au viewport */
   inset: 0;
   z-index: 0;              /* derrière le contenu */
-  background: url('@/assets/photo/background1.png') center / cover no-repeat fixed;
+  /*background: url('@/assets/photo/background1.png') center / cover no-repeat fixed;*/
+  background: url('@/assets/photo/choux/testParalax.png') center / cover no-repeat fixed;
   /* facultatif : un peu plus de contraste/luminosité */
-  filter: grayscale(100%) brightness(1.5);
+  /*filter: grayscale(100%) brightness(1.5);*/
 }
 
 .bg_blur{
   z-index: 1;
+  background: rgba(255,255,255,0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }

@@ -1,29 +1,7 @@
 <template>
   <h2 class="pb-2">Nos Choux</h2>
   <v-row cols="12">
-    <v-carousel
-        height="700"
-        cycle
-        interval="5000"
-        show-arrows="hover"
-        touch
-    >
-      <v-carousel-item
-          src="@/assets/photo/choux1.png"
-          cover
-      >
-      </v-carousel-item>
-      <v-carousel-item
-          src="@/assets/photo/choux2.png"
-          cover
-      >
-      </v-carousel-item>
-      <v-carousel-item
-          src="@/assets/photo/choux3.png"
-          cover
-      >
-      </v-carousel-item>
-    </v-carousel>
+    <AffichePhoto></AffichePhoto>
   </v-row>
   <v-row>
     <v-col>
@@ -33,11 +11,17 @@
     </v-col>
   </v-row>
   <v-row cols="12">
-    <v-col cols="6">
-      <v-img src="@/assets/photo/prix.png" max-width="30em"></v-img>
+    <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="d-flex justify-center">
+      <v-img src="@/assets/photo/NOS_BOISSONS_CHAUDES_AFFICHE.png" max-width="40em"></v-img>
     </v-col>
-    <v-col cols="6">
-      <v-img src="@/assets/photo/parfums.png" max-width="30em"></v-img>
+    <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="d-flex justify-center">
+      <v-img src="@/assets/photo/NOS_BOISSONS_FRAICHES_AFFICHE.png" max-width="40em"></v-img>
+    </v-col>
+    <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="d-flex justify-center">
+      <v-img src="@/assets/photo/NOS_CHOUX_AFFICHE.png" max-width="40em"></v-img>
+    </v-col>
+    <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="d-flex justify-center">
+      <v-img src="@/assets/photo/NOS_SPECIALITE_AFFICHE.png" max-width="40em"></v-img>
     </v-col>
   </v-row>
   <v-row>
@@ -47,23 +31,29 @@
       <p> En plus de notre gamme classique, nous avons recréé le Saint–Honoré de notre enfance, déclinable en différentes saveurs selon la saison et vos envies.</p>
     </v-col>
   </v-row>
-  <v-row>
-    <v-col>
+  <v-row cols="12">
+    <v-col xs="12" sm="12" md="12" lg="6" xl="6" class="d-flex justify-center">
       <v-img src="@/assets/photo/SaintHono1.png" max-width="30em"></v-img>
     </v-col>
-    <v-col>
+    <v-col xs="12" sm="12" md="12" lg="6" xl="6" class="d-flex justify-center">
       <v-img src="@/assets/photo/SaintHono2.png" max-width="30em"></v-img>
+    </v-col>
+  </v-row>
+  <v-row class="mb-2">
+    <v-col>
+      <p> Anniversaire, EVJF/EVG, mariage, buffet de famille, séminaire… Sublimez vos événements avec nos pièces montées sur mesure.</p>
     </v-col>
   </v-row>
   <v-row class="mb-4">
     <v-col>
-      <p> Anniversaire, EVJF/EVG, mariage, buffet de famille, séminaire… Sublimez vos événements avec nos pièces montées sur mesure.</p>
       <v-btn block color="grey" elevation="0"> FAIRE UN DEVIS </v-btn>
     </v-col>
   </v-row>
+
 </template>
 <script setup>
 
+import AffichePhoto from "@/components/AffichePhoto.vue";
 </script>
 <style scoped>
 
