@@ -127,21 +127,54 @@ const scrollCueStyle = computed(() => ({
   50%{ transform: translateY(6px); }
 }
 
-.app-bg{
+
+/* Conteneur de page */
+.app-bg {
   position: relative;
-  min-height: 100vh;
-  isolation: isolate;
+  min-height: 100dvh;        /* mieux que 100vh sur mobile */
+  isolation: isolate;        /* crée un nouveau stacking context */
+  overflow: clip;            /* ou hidden si tu préfères */
+  background: #fff5d9;       /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
 }
 
-.app-bg::before{
+/* Calque de fond rotatif pleine fenêtre */
+.app-bg::before {
   content: "";
-  position: fixed;          /* reste collé au viewport */
-  inset: 0;
-  z-index: 0;              /* derrière le contenu */
-  /*background: url('@/assets/photo/background1.png') center / cover no-repeat fixed;*/
-  background: url('@/assets/photo/choux/testParalax.png') center / cover no-repeat fixed;
-  /* facultatif : un peu plus de contraste/luminosité */
-  /*filter: grayscale(100%) brightness(1.5);*/
+  position: fixed;           /* reste collé à la fenêtre, pas au scroll */
+  left: 50%;
+  top: 50%;
+  width: 200vmax;            /* énorme disque qui couvre tout, même en rotation */
+  height: 200vmax;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+  pointer-events: none;
+  z-index: -1;
+
+  background: conic-gradient(
+      from 0deg,
+      #ffd6e0,
+      #d9f7ff,
+      #e0ffe0,
+      #fff5d9,
+      #ffd6e0
+  );
+
+  animation: rotateGradient 30s ease-in-out infinite;
+
+  /* Petits bonus anti-artifacts */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Contenu de ta page pour test */
+.app-bg > * {
+  position: relative;
+  z-index: 0;
+}
+
+@keyframes rotateGradient {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .bg_blur{
