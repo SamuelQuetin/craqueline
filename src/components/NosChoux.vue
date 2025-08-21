@@ -10,7 +10,7 @@
       <p> Adoptant une démarche responsable, nous respectons la saisonnalité les produits, c’est pourquoi certains parfums laissent place à d’autre au fil de l’année.</p>
     </v-col>
   </v-row>
-  <v-row class="row-bleed pa-4" cols="12">
+  <v-row class="row-bleed mt-4 pa-4" cols="12">
     <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="overflow-visible d-flex justify-center">
       <v-img src="@/assets/photo/NOS_BOISSONS_CHAUDES_AFFICHE.png" class="image-pop"></v-img>
     </v-col>
