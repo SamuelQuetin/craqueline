@@ -22,8 +22,7 @@
           <small>Faites défiler</small>
         </div>
       </v-parallax>
-
-
+      <Summary></Summary>
       <v-container class=" my-5 pa-5 bg_base" max-width="80em">
         <section id="section-1">
           <Bienvenue></Bienvenue>
@@ -42,6 +41,7 @@ import MaintenanceBanner from "@/components/MaintenanceBanner.vue";
 import {ref, computed, onMounted, onUnmounted} from 'vue';
 import {useDisplay} from 'vuetify'
 import LaBoutique from "@/components/LaBoutique.vue";
+import Summary from "@/components/Summary.vue";
 
 const isMaintenance = ref(false);
 
@@ -147,7 +147,7 @@ const scrollCueStyle = computed(() => ({
   min-height: 100dvh; /* mieux que 100vh sur mobile */
   isolation: isolate; /* crée un nouveau stacking context */
   overflow: clip; /* ou hidden si tu préfères */
-  background: rgb(var(--v-theme-secondary));; /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
+  background: rgb(var(--v-theme-tertiary)); /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
 }
 
 .bg_base {
