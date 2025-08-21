@@ -13,20 +13,15 @@ import {createVuetify} from 'vuetify'
 import {en, fr} from 'vuetify/locale'
 
 //CUstom
-const itemLightTheme = {
+const lightTheme = {
   dark: false,
   colors: {
     background: '#FFFFFF',
     surface: '#FFFFFF',
-    'surface-bright': '#FFFFFF',
-    'surface-light': '#EEEEEE',
-    'surface-variant': '#424242',
-    'on-surface-variant': '#EEEEEE',
-    primary: '#295494',
-    'primary-darken-1': '#1F5592',
-    secondary: '#252C61',
-    'secondary-darken-1': '#018786',
-    textColor: '#FFFFFF',
+    primary: '#faf4ee',
+    secondary: '#6e9563',
+    tertiary: '#d7bda6',
+    quaternary : '#6d3914',
     error: '#a32525',
     info: '#326bb1',
     success: '#4da432',
@@ -59,9 +54,9 @@ export default createVuetify({
     messages: { fr, en },
   },
   theme: {
-    defaultTheme: 'itemLightTheme',
+    defaultTheme: 'lightTheme',
     themes: {
-      itemLightTheme,
+      lightTheme,
     },
   },
   icons: {

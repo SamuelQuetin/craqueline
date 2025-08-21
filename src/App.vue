@@ -24,7 +24,7 @@
       </v-parallax>
 
 
-      <v-container class=" my-5 pa-5 bg_blur" max-width="80em">
+      <v-container class=" my-5 pa-5 bg_base" max-width="80em">
         <section id="section-1">
           <Bienvenue></Bienvenue>
         </section>
@@ -147,58 +147,12 @@ const scrollCueStyle = computed(() => ({
   min-height: 100dvh; /* mieux que 100vh sur mobile */
   isolation: isolate; /* crée un nouveau stacking context */
   overflow: clip; /* ou hidden si tu préfères */
-  background: #fff5d9; /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
+  background: rgb(var(--v-theme-secondary));; /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
 }
 
-/* Calque de fond rotatif pleine fenêtre */
-.app-bg::before {
-  content: "";
-  position: fixed; /* reste collé à la fenêtre, pas au scroll */
-  left: 50%;
-  top: 50%;
-  width: 200vmax; /* énorme disque qui couvre tout, même en rotation */
-  height: 200vmax;
-  transform: translate(-50%, -50%);
-  transform-origin: 50% 50%;
-  pointer-events: none;
-  z-index: -1;
-
-  background: conic-gradient(
-      from 0deg,
-      #ffd6e0,
-      #d9f7ff,
-      #e0ffe0,
-      #fff5d9,
-      #ffd6e0
-  );
-
-  animation: rotateGradient 30s ease-in-out infinite;
-
-  /* Petits bonus anti-artifacts */
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* Contenu de ta page pour test */
-.app-bg > * {
-  position: relative;
-  z-index: 0;
-}
-
-@keyframes rotateGradient {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-.bg_blur {
+.bg_base {
   z-index: 1;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(var(--v-theme-primary));
 }
 
 </style>

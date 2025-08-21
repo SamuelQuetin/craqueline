@@ -10,7 +10,7 @@
       <p> Adoptant une démarche responsable, nous respectons la saisonnalité les produits, c’est pourquoi certains parfums laissent place à d’autre au fil de l’année.</p>
     </v-col>
   </v-row>
-  <v-row class="row-bleed px-4" cols="12">
+  <v-row class="row-bleed pa-4" cols="12">
     <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="overflow-visible d-flex justify-center">
       <v-img src="@/assets/photo/NOS_BOISSONS_CHAUDES_AFFICHE.png" class="image-pop"></v-img>
     </v-col>
@@ -58,6 +58,7 @@ import AffichePhoto from "@/components/AffichePhoto.vue";
 <style scoped>
 /* Le v-row occupe 100vw et est centré par rapport à la fenêtre */
 .row-bleed {
+  background-color: rgb(var(--v-theme-quaternary));;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -77,7 +78,6 @@ import AffichePhoto from "@/components/AffichePhoto.vue";
 .row-bleed .v-col:nth-child(4) .image-pop { transform: translateX(15%); }
 
 .image-pop {
-  border: 5px solid white;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
