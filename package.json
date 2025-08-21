@@ -4,21 +4,26 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "vite",
+    "dev:server": "nodemon server/index.js"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
+    "dotenv": "^17.2.1",
+    "esbuild": "^0.25.0",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
     "vue": "^3.5.13",
-    "vuetify": "^3.7.11",
-    "esbuild": "^0.25.0"
+    "vuetify": "^3.7.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.2.0",
     "axios": "1.8.4",
+    "concurrently": "^9.2.0",
+    "nodemon": "^3.1.10",
     "prettier": "^3.2.5",
+    "vite": "^6.2.0",
     "vite-plugin-vuetify": "^2.0.3"
   }
 }

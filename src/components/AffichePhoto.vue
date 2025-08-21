@@ -26,17 +26,15 @@
     </div>
   </v-container>
 
-  <!-- Rien -->
-  <div v-else class="text-center my-10 text-medium-emphasis">
-    Aucun affichage sélectionné.
-  </div>
+  <postInsta v-else-if="selected === 'insta'"></postInsta>
 </template>
 
 <script setup>
 
 import {ref} from "vue";
+import PostInsta from "@/components/postInsta.vue";
 
-const choice = ref(['carousel','liste','rien'])
+const choice = ref(['carousel','liste','insta'])
 const selected = ref('carousel')
 
 const modules = import.meta.glob(
