@@ -32,10 +32,10 @@
     </v-col>
   </v-row>
   <div class="mb-4 d-flex justify-center align-center bg-subtitle">
-      <span>
+      <p>
         "Le désir qu'une bouchée suffise à nous faire retomber en enfance,
         C'est l'essence même de Craqueline"
-      </span>
+      </p>
   </div>
 </template>
 <script setup>
@@ -74,6 +74,7 @@ h2 {
 
   .padding-marging-pic {
     margin-top: 0vh;
+    padding-left: 2vh;
     padding-right: 2vh;
   }
 }
@@ -90,6 +91,8 @@ h2 {
   margin-left: -50vw;
   margin-right: -50vw;
   width: 100vw;
+  padding-left: 2vh;
+  padding-right: 2vh;
 }
 
 span {
