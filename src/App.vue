@@ -25,12 +25,12 @@
       <section id="section-1">
         <Summary @onClick="scrollTo"></Summary>
       </section>
-      <v-container class=" my-5 pa-5 bg_base" max-width="80em">
+      <v-container class=" pa-5 bg_base" max-width="90em">
 
         <section id="section-2">
           <Bienvenue></Bienvenue>
         </section>
-
+        <div id="test"></div>
         <section id="section-3">
           <NosChoux></NosChoux>
         </section>

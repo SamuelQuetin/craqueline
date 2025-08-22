@@ -1,23 +1,106 @@
 <template>
-    <h2 class="pb-2">Bienvenue</h2>
-    <v-row cols="12" class="mb-4">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6">
-        <p class="pb-2 font-italic"> « S’il fallait préciser quand l’idée de Craqueline a germé dans nos esprits, nous dirions que ce fut dès l’enfance. Mamie mettait toujours un point d’honneur à terminer ses repas de fêtes par un Saint–Honoré. Le feuilletage croustillant, les choux moelleux au caramel craquant et la crème délicatement parfumée à la vanille… C’est notre madeleine de Proust à nous. C’est l’essence même de Craqueline : le désir qu’une bouchée suffise à retomber en enfance. »</p>
-
-        <p> Bertille et Mélissa, ce sont deux cousines liées par leur grand-mère Jacqueline. Cuisinière et pâtissière passionnée, elle sera une véritable source d’inspiration pour Bertille qui décide de se former en cuisine, puis en pâtisserie et en chocolaterie.
-          10 plus tard, riche de son expérience – tantôt en pâtisserie de boutique, tantôt en restaurant gastronomique – elle quitte son emploi avant que Mélissa ne la rejoigne avec enthousiasme dans cette aventure.
+  <h2>NOTRE HISTOIRE</h2>
+  <v-row cols="12" class="mb-4">
+    <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="padding-text">
+      <v-spacer class="py-16"></v-spacer>
+      <v-row class="mb-4">
+          <span class="italic bold">
+            « L’idée de Craqueline est née dès notre enfance. Mamie mettait toujours un point d’honneur à terminer ses
+            repas de fête par un Saint-Honoré. Le feuilletage croustillant, les choux moelleux au caramel craquant et
+            la crème délicatement parfumée à la vanille… C’est l’essence même de Craqueline : le désir qu’une bouchée
+            suffise à nous faire retomber en enfance. »
+          </span>
+      </v-row>
+      <v-row class="mb-4">
+        <span>
+          Bertille et Mélissa sont deux cousines liées par leur grand-mère Jacqueline. <br>
+          Cuisinière et pâtissière passionnée, elle fut une véritable source d’inspiration pour Bertille, qui décida de
+          se former en cuisine, puis en pâtisserie et en chocolaterie. <br>
+          Dix ans plus tard, forte de son expérience en boutique et en restauration gastronomique et étoilée, elle
+          décide de se lancer. Mélissa ne tarda pas à la rejoindre avec enthousiasme dans cette aventure.
+        </span>
+      </v-row>
+      <v-row class="mb-4">
+        <p>
+          De là naît Craqueline, clin d’œil au craquelin qui sublime le chou, et hommage à Jacqueline, leur source
+          d’inspiration.
         </p>
-        <br/>
-        <p> C’est ainsi qu’elles créent Craqueline, nommé ainsi d’après la contraction de craquelin (nom du biscuit que l’on dépose sur la pâte à chou avant de la cuire) et de Jacqueline.</p>
-      </v-col>
-      <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="d-flex justify-center">
-        <v-img src="@/assets/photo/portrait1.png" max-width="30em"></v-img>
-      </v-col>
-    </v-row>
+      </v-row>
+    </v-col>
+    <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="padding-marging-pic d-flex justify-center">
+      <v-img src="@/assets/photo/portrait1.png" max-width="25em"></v-img>
+    </v-col>
+  </v-row>
+  <div class="mb-4 d-flex justify-center align-center bg-subtitle">
+      <span>
+        "Le désir qu'une bouchée suffise à nous faire retomber en enfance,
+        C'est l'essence même de Craqueline"
+      </span>
+  </div>
 </template>
 <script setup>
 
 </script>
-<style>
+<style scoped>
+h2 {
+  color: black;
+  font-size: 5em;
+  position: absolute;
+  margin-left: -10vh;
+}
 
+.padding-text {
+  padding-left: 20vh;
+}
+
+.padding-marging-pic {
+  margin-top: 4vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
+}
+
+@media (max-width: 150dvh) {
+  h2 {
+    color: black;
+    font-size: 4em;
+    position: absolute;
+    margin-left: 0;
+  }
+
+  .padding-text {
+    padding-left: 3vh;
+    padding-right: 3vh;
+  }
+
+  .padding-marging-pic {
+    margin-top: 0vh;
+    padding-right: 2vh;
+  }
+}
+
+.bg-subtitle {
+  background-color: black;
+  font-style: italic;
+  height: 10vh;
+  opacity: 0.5;
+  color: white;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+}
+
+span {
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI';
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: 500;
+}
 </style>
