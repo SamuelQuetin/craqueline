@@ -11,7 +11,7 @@
         <p> C’est ainsi qu’elles créent Craqueline, nommé ainsi d’après la contraction de craquelin (nom du biscuit que l’on dépose sur la pâte à chou avant de la cuire) et de Jacqueline.</p>
       </v-col>
       <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="d-flex justify-center">
-        <v-img src="@/assets/photo/SelfiBertMel.png" max-width="30em"></v-img>
+        <v-img src="@/assets/photo/portrait1.png" max-width="30em"></v-img>
       </v-col>
     </v-row>
 </template>
