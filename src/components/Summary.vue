@@ -1,7 +1,7 @@
 <template>
   <v-carousel
       cycle
-      interval="50000"
+      interval="5000"
       show-arrows="hover"
       touch
       height="80vh"
