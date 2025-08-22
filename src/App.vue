@@ -22,13 +22,22 @@
           <small>Faites défiler</small>
         </div>
       </v-parallax>
-      <Summary></Summary>
+      <section id="section-1">
+        <Summary @onClick="scrollTo"></Summary>
+      </section>
       <v-container class=" my-5 pa-5 bg_base" max-width="80em">
-        <section id="section-1">
+
+        <section id="section-2">
           <Bienvenue></Bienvenue>
         </section>
-        <NosChoux></NosChoux>
-        <LaBoutique></LaBoutique>
+
+        <section id="section-3">
+          <NosChoux></NosChoux>
+        </section>
+
+        <section id="section-4">
+          <LaBoutique></LaBoutique>
+        </section>
       </v-container>
       <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
     </v-main>
@@ -69,6 +78,7 @@ onUnmounted(() => {
 })
 
 const scrollTo = (selector) => {
+  console.log(selector);
   document.querySelector(selector)?.scrollIntoView({behavior: 'smooth'})
 }
 

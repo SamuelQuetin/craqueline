@@ -4,11 +4,13 @@
     <AffichePhoto></AffichePhoto>
   </v-row>
   <v-row>
-    <v-col>
-      <h3 class="mb-2">SAVOIR - FAIRE ARTISANAL</h3>
-      <p> Chez Craqueline, nous produisons artisanalement chaque jour une vaste gamme de chou à la crème.</p>
-      <p> Adoptant une démarche responsable, nous respectons la saisonnalité les produits, c’est pourquoi certains parfums laissent place à d’autre au fil de l’année.</p>
-    </v-col>
+    <section id="savoir-faire">
+      <v-col>
+        <h3 class="mb-2">SAVOIR - FAIRE ARTISANAL</h3>
+        <p> Chez Craqueline, nous produisons artisanalement chaque jour une vaste gamme de chou à la crème.</p>
+        <p> Adoptant une démarche responsable, nous respectons la saisonnalité les produits, c’est pourquoi certains parfums laissent place à d’autre au fil de l’année.</p>
+      </v-col>
+    </section>
   </v-row>
   <v-row class="row-bleed mt-4 pa-6" cols="12">
     <v-col cols="12" xs="12" sm="12" md="12" lg="3" xl="3" class="overflow-visible d-flex justify-center">
