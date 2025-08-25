@@ -73,7 +73,7 @@ h2 {
   }
 
   .padding-marging-pic {
-    margin-top: 0vh;
+    margin-top: 0;
     padding-left: 2vh;
     padding-right: 2vh;
   }
@@ -82,6 +82,8 @@ h2 {
 .bg-subtitle {
   background-color: black;
   font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
   height: 10vh;
   opacity: 0.5;
   color: white;
