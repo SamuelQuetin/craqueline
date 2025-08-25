@@ -1,5 +1,5 @@
 <template>
-  <h2 class="pb-2">La Boutique</h2>
+  <h2 class="pb-2">LA BOUTIQUE</h2>
   <v-spacer class="padding-v-spacer-h2"></v-spacer>
   <v-row cols="12" class="px-8 margin-center">
     <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="align-content-center">
