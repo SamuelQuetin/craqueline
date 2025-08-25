@@ -2,6 +2,7 @@
   <v-app class="app-bg">
 
     <v-main>
+      <section id="section-0">
       <v-parallax
           src="@/assets/photo/parallax.png"
           height="100vh"
@@ -23,6 +24,7 @@
           <small>Faites défiler</small>
         </div>
       </v-parallax>
+      </section>
       <section id="section-1">
         <Summary @onClick="scrollTo"></Summary>
       </section>
@@ -42,7 +44,11 @@
       </v-container>
       <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
     </v-main>
+    <LeFooter></LeFooter>
   </v-app>
+
+
+
 </template>
 <script setup>
 import Bienvenue from './components/Bienvenue.vue';
@@ -52,6 +58,7 @@ import {useDisplay} from 'vuetify'
 import LaBoutique from "@/components/LaBoutique.vue";
 import Summary from "@/components/Summary.vue";
 import LaCarte from "@/components/LaCarte.vue";
+import LeFooter from "@/components/LeFooter.vue";
 
 const isMaintenance = ref(false);
 
