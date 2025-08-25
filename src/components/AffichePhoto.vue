@@ -1,4 +1,5 @@
 <template>
+  <p>{{offset}} / {{trackWidth}}</p>
   <div class="bleed">
     <div
         class="scroller"
@@ -17,10 +18,10 @@
           :style="{ transform: `translateX(${-offset}px)` }"
       >
         <img
-            v-for="(image, i) in [...images, ...images]"
+            v-for="(image, i) in [...images, ...images, ...images]"
             :key="i"
             :src="image"
-            alt="photo"
+            alt="photo de choux"
         />
       </div>
     </div>
@@ -37,11 +38,15 @@ const modules = import.meta.glob(
 const images = Object.entries(modules).map(([, url]) => url)
 
 const track = ref(null)
-const offset = ref(0)
+const offset = ref(500)
 let animationId
-const defaultSpeed = 2 // vitesse normale
+let defaultSpeed = 2 // vitesse normale
 let speed = defaultSpeed
 let trackWidth = 0
+// Drag
+let isDragging = false
+let startX = 0
+let lastOffset = 0
 
 function slowDown() {
   const slow = () => {
@@ -64,15 +69,21 @@ function speedUp() {
   speed = defaultSpeed
 }
 
-// Drag
-let isDragging = false
-let startX = 0
-let lastOffset = 0
+
 
 function animate() {
   if (!isDragging) {
     offset.value += speed
-    if (offset.value >= trackWidth / 2) offset.value = 0
+    if (offset.value >= trackWidth * (8/10)) {
+      offset.value = trackWidth * (8/10)
+      speed = -speed
+      defaultSpeed = -defaultSpeed
+    }
+    if (offset.value <= 10) {
+      offset.value = 10
+      speed = -speed
+      defaultSpeed = -defaultSpeed
+    }
   }
   animationId = requestAnimationFrame(animate)
 }
