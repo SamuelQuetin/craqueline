@@ -1,5 +1,4 @@
 <template>
-  <p>{{offset}} / {{trackWidth}}</p>
   <div class="bleed">
     <div
         class="scroller"
