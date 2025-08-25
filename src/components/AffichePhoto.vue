@@ -1,43 +1,68 @@
 <template>
-  <div
-      class="scroller"
-      @mousedown="startDrag"
-      @mouseup="stopDrag"
-      @mouseleave="stopDrag"
-      @mousemove="onDrag"
-      @touchstart.prevent="startDrag"
-      @touchend="stopDrag"
-      @touchmove.prevent="onDrag"
-  >
+  <div class="bleed">
     <div
-        ref="track"
-        class="scroller-track"
-        :style="{ transform: `translateX(${-offset}px)` }"
+        class="scroller"
+        @mouseenter="slowDown"
+        @mousedown="startDrag"
+        @mouseup="stopDrag"
+        @mouseleave="speedUpAndStopDrag"
+        @mousemove="onDrag"
+        @touchstart.prevent="startDrag"
+        @touchend="stopDrag"
+        @touchmove.prevent="onDrag"
     >
-      <img
-          v-for="(image, i) in [...images, ...images]"
-          :key="i"
-          :src="image"
-          alt="photo"
-      />
+      <div
+          ref="track"
+          class="scroller-track"
+          :style="{ transform: `translateX(${-offset}px)` }"
+      >
+        <img
+            v-for="(image, i) in [...images, ...images]"
+            :key="i"
+            :src="image"
+            alt="photo"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue"
+import {ref, onMounted, onUnmounted} from "vue"
 
 const modules = import.meta.glob(
     '/src/assets/photo/choux/*.{png,jpg,jpeg,webp,svg,gif}',
-    { eager: true, import: 'default' }
+    {eager: true, import: 'default'}
 )
 const images = Object.entries(modules).map(([, url]) => url)
 
 const track = ref(null)
 const offset = ref(0)
 let animationId
-let speed = 2
+const defaultSpeed = 2 // vitesse normale
+let speed = defaultSpeed
 let trackWidth = 0
+
+function slowDown() {
+  const slow = () => {
+    if (speed > 0.05) {
+      speed *= 0.9 // ralentit progressivement
+      requestAnimationFrame(slow)
+    } else {
+      speed = 0
+    }
+  }
+  slow()
+}
+
+function speedUpAndStopDrag(){
+  speedUp()
+  stopDrag()
+}
+
+function speedUp() {
+  speed = defaultSpeed
+}
 
 // Drag
 let isDragging = false
@@ -54,7 +79,6 @@ function animate() {
 
 // --- Drag functions ---
 function startDrag(e) {
-  e.preventDefault();
   isDragging = true
   startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX
   lastOffset = offset.value
@@ -83,16 +107,23 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.scroller {
+.bleed {
   position: relative;
-  user-select: none; /* Empêche la sélection de texte */
-  -webkit-user-drag: none; /* Empêche le drag natif de l’image */
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
   max-width: 100vw;
+  margin: 0;
   overflow: visible;
   background-color: rgb(var(--v-theme-quaternary));
+}
+
+.scroller {
+  position: relative;
+  user-select: none; /* Empêche la sélection de texte */
+  -webkit-user-drag: none; /* Empêche le drag natif de l’image */
+  width: 100vw;
+  overflow: hidden;
   padding: 5vh;
   margin: 5vh 0;
   display: flex;
