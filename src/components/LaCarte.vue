@@ -151,10 +151,6 @@ h2 {
     padding-left: 0;
     padding-right: 0;
   }
-
-  .layout.row.wrap {
-    flex-direction: column-reverse;
-  }
 }
 
 p {

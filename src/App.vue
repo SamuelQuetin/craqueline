@@ -41,6 +41,9 @@
         <section id="section-4">
           <LaBoutique></LaBoutique>
         </section>
+        <section id="section-5">
+          <AffichePhoto></AffichePhoto>
+        </section>
       </v-container>
       <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
     </v-main>
@@ -59,6 +62,7 @@ import LaBoutique from "@/components/LaBoutique.vue";
 import Summary from "@/components/Summary.vue";
 import LaCarte from "@/components/LaCarte.vue";
 import LeFooter from "@/components/LeFooter.vue";
+import AffichePhoto from "@/components/AffichePhoto.vue";
 
 const isMaintenance = ref(false);
 
