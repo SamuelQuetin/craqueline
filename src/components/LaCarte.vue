@@ -1,8 +1,8 @@
 <template>
   <h2>LA CARTE</h2>
+  <section id="savoir-faire"/>
   <v-spacer class="padding-v-spacer-h2"></v-spacer>
   <v-row class="padding-v-row" align="center" >
-    <section id="savoir-faire"/>
 
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="d-flex justify-center"  order-xs="2" order-sm="2" order-md="1" order-lg="1" order-xl="1">
         <v-img src="@/assets/photo/chouxLaCarte.png" max-width="20em"></v-img>
