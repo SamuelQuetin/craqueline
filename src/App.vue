@@ -32,7 +32,7 @@
         </section>
         <div id="test"></div>
         <section id="section-3">
-          <NosChoux></NosChoux>
+          <LaCarte></LaCarte>
         </section>
 
         <section id="section-4">
@@ -45,12 +45,12 @@
 </template>
 <script setup>
 import Bienvenue from './components/Bienvenue.vue';
-import NosChoux from "@/components/NosChoux.vue";
 import MaintenanceBanner from "@/components/MaintenanceBanner.vue";
 import {ref, computed, onMounted, onUnmounted} from 'vue';
 import {useDisplay} from 'vuetify'
 import LaBoutique from "@/components/LaBoutique.vue";
 import Summary from "@/components/Summary.vue";
+import LaCarte from "@/components/LaCarte.vue";
 
 const isMaintenance = ref(false);
 
