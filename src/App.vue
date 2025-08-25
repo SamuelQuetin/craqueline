@@ -1,5 +1,6 @@
 <template>
   <v-app class="app-bg">
+
     <v-main>
       <v-parallax
           src="@/assets/photo/parallax.png"

@@ -10,15 +10,16 @@
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
+    "esbuild": "^0.25.0",
     "vue": "^3.5.13",
-    "vuetify": "^3.7.11",
-    "esbuild": "^0.25.0"
+    "vuetify": "^3.7.11"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
     "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.2.0",
     "axios": "1.8.4",
     "prettier": "^3.2.5",
+    "vite": "^6.2.0",
     "vite-plugin-vuetify": "^2.0.3"
   }
 }
