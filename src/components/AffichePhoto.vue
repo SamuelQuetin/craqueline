@@ -46,6 +46,8 @@ let trackWidth = 0
 let isDragging = false
 let startX = 0
 let lastOffset = 0
+let maxOffset = 0
+
 
 function slowDown() {
   const slow = () => {
@@ -73,8 +75,8 @@ function speedUp() {
 function animate() {
   if (!isDragging) {
     offset.value += speed
-    if (offset.value >= trackWidth * (8/10)) {
-      offset.value = trackWidth * (8/10)
+    if (offset.value >= maxOffset) {
+      offset.value = maxOffset
       speed = -speed
       defaultSpeed = -defaultSpeed
     }
@@ -107,7 +109,11 @@ function stopDrag() {
 }
 
 onMounted(() => {
-  trackWidth = track.value.scrollWidth
+  const firstImage = track.value.querySelector('img')
+  const imageWidth = firstImage.offsetWidth
+  const style = getComputedStyle(track.value)
+  const gap = parseInt(style.gap) || 0
+  maxOffset = images.length * (imageWidth + 2*gap)
   animate()
 })
 
