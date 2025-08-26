@@ -110,6 +110,7 @@ h2 {
   font-size: 7em;
   font-weight: 200;
   position: absolute;
+  padding-top: 5vh;
   margin-left: -10vh;
 }
 
@@ -125,13 +126,15 @@ h2 {
 @media (max-width: 150dvh) {
   h2 {
     color: black;
-    font-size: 6em;
+    font-size: 5em;
     position: absolute;
+    padding-top: 5vh;
     margin-left: 0;
   }
 
   .padding-v-spacer-h2 {
     padding-bottom: 15vh;
+    padding-top: 5vh;
   }
   .margin-center {
     margin-left: 0vh;

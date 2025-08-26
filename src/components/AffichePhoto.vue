@@ -1,4 +1,5 @@
 <template>
+
   <div class="bleed">
     <div
         class="scroller"
@@ -39,9 +40,8 @@ const images = Object.entries(modules).map(([, url]) => url)
 const track = ref(null)
 const offset = ref(500)
 let animationId
-let defaultSpeed = 2 // vitesse normale
+let defaultSpeed = 1 // vitesse normale
 let speed = defaultSpeed
-let trackWidth = 0
 // Drag
 let isDragging = false
 let startX = 0
@@ -76,14 +76,7 @@ function animate() {
   if (!isDragging) {
     offset.value += speed
     if (offset.value >= maxOffset) {
-      offset.value = maxOffset
-      speed = -speed
-      defaultSpeed = -defaultSpeed
-    }
-    if (offset.value <= 10) {
-      offset.value = 10
-      speed = -speed
-      defaultSpeed = -defaultSpeed
+      offset.value = 0;
     }
   }
   animationId = requestAnimationFrame(animate)
@@ -109,12 +102,18 @@ function stopDrag() {
 }
 
 onMounted(() => {
+
   const firstImage = track.value.querySelector('img')
-  const imageWidth = firstImage.offsetWidth
-  const style = getComputedStyle(track.value)
-  const gap = parseInt(style.gap) || 0
-  maxOffset = images.length * (imageWidth + 2*gap)
-  animate()
+  const trackWidth = window.innerWidth
+  if (firstImage) {
+    firstImage.addEventListener('load', () => {
+      const imageWidth = firstImage.offsetWidth
+      const style = getComputedStyle(track.value)
+      const gap = parseInt(style.gap) || 0
+      maxOffset = (3 * images.length) * (imageWidth + gap) - trackWidth
+      animate()
+    })
+  }
 })
 
 onUnmounted(() => {
