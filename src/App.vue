@@ -5,12 +5,10 @@
       <section id="section-0">
       <v-parallax
           src="@/assets/photo/parallax.png"
-          height="100vh"
+          height="100dvh"
           class="parallax"
       >
         <div class="d-flex flex-column fill-height justify-center align-center parallax-content text-center text-white">
-          <!--        <img src="@/assets/photo/title.png"  :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>-->
-          <!--        <p>Montpellier</p>-->
 
           <img src="@/assets/logoCraque.svg" :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
         </div>
@@ -26,7 +24,7 @@
       </v-parallax>
       </section>
       <section id="section-1">
-        <Summary @onClick="scrollTo"></Summary>
+        <Summary :is-mobile="isMobile" @onClick="scrollTo"></Summary>
       </section>
       <v-container class=" pa-5 bg_base" max-width="90em">
 
@@ -166,7 +164,7 @@ const scrollCueStyle = computed(() => ({
 /* Conteneur de page */
 .app-bg {
   position: relative;
-  min-height: 100dvh; /* mieux que 100vh sur mobile */
+  min-height: 100dvh;
   isolation: isolate; /* crée un nouveau stacking context */
   overflow: clip; /* ou hidden si tu préfères */
   background: rgb(var(--v-theme-tertiary)); /* couleur de fond proche du gradient pour éviter tout "flash" blanc */

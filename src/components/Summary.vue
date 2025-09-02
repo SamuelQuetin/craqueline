@@ -2,10 +2,9 @@
   <v-carousel
       v-model="model"
       cycle
-      interval="5000"
+      interval="500000"
       show-arrows="hover"
-      touch
-      height="80vh"
+      :height="isMobile ? '100dvh' : '80dvh'"
       hide-delimiters
   >
     <template v-slot:prev="{ props }">
@@ -27,10 +26,10 @@
       ></v-btn>
     </template>
     <v-carousel-item class="h-100">
-      <SlideSummary1 @onClick="scrollto" />
+      <SlideSummary1 :is-mobile="isMobile" @onClick="scrollto" />
     </v-carousel-item>
     <v-carousel-item class="h-100">
-      <SlideSummary2 @onClick="scrollto" />
+      <SlideSummary2 :is-mobile="isMobile" @onClick="scrollto" />
     </v-carousel-item>
   </v-carousel>
 </template>
@@ -41,6 +40,8 @@ import SlideSummary1 from "@/components/SlideSummary1.vue";
 import SlideSummary2 from "@/components/SlideSummary2.vue";
 
 const emits = defineEmits(['onClick'])
+
+const props = defineProps({isMobile: Boolean})
 
 const model = defineModel();
 
