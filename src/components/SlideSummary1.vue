@@ -28,12 +28,12 @@
           cols="12" xs="5" sm="5" md="5" lg="5" xl="5"
           class="d-flex flex-column align-center justify-center h-100"
       >
-        <div class="drop-right z-index-1">
+        <div class="drop-right">
           <p>Découvrez notre gamme de choux</p>
           <h2 class="h2-defaut">UN SAVOIR-FAIRE<br>ARTISANAL</h2>
         </div>
         <v-img
-            class="my-6 drop-in"
+            class="drop-in"
             src="@/assets/photo/chouxSoft.png"
             width="300"
         ></v-img>
@@ -62,7 +62,7 @@
         </v-col>
       </v-row>
       <v-row class="w-100">
-        <v-col class="d-flex flex-column align-center justify-center">
+        <v-col class="margin-center d-flex flex-column align-center justify-center">
           <div class="drop-right z-index-1">
             <p>Découvrez notre gamme de choux</p>
             <h2 class="h2-mobile">UN SAVOIR-FAIRE ARTISANAL</h2>
@@ -125,14 +125,6 @@ h2 {
 .img-mobile {
   width: clamp(180px, 45vw, 320px);
   height: auto;
-}
-
-.translate-y-200 {
-  top: -200px
-}
-
-.translate-y-20 {
-  top: -20px
 }
 
 .z-index-1 {
