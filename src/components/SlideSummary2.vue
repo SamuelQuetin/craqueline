@@ -62,7 +62,7 @@ p {
 
 h2 {
   font-size: 4em;
-  font-weight: 400;
+  font-weight: 100;
   color: black;
 }
 

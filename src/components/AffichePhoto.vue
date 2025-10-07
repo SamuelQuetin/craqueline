@@ -153,7 +153,7 @@ onUnmounted(() => {
 
 .scroller-track {
   display: flex;
-  gap: 2rem;
+  gap: 4px;
   will-change: transform;
 }
 

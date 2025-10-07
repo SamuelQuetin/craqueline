@@ -29,7 +29,7 @@
       <v-container class=" pa-5 bg_base" max-width="90em">
 
         <section id="section-2">
-          <Bienvenue></Bienvenue>
+          <Bienvenue :is-mobile="isMobile"></Bienvenue>
         </section>
         <div id="test"></div>
         <section id="section-3">

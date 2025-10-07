@@ -1,8 +1,8 @@
 <template>
-  <h2>NOTRE HISTOIRE</h2>
+  <h2 :class="isMobile ? 'h2-mobile':'h2-default'">NOTRE HISTOIRE</h2>
   <v-row cols="12" class="mb-4">
     <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="padding-text">
-      <v-spacer class="py-16"></v-spacer>
+      <v-spacer v-if="!isMobile" class="py-16"></v-spacer>
       <v-row class="mb-4">
           <span class="italic bold">
             « L’idée de Craqueline est née dès notre enfance. Mamie mettait toujours un point d’honneur à terminer ses
@@ -39,14 +39,56 @@
   </div>
 </template>
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue"
+
+const props = defineProps({ isMobile: Boolean })
+const h2Ref = ref(null)
+
+function checkOverflow() {
+  const el = h2Ref.value
+  if (!el) return
+
+  const rect = el.getBoundingClientRect()
+
+  // Si l'élément sort à gauche → on force sa position à 0
+  if (rect.left < 0) {
+    el.style.position = "absolute"
+    el.style.left = "0px"
+    el.style.marginLeft = "0"
+  }
+
+  // Si l'élément sort à droite → on le colle à droite
+  if (rect.right > window.innerWidth) {
+    el.style.position = "absolute"
+    el.style.left = `${window.innerWidth - rect.width}px`
+    el.style.marginLeft = "0"
+  }
+}
+
+onMounted(() => {
+  checkOverflow()
+  window.addEventListener("resize", checkOverflow)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", checkOverflow)
+})
 
 </script>
 <style scoped>
-h2 {
+.h2-default {
   color: black;
   font-size: 5em;
+  font-weight: 10;
   position: absolute;
-  margin-left: -10vh;
+  margin-left: -5vw;
+}
+
+.h2-mobile {
+  color: black;
+  font-size: 4em;
+  position: relative;
+  margin-left: 0;
 }
 
 .padding-text {
@@ -60,12 +102,7 @@ h2 {
 }
 
 @media (max-width: 150dvh) {
-  h2 {
-    color: black;
-    font-size: 4em;
-    position: absolute;
-    margin-left: 0;
-  }
+
 
   .padding-text {
     padding-left: 3vh;

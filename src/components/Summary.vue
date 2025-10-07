@@ -4,7 +4,7 @@
       cycle
       interval="500000"
       show-arrows="hover"
-      :height="isMobile ? '100dvh' : '80dvh'"
+      :height="isMobile ? '90dvh' : '80dvh'"
       hide-delimiters
   >
     <template v-slot:prev="{ props }">

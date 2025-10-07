@@ -4,10 +4,10 @@
   <v-spacer class="padding-v-spacer-h2"></v-spacer>
   <v-row class="padding-v-row" align="center" >
 
-      <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="d-flex justify-center"  order-xs="2" order-sm="2" order-md="1" order-lg="1" order-xl="1">
+      <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4" class="d-flex justify-center"  order-xs="2" order-sm="2" order-md="1" order-lg="1" order-xl="1">
         <v-img src="@/assets/photo/chouxLaCarte.png" max-width="20em"></v-img>
       </v-col>
-      <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="padding-text justify-text" order-xs="1" order-sm="1" order-md="2" order-lg="2" order-xl="2">
+      <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8" class="padding-text justify-text" order-xs="1" order-sm="1" order-md="2" order-lg="2" order-xl="2">
         <h3 class="pb-8">UN SAVOIR - FAIRE ARTISANAL</h3>
         <p class="marging-text pb-4"> Chaque jour, nous produisons une vaste gamme de chou à la crème.
         </p>
@@ -18,7 +18,7 @@
       </v-col>
   </v-row>
   <v-row class="padding-v-row" align="center" >
-    <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="padding-text justify-text">
+    <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8" class="padding-text justify-text">
       <h3 class="pb-8">UNE PÂTISSERIE DURABLE</h3>
       <p class="marging-text pb-4"> Nous avons rigoureusement sélectionnés nos fournisseurs afin de travailler au
         maximum en circuit court et avec des produits de grande qualité
@@ -29,15 +29,15 @@
         <li><p>la maison Valrhona à Tain-l’Hermitage pour ses chocolats et pralinés haut de gamme</p></li>
       </ul>
     </v-col>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="d-flex justify-center">
+    <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4" class="d-flex justify-center">
       <v-img src="@/assets/photo/chouxNoisette.jpg" max-width="20em"></v-img>
     </v-col>
   </v-row>
   <v-row class="padding-v-row" align="center" >
-    <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="d-flex justify-center" order-xs="2" order-sm="2" order-md="1" order-lg="1" order-xl="1">
+    <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4" class="d-flex justify-center" order-xs="2" order-sm="2" order-md="1" order-lg="1" order-xl="1">
       <v-img src="@/assets/photo/chouxNoisette.jpg" max-width="20em"></v-img>
     </v-col>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="padding-text justify-text" order-xs="1" order-sm="1" order-md="2" order-lg="2" order-xl="2">
+    <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8" class="padding-text justify-text" order-xs="1" order-sm="1" order-md="2" order-lg="2" order-xl="2">
       <h3 class="pb-8">UN SALON DE THÉ ET CAFÉ</h3>
       <p class="marging-text pb-4">Nous proposons un vaste choix de boissons chaudes et froides à déguster sur place ou
         à emporter, créées avec nos partenaires de Montpellier et de la région Occitanie.
@@ -51,7 +51,7 @@
     </v-col>
   </v-row>
   <v-row class="padding-v-row">
-    <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="padding-text justify-text">
+    <v-col cols="12" xs="12" sm="12" md="8" lg="8" xl="8" class="padding-text justify-text">
       <h3 class="pb-8">VOS ÉVÈNEMENTS SUBLIMÉS</h3>
       <p class=" pb-4">Mariage, anniversaire ou réception privée : émerveillez vos invités avec nos pièces
         montées de choux et nos Saint-Honoré d'exception.
@@ -61,7 +61,7 @@
       </p>
       <v-btn class="mt-8" variant="outlined" elevation="0"> DEMANDER UN DEVIS </v-btn>
     </v-col>
-    <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="d-flex justify-center">
+    <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4" class="d-flex justify-center">
       <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>
     </v-col>
 
