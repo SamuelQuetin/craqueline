@@ -162,13 +162,6 @@ h2 {
   color: black;
 }
 
-.zindex-1 {
-  z-index: 2;
-}
-
-.zindex-10 {
-  z-index: 10;
-}
 
 /* ===== Classes ===== */
 .drop-left {

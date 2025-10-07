@@ -1,6 +1,6 @@
 <template>
   <v-app class="app-bg">
-
+    <LeHeader></LeHeader>
     <v-main>
       <section id="section-0">
       <v-parallax
@@ -60,6 +60,7 @@ import LaBoutique from "@/components/LaBoutique.vue";
 import Summary from "@/components/Summary.vue";
 import LaCarte from "@/components/LaCarte.vue";
 import LeFooter from "@/components/LeFooter.vue";
+import LeHeader from "@/components/LeHeader.vue";
 import AffichePhoto from "@/components/AffichePhoto.vue";
 
 const isMaintenance = ref(false);
