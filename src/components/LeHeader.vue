@@ -1,20 +1,21 @@
 <template>
+  <div style="height:13dvh"></div>
   <v-sheet
       color="quaternary"
       class="header"
   >
     <v-row>
-      <v-col :cols="isShrunk ? '1':'12'" class="d-flex justify-center">
+      <v-col :cols="isShrunkOrMainPage ? '1':'12'" class="d-flex justify-center">
         <div>
           <v-img
               src="@/assets/logoSeul.webp"
-              :class="isShrunk? 'logo-shrink' : 'logo'"
+              :class="isShrunkOrMainPage? 'logo-shrink' : 'logo'"
           />
-          <h1 v-if="!isShrunk">CRAQUELINE</h1>
-          <p v-if="!isShrunk">MONTPELLIER</p>
+          <h1 v-if="!isShrunkOrMainPage">CRAQUELINE</h1>
+          <p v-if="!isShrunkOrMainPage">MONTPELLIER</p>
         </div>
       </v-col>
-      <v-col :cols="isShrunk ? '11':'12'" class="d-flex justify-center align-center">
+      <v-col :cols="isShrunkOrMainPage ? '11':'12'" class="d-flex justify-center align-center">
         <div class="py-4">
           <v-btn
               class="mx-4"
@@ -50,10 +51,10 @@
 
 import {ref, onMounted, onUnmounted} from 'vue'
 
-const isShrunk = ref(false)
+const isShrunkOrMainPage = ref(false)
 
 const handleScroll = () => {
-  isShrunk.value = window.scrollY > 50
+  isShrunkOrMainPage.value = window.scrollY > 50 || true
 }
 
 onMounted(() => {
