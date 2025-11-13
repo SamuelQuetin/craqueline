@@ -28,18 +28,19 @@
       </section>
       <v-container class=" pa-5 bg_base" max-width="90em">
 
-        <section id="section-2">
+        <section id="section-2" class="py-6">
           <Bienvenue :is-mobile="isMobile"></Bienvenue>
         </section>
-        <div id="test"></div>
-        <section id="section-3">
+
+        <section id="section-3" class="py-6">
           <LaCarte></LaCarte>
         </section>
 
-        <section id="section-4">
+        <section id="section-4" class="py-6">
           <LaBoutique></LaBoutique>
         </section>
-        <section id="section-5">
+
+        <section id="section-5" class="py-6">
           <AffichePhoto></AffichePhoto>
         </section>
       </v-container>

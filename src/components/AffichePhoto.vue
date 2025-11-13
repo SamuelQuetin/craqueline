@@ -1,5 +1,4 @@
 <template>
-
   <div class="bleed">
     <div
         class="scroller"
@@ -130,7 +129,7 @@ onUnmounted(() => {
   max-width: 100vw;
   margin: 0;
   overflow: visible;
-  background-color: rgb(var(--v-theme-quaternary));
+  background-color: rgba(var(--v-theme-quaternary), 0.5 );
 }
 
 .scroller {

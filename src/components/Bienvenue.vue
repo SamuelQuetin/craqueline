@@ -7,7 +7,7 @@
           <span class="italic bold">
             « L’idée de Craqueline est née dès notre enfance. Mamie mettait toujours un point d’honneur à terminer ses
             repas de fête par un Saint-Honoré. Le feuilletage croustillant, les choux moelleux au caramel craquant et
-            la crème délicatement parfumée à la vanille… C’est l’essence même de Craqueline : le désir qu’une bouchée
+            la crème délicatement parfumée à la vanille…<br> C’est l’essence même de Craqueline : le désir qu’une bouchée
             suffise à nous faire retomber en enfance. »
           </span>
       </v-row>
@@ -17,12 +17,12 @@
           Cuisinière et pâtissière passionnée, elle fut une véritable source d’inspiration pour Bertille, qui décida de
           se former en cuisine, puis en pâtisserie et en chocolaterie. <br>
           Dix ans plus tard, forte de son expérience en boutique et en restauration gastronomique et étoilée, elle
-          décide de se lancer. Mélissa ne tarda pas à la rejoindre avec enthousiasme dans cette aventure.
+          décide de se lancer. <br> Mélissa ne tarda pas à la rejoindre avec enthousiasme dans cette aventure.
         </span>
       </v-row>
       <v-row class="mb-4">
         <p>
-          De là naît Craqueline, clin d’œil au craquelin qui sublime le chou, et hommage à Jacqueline, leur source
+          De là naît <i>Craqueline</i>, clin d’œil au craquelin qui sublime le chou, et hommage à Jacqueline, leur source
           d’inspiration.
         </p>
       </v-row>

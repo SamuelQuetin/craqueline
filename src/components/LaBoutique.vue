@@ -107,11 +107,9 @@ h3 {
 
 h2 {
   color: black;
-  font-size: 7em;
-  font-weight: 200;
+  font-size: 5em;
   position: absolute;
-  padding-top: 5vh;
-  margin-left: -10vh;
+  margin-left: -5vw
 }
 
 .padding-v-spacer-h2 {
