@@ -1,7 +1,7 @@
 <template>
   <h2 :class="isMobile ? 'h2-mobile':'h2-default'">NOTRE HISTOIRE</h2>
   <v-row cols="12" class="mb-4">
-    <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="padding-text">
+    <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" :class="isMobile ? 'padding-text-mobile':'padding-text-defaut'">
       <v-spacer v-if="!isMobile" class="py-16"></v-spacer>
       <v-row class="mb-4">
           <span class="italic bold">
@@ -27,7 +27,7 @@
         </p>
       </v-row>
     </v-col>
-    <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="padding-marging-pic d-flex justify-center">
+    <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" :class="isMobile ? 'padding-marging-pic-mobile d-flex justify-center':'padding-marging-pic-defaut d-flex justify-center'">
       <v-img src="@/assets/photo/portrait1.png" max-width="25em"></v-img>
     </v-col>
   </v-row>
@@ -39,40 +39,8 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue"
 
 const props = defineProps({ isMobile: Boolean })
-const h2Ref = ref(null)
-
-function checkOverflow() {
-  const el = h2Ref.value
-  if (!el) return
-
-  const rect = el.getBoundingClientRect()
-
-  // Si l'élément sort à gauche → on force sa position à 0
-  if (rect.left < 0) {
-    el.style.position = "absolute"
-    el.style.left = "0px"
-    el.style.marginLeft = "0"
-  }
-
-  // Si l'élément sort à droite → on le colle à droite
-  if (rect.right > window.innerWidth) {
-    el.style.position = "absolute"
-    el.style.left = `${window.innerWidth - rect.width}px`
-    el.style.marginLeft = "0"
-  }
-}
-
-onMounted(() => {
-  checkOverflow()
-  window.addEventListener("resize", checkOverflow)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", checkOverflow)
-})
 
 </script>
 <style scoped>
@@ -81,7 +49,8 @@ onBeforeUnmount(() => {
   font-size: 5em;
   font-weight: 10;
   position: absolute;
-  margin-left: -5vw;
+  left: 5vw;
+  white-space: nowrap;
 }
 
 .h2-mobile {
@@ -91,29 +60,25 @@ onBeforeUnmount(() => {
   margin-left: 0;
 }
 
-.padding-text {
+.padding-text-defaut {
   padding-left: 20vh;
 }
 
-.padding-marging-pic {
+.padding-text-mobile {
+  padding-left: 3vh;
+  padding-right: 3vh;
+}
+
+.padding-marging-pic-defaut {
   margin-top: 4vh;
   padding-left: 10vh;
   padding-right: 10vh;
 }
 
-@media (max-width: 150dvh) {
-
-
-  .padding-text {
-    padding-left: 3vh;
-    padding-right: 3vh;
-  }
-
-  .padding-marging-pic {
-    margin-top: 0;
-    padding-left: 2vh;
-    padding-right: 2vh;
-  }
+.padding-marging-pic-mobile {
+  margin-top: 0;
+  padding-left: 2vh;
+  padding-right: 2vh;
 }
 
 .bg-subtitle {

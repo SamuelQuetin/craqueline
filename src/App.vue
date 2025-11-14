@@ -1,6 +1,6 @@
 <template>
   <v-app class="app-bg">
-    <LeHeader></LeHeader>
+    <LeHeader :is-mobile="isMobile"></LeHeader>
     <v-main>
       <section id="section-0">
       <v-parallax
@@ -33,18 +33,18 @@
         </section>
 
         <section id="section-3" class="py-6">
-          <LaCarte></LaCarte>
+          <LaCarte :is-mobile="isMobile"></LaCarte>
         </section>
 
         <section id="section-4" class="py-6">
-          <LaBoutique></LaBoutique>
+          <LaBoutique :is-mobile="isMobile"></LaBoutique>
         </section>
 
         <section id="section-5" class="py-6">
           <AffichePhoto></AffichePhoto>
         </section>
       </v-container>
-      <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
+      <MaintenanceBanner v-model="isMaintenance" ></MaintenanceBanner>
     </v-main>
     <LeFooter></LeFooter>
   </v-app>

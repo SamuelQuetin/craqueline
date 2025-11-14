@@ -4,7 +4,7 @@
       color="quaternary"
       class="header"
   >
-    <v-row>
+    <v-row class="ma-0 pa-0">
       <v-col :cols="isShrunkOrMainPage ? '1':'12'" class="d-flex justify-center">
         <div>
           <v-img
@@ -15,29 +15,66 @@
           <p v-if="!isShrunkOrMainPage">MONTPELLIER</p>
         </div>
       </v-col>
-      <v-col :cols="isShrunkOrMainPage ? '11':'12'" class="d-flex justify-center align-center">
-        <div class="py-4">
+      <v-col :cols="isShrunkOrMainPage ? '11':'12'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
+        <v-menu v-if="isMobile">
+          <template v-slot:activator="{ props }">
+            <v-btn icon="mdi-menu" variant="outlined" size="x-large" v-bind="props"></v-btn>
+          </template>
+          <v-btn
+              style="width: 100vw"
+              tile
+              flat
+          >
+            ACCUEIL
+          </v-btn>
+          <v-btn
+              style="width: 100vw"
+              tile
+              flat
+          >
+            NOTRE HISTOIRE
+          </v-btn>
+          <v-btn
+              style="width: 100vw"
+              tile
+              flat
+          >
+            LA CARTE
+          </v-btn>
+          <v-btn
+              style="width: 100vw"
+              tile
+              flat
+          >
+            CONTACT
+          </v-btn>
+        </v-menu>
+        <div v-else class="py-4">
           <v-btn
               class="mx-4"
-              variant="text"
+              tile
+              flat
           >
             ACCUEIL
           </v-btn>
           <v-btn
               class="mx-4"
-              variant="text"
+              tile
+              flat
           >
             NOTRE HISTOIRE
           </v-btn>
           <v-btn
               class="mx-4"
-              variant="text"
+              tile
+              flat
           >
             LA CARTE
           </v-btn>
           <v-btn
               class="mx-4"
-              variant="text"
+              tile
+              flat
           >
             CONTACT
           </v-btn>
@@ -52,6 +89,7 @@
 import {ref, onMounted, onUnmounted} from 'vue'
 
 const isShrunkOrMainPage = ref(false)
+const props = defineProps({isMobile: Boolean})
 
 const handleScroll = () => {
   isShrunkOrMainPage.value = window.scrollY > 50 || true
@@ -84,9 +122,14 @@ onUnmounted(() => {
 }
 
 .logo-shrink {
-  height: 10vh;
-
-  width: 10vw;
+  height: 100px;
+  width: 100px;
+  left: 50px;
   transition: all 0.1s ease;
+}
+
+.v-btn {
+  background-color:  rgb(var(--v-theme-quaternary));
+  color: white;
 }
 </style>

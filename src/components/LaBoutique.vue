@@ -1,12 +1,12 @@
 <template>
-  <h2 class="pb-2">LA BOUTIQUE</h2>
-  <v-spacer class="padding-v-spacer-h2"></v-spacer>
+  <h2 :class="isMobile ? 'h2-mobile pb-2' : 'h2-default pb-2'">LA BOUTIQUE</h2>
+  <v-spacer v-if="!isMobile" class="padding-v-spacer-h2"></v-spacer>
   <v-row cols="12" class="px-8 margin-center">
     <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="align-content-center">
 
       <!--   ADRESSE   -->
       <v-row>
-        <v-col cols="12" xs="2" sm="2" md="2" lg="2" xl="2" align-self="center">
+        <v-col cols="12" xs="2" sm="2" md="2" lg="2" xl="2" class="d-flex justify-center align-center">
           <v-icon size="50" class="mr-2">mdi-map-marker</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" align-self="center">
@@ -21,7 +21,7 @@
 
       <!--   HORAIRE   -->
       <v-row>
-        <v-col cols="12" xs="2" sm="2" md="2" lg="2" xl="2" align-self="center">
+        <v-col cols="12" xs="2" sm="2" md="2" lg="2" xl="2" class="d-flex justify-center align-center">
           <v-icon size="50" class="mr-2">mdi-clock-outline</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" justify="center" align-self="center">
@@ -33,7 +33,7 @@
 
       <!--      CONTACT     -->
       <v-row>
-        <v-col cols="12" xs="2" sm="2" md="2" lg="2" xl="2" align-self="center">
+        <v-col cols="12" xs="2" sm="2" md="2" lg="2" xl="2" class="d-flex justify-center align-center">
           <v-icon size="50" class="mr-2">mdi-email-outline</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" justify="center" align-self="center">
@@ -97,7 +97,7 @@
   </v-row>
 </template>
 <script setup>
-
+const props= defineProps({isMobile: Boolean})
 </script>
 <style scoped>
 h3 {
@@ -105,11 +105,20 @@ h3 {
   font-weight: 500;
 }
 
-h2 {
+.h2-default {
   color: black;
   font-size: 5em;
+  font-weight: 10;
   position: absolute;
-  margin-left: -5vw
+  left: 5vw;
+  white-space: nowrap;
+}
+
+.h2-mobile {
+  color: black;
+  font-size: 4em;
+  position: relative;
+  margin-left: 0;
 }
 
 .padding-v-spacer-h2 {
