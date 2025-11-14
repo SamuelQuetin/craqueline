@@ -66,12 +66,41 @@
     </v-col>
 
   </v-row>
-  <v-row class="row-bleed bg-s" justify="center">
-    <v-col v-for="(image, i) in imagesSaintHono" :key="i" cols="12" xs="12" sm="12" md="2" lg="2" xl="2" :width="(100/imagesSaintHono.length) + 'vw'">
-      <v-img :src="image" class="image-pop" ></v-img>
+
+  <v-row class="row-bleed bg-s py-3 my-4" v-if="isMobile">
+    <v-col>
+      <v-carousel
+          cycle
+          hide-delimiters
+          interval="500000"
+          show-arrows="hover"
+      >
+        <v-carousel-item v-for="(image, i) in imagesSaintHono" :key="i">
+          <v-img :src="image" width="100%"></v-img>
+        </v-carousel-item>
+      </v-carousel>
     </v-col>
   </v-row>
-  <v-row class="row-bleed bg-q mt-4 pa-6" cols="12">
+  <v-row class="row-bleed bg-s py-3 my-4" v-else>
+    <v-col class="pa-0 ma-1" v-for="(image, i) in imagesSaintHono" :key="i" :width="(100/imagesSaintHono.length) + 'vw'">
+      <v-img :src="image" class="image-pop" width="100%"></v-img>
+    </v-col>
+  </v-row>
+  <v-row class="row-bleed bg-q mt-4 pa-6" v-if="isMobile">
+    <v-col>
+      <v-carousel
+          cycle
+          hide-delimiters
+          interval="500000"
+          show-arrows="hover"
+      >
+        <v-carousel-item v-for="(image, i) in imagesCarte" :key="i">
+          <v-img :src="image" width="100%"></v-img>
+        </v-carousel-item>
+      </v-carousel>
+    </v-col>
+  </v-row>
+  <v-row class="row-bleed bg-q mt-4 pa-6" cols="12" v-else>
     <v-col v-for="(image, i) in imagesCarte" :key="i" cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="overflow-visible d-flex justify-center">
       <v-img :src="image" class="image-pop"></v-img>
     </v-col>
@@ -158,11 +187,6 @@ h3 {
 }
 
 .row-bleed .v-col { overflow: visible; }
-
-.row-bleed .v-col:nth-child(1) .image-pop { transform: translateX(-15%); }
-.row-bleed .v-col:nth-child(2) .image-pop { transform: translateX(-10%); }
-.row-bleed .v-col:nth-child(3) .image-pop { transform: translateX(10%); }
-.row-bleed .v-col:nth-child(4) .image-pop { transform: translateX(15%); }
 
 .image-pop {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
