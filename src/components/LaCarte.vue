@@ -67,15 +67,17 @@
 
   </v-row>
 
-  <v-row class="row-bleed bg-s py-3 my-4" v-if="isMobile">
-    <v-col>
+  <v-row class="row-bleed bg-s" v-if="isMobile">
+    <v-col class="pa-0 ma-0">
       <v-carousel
           cycle
-          hide-delimiters
-          interval="500000"
+          interval="5000"
           show-arrows="hover"
+          touch
+          class="carousel-auto"
+          :show-arrows="false"
       >
-        <v-carousel-item v-for="(image, i) in imagesSaintHono" :key="i">
+        <v-carousel-item v-for="(image, i) in imagesSaintHono" :key="i" class="pa-6">
           <v-img :src="image" width="100%"></v-img>
         </v-carousel-item>
       </v-carousel>
@@ -86,15 +88,16 @@
       <v-img :src="image" class="image-pop" width="100%"></v-img>
     </v-col>
   </v-row>
-  <v-row class="row-bleed bg-q mt-4 pa-6" v-if="isMobile">
-    <v-col>
+  <v-row class="row-bleed bg-q" v-if="isMobile">
+    <v-col class="pa-0">
       <v-carousel
           cycle
-          hide-delimiters
-          interval="500000"
-          show-arrows="hover"
+          interval="5000"
+          touch
+          :show-arrows="false"
+          class="carousel-auto"
       >
-        <v-carousel-item v-for="(image, i) in imagesCarte" :key="i">
+        <v-carousel-item v-for="(image, i) in imagesCarte" :key="i" class="pa-6">
           <v-img :src="image" width="100%"></v-img>
         </v-carousel-item>
       </v-carousel>
@@ -175,14 +178,16 @@ h3 {
   background-color: rgba(var(--v-theme-secondary),0.5);;
 }
 
-
 .row-bleed {
   position: relative;
+
   left: 50%;
-  transform: translateX(-50%);
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
   width: 100vw;
   max-width: 100vw;
-  margin: 0;
   overflow: visible;
 }
 
@@ -199,12 +204,16 @@ h3 {
       0 0 20px rgba(255, 182, 193, 0.2);
 }
 
-@media (max-width: 960px) {
-  .row-bleed {
-    left: auto;
-    transform: none;
-    width: auto;
-    max-width: none;
-  }
+
+.carousel-auto {
+  height: auto !important;
+  min-height: auto !important;
+}
+.carousel-auto .v-window__container,
+.carousel-auto .v-carousel__item {
+  height: auto !important;
+}
+.carousel-auto .v-img {
+  height: auto !important;
 }
 </style>
