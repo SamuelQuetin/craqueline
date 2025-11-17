@@ -89,7 +89,7 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateOpacity)
 })
 
-const scrollTo = (selector) => {=
+const scrollTo = (selector) => {
   document.querySelector(selector)?.scrollIntoView({behavior: 'smooth'})
 }
 
