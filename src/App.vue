@@ -5,7 +5,7 @@
       <section id="section-0">
       <v-parallax
           src="@/assets/photo/parallax.png"
-          height="100dvh"
+          height="100vh"
           class="parallax"
       >
         <div class="d-flex flex-column fill-height justify-center align-center parallax-content text-center text-white">

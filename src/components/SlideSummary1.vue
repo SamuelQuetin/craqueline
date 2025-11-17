@@ -112,12 +112,12 @@ h2 {
 }
 
 .h2-defaut {
-  font-size: 5em;
+  font-size: 4em;
   font-weight: 100;
 }
 
 .h2-mobile {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 100;
 }
 

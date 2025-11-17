@@ -1,45 +1,4 @@
 <template>
-  <!--  <v-sheet class="bg-1 h-100 mb-8 py-8">-->
-  <!--    <v-row class="h-100">-->
-  <!--      <v-spacer cols="12" sm="2" md="2" lg="2" xl="2"></v-spacer>-->
-  <!--      <v-col cols="12" sm="4" md="4" lg="4" xl="4" class="h-100 ">-->
-  <!--        <div class="mt-4">-->
-  <!--          <div class="drop-left position-absolute zindex-10">-->
-  <!--            <p>Sublimez vos évenements</p>-->
-  <!--            <h2>FAITES L'EXPERIENCE<br/>D'UNE PÂTISSERIE<br/>AUTHENTIQUE</h2>-->
-  <!--          </div>-->
-  <!--        </div>-->
-  <!--        <v-spacer class="h-25"></v-spacer>-->
-  <!--        <v-row class="h-75 mt-8" justify="center">-->
-  <!--          <v-img-->
-  <!--              src="@/assets/photo/chouxSaintHono.png"-->
-  <!--              class="drop-out zindex-1"-->
-  <!--              max-width="325"-->
-  <!--          ></v-img>-->
-  <!--        </v-row>-->
-  <!--      </v-col>-->
-  <!--      <v-col cols="12" sm="4" md="4" lg="4" xl="4" class="h-100">-->
-  <!--        <v-row class="h-75">-->
-  <!--          <v-img-->
-  <!--              class="my-6 drop-in"-->
-  <!--              src="@/assets/photo/chouxTour.png"-->
-  <!--              height="400"-->
-  <!--              width="300"-->
-  <!--          ></v-img>-->
-  <!--        </v-row>-->
-  <!--        <v-row class="h-25 d-flex align-center justify-center">-->
-  <!--          <v-btn-->
-  <!--              variant="outlined"-->
-  <!--              color="black"-->
-  <!--              class="drop-right"-->
-  <!--          >-->
-  <!--            Demander un devis-->
-  <!--          </v-btn>-->
-  <!--        </v-row>-->
-  <!--      </v-col>-->
-  <!--      <v-spacer cols="12" sm="2" md="2" lg="2" xl="2"></v-spacer>-->
-  <!--    </v-row>-->
-  <!--  </v-sheet>-->
   <v-sheet class="bg-1 h-100 py-8 d-flex justify-center">
     <v-row class="h-100 w-75" v-if="!isMobile">
       <v-spacer
@@ -149,7 +108,7 @@ function scrollto(section) {
 }
 
 .h2-mobile {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 100;
 }
 p {

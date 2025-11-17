@@ -61,24 +61,24 @@ const props = defineProps({ isMobile: Boolean })
 }
 
 .padding-text-defaut {
-  padding-left: 20vh;
+  padding-left: 5vw;
 }
 
 .padding-text-mobile {
-  padding-left: 3vh;
-  padding-right: 3vh;
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .padding-marging-pic-defaut {
   margin-top: 4vh;
-  padding-left: 10vh;
-  padding-right: 10vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 .padding-marging-pic-mobile {
   margin-top: 0;
-  padding-left: 2vh;
-  padding-right: 2vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 
 .bg-subtitle {
@@ -86,7 +86,7 @@ const props = defineProps({ isMobile: Boolean })
   font-style: italic;
   font-weight: 300;
   font-size: 20px;
-  height: 10vh;
+  height: auto;
   opacity: 0.5;
   color: white;
   position: relative;
@@ -95,8 +95,7 @@ const props = defineProps({ isMobile: Boolean })
   margin-left: -50vw;
   margin-right: -50vw;
   width: 100vw;
-  padding-left: 2vh;
-  padding-right: 2vh;
+  padding: 2vh 2vw;
 }
 
 span {
