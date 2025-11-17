@@ -93,7 +93,6 @@ const emits = defineEmits(['onClick'])
 const props = defineProps({isMobile: Boolean})
 
 function scrollto(section) {
-  console.log(section)
   emits('onClick', section)
 }
 </script>

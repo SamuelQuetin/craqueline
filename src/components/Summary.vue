@@ -54,7 +54,6 @@ const props = defineProps({isMobile: Boolean})
 const model = defineModel();
 
 function scrollto(section){
-  console.log(section)
   emits('onClick',section)
 }
 </script>
