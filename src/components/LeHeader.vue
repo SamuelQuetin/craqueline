@@ -24,6 +24,7 @@
               style="width: 100vw"
               tile
               flat
+              @click="scrollto('#section-1')"
           >
             ACCUEIL
           </v-btn>
@@ -31,6 +32,7 @@
               style="width: 100vw"
               tile
               flat
+              @click="scrollto('#section-2')"
           >
             NOTRE HISTOIRE
           </v-btn>
@@ -38,6 +40,7 @@
               style="width: 100vw"
               tile
               flat
+              @click="scrollto('#section-3')"
           >
             LA CARTE
           </v-btn>
