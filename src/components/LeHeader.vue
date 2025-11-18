@@ -54,6 +54,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-1')"
           >
             ACCUEIL
           </v-btn>
@@ -61,6 +62,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-2')"
           >
             NOTRE HISTOIRE
           </v-btn>
@@ -68,6 +70,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-3')"
           >
             LA CARTE
           </v-btn>
@@ -90,6 +93,12 @@ import {ref, onMounted, onUnmounted} from 'vue'
 
 const isShrunkOrMainPage = ref(false)
 const props = defineProps({isMobile: Boolean})
+
+const emits = defineEmits(['onClick'])
+
+function scrollto(section){
+  emits('onClick',section)
+}
 
 const handleScroll = () => {
   isShrunkOrMainPage.value = window.scrollY > 50 || true
