@@ -1,6 +1,6 @@
 <template>
   <v-app class="app-bg">
-    <LeHeader :is-mobile="isMobile"></LeHeader>
+    <LeHeader :is-mobile="isMobile" @onClick="scrollTo"/>
     <v-main>
       <section id="section-0">
       <v-parallax
