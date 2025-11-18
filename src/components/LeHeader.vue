@@ -39,6 +39,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-1')"
           >
             ACCUEIL
           </v-btn>
@@ -46,6 +47,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-2')"
           >
             NOTRE HISTOIRE
           </v-btn>
@@ -53,6 +55,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-3')"
           >
             LA CARTE
           </v-btn>
@@ -77,6 +80,12 @@ const isOnTopOfThePage = ref(false)
 const props = defineProps({isMobile: Boolean})
 
 const log = computed(() => window.scrollY)
+
+const emits = defineEmits(['onClick'])
+
+function scrollto(section){
+  emits('onClick',section)
+}
 
 const handleScroll = () => {
   isOnTopOfThePage.value = window.scrollY < 50
@@ -111,6 +120,7 @@ onUnmounted(() => {
 .logo-shrink {
   height: 100px;
   width: 100px;
+  left: 50px;
   transition: all 0.1s ease;
 }
 
