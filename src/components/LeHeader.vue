@@ -28,9 +28,9 @@
             <v-btn icon="mdi-menu" variant="outlined" size="x-large" v-bind="props"></v-btn>
           </template>
           <v-sheet elevation="2">
-            <v-btn block flat tile>ACCUEIL</v-btn>
-            <v-btn block flat tile>NOTRE HISTOIRE</v-btn>
-            <v-btn block flat tile>LA CARTE</v-btn>
+            <v-btn block flat tile @click="scrollto('#section-1')">ACCUEIL</v-btn>
+            <v-btn block flat tile @click="scrollto('#section-2')">NOTRE HISTOIRE</v-btn>
+            <v-btn block flat tile @click="scrollto('#section-3')">LA CARTE</v-btn>
             <v-btn block flat tile>CONTACT</v-btn>
           </v-sheet>
         </v-menu>
