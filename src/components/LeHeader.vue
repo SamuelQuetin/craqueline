@@ -28,9 +28,9 @@
             <v-btn icon="mdi-menu" variant="outlined" size="x-large" v-bind="props"></v-btn>
           </template>
           <v-sheet elevation="2">
-            <v-btn block flat tile>ACCUEIL</v-btn>
-            <v-btn block flat tile>NOTRE HISTOIRE</v-btn>
-            <v-btn block flat tile>LA CARTE</v-btn>
+            <v-btn block flat tile @click="scrollto('#section-1')">ACCUEIL</v-btn>
+            <v-btn block flat tile @click="scrollto('#section-2')">NOTRE HISTOIRE</v-btn>
+            <v-btn block flat tile @click="scrollto('#section-3')">LA CARTE</v-btn>
             <v-btn block flat tile>CONTACT</v-btn>
           </v-sheet>
         </v-menu>
@@ -39,6 +39,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-1')"
           >
             ACCUEIL
           </v-btn>
@@ -46,6 +47,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-2')"
           >
             NOTRE HISTOIRE
           </v-btn>
@@ -53,6 +55,7 @@
               class="mx-4"
               tile
               flat
+              @click="scrollto('#section-3')"
           >
             LA CARTE
           </v-btn>
@@ -75,6 +78,12 @@ import {ref, onMounted, onUnmounted, computed} from 'vue'
 
 const isOnTopOfThePage = ref(false)
 const props = defineProps({isMobile: Boolean})
+
+const emits = defineEmits(['onClick'])
+
+function scrollto(section){
+  emits('onClick',section)
+}
 
 const log = computed(() => window.scrollY)
 
@@ -111,6 +120,7 @@ onUnmounted(() => {
 .logo-shrink {
   height: 100px;
   width: 100px;
+  left: 50px;
   transition: all 0.1s ease;
 }
 

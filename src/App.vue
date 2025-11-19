@@ -1,6 +1,6 @@
 <template>
   <v-app class="app-bg">
-    <LeHeader :is-mobile="isMobile"></LeHeader>
+    <LeHeader :is-mobile="isMobile" @onClick="scrollTo"/>
     <v-main>
       <section id="section-0">
       <v-parallax
@@ -90,7 +90,11 @@ onUnmounted(() => {
 })
 
 const scrollTo = (selector) => {
-  document.querySelector(selector)?.scrollIntoView({behavior: 'smooth'})
+  const element = document.querySelector(selector)
+  if (element) {
+    const y = element.getBoundingClientRect().top + window.scrollY - 180
+    window.scrollTo({top: y, behavior: 'smooth'})
+  }
 }
 
 const scrollCueStyle = computed(() => ({
