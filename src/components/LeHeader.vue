@@ -79,13 +79,13 @@ import {ref, onMounted, onUnmounted, computed} from 'vue'
 const isOnTopOfThePage = ref(false)
 const props = defineProps({isMobile: Boolean})
 
-const log = computed(() => window.scrollY)
-
 const emits = defineEmits(['onClick'])
 
 function scrollto(section){
   emits('onClick',section)
 }
+
+const log = computed(() => window.scrollY)
 
 const handleScroll = () => {
   isOnTopOfThePage.value = window.scrollY < 50
