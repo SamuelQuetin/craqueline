@@ -90,7 +90,11 @@ onUnmounted(() => {
 })
 
 const scrollTo = (selector) => {
-  document.querySelector(selector)?.scrollIntoView({behavior: 'smooth'})
+  const element = document.querySelector(selector)
+  if (element) {
+    const y = element.getBoundingClientRect().top + window.scrollY - 180
+    window.scrollTo({top: y, behavior: 'smooth'})
+  }
 }
 
 const scrollCueStyle = computed(() => ({
