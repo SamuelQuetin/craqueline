@@ -22,38 +22,17 @@
         </v-row>
       </v-col>
       <v-col :cols="isOnTopOfThePage ? '12':'6'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
-        <v-menu v-if="isMobile">
+        <v-menu v-if="isMobile"
+                content-class="menu-fullscreen">
           <template v-slot:activator="{ props }">
             <v-btn icon="mdi-menu" variant="outlined" size="x-large" v-bind="props"></v-btn>
           </template>
-          <v-btn
-              style="width: 100vw"
-              tile
-              flat
-          >
-            ACCUEIL
-          </v-btn>
-          <v-btn
-              style="width: 100vw"
-              tile
-              flat
-          >
-            NOTRE HISTOIRE
-          </v-btn>
-          <v-btn
-              style="width: 100vw"
-              tile
-              flat
-          >
-            LA CARTE
-          </v-btn>
-          <v-btn
-              style="width: 100vw"
-              tile
-              flat
-          >
-            CONTACT
-          </v-btn>
+          <v-sheet elevation="2">
+            <v-btn block flat tile>ACCUEIL</v-btn>
+            <v-btn block flat tile>NOTRE HISTOIRE</v-btn>
+            <v-btn block flat tile>LA CARTE</v-btn>
+            <v-btn block flat tile>CONTACT</v-btn>
+          </v-sheet>
         </v-menu>
         <div v-else class="py-4">
           <v-btn
@@ -138,5 +117,11 @@ onUnmounted(() => {
 .v-btn {
   background-color:  rgb(var(--v-theme-quaternary));
   color: white;
+}
+
+::v-deep(.menu-fullscreen) {
+  left: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
 }
 </style>
