@@ -1,21 +1,27 @@
 <template>
-  <div style="height:13dvh"></div>
+  <div :style="isOnTopOfThePage ? 'height:20dvh' : 'height:13dvh'"></div>
   <v-sheet
       color="quaternary"
       class="header"
   >
     <v-row class="ma-0 pa-0">
-      <v-col :cols="isShrunkOrMainPage ? '1':'12'" class="d-flex justify-center">
-        <div>
-          <v-img
-              src="@/assets/logoSeul.webp"
-              :class="isShrunkOrMainPage? 'logo-shrink' : 'logo'"
-          />
-          <h1 v-if="!isShrunkOrMainPage">CRAQUELINE</h1>
-          <p v-if="!isShrunkOrMainPage">MONTPELLIER</p>
-        </div>
+      <v-col :cols="isOnTopOfThePage ? '12':'6'">
+        <v-row class="ma-0">
+          <v-col :cols="isOnTopOfThePage ? '12':'3'" class="d-flex justify-center align-center">
+            <v-img
+                src="@/assets/logoSeul.webp"
+                :class="!isOnTopOfThePage? 'logo-shrink' : 'logo'"
+            />
+          </v-col>
+          <v-col :cols="isOnTopOfThePage ? '12':'9'" :class="isOnTopOfThePage ? 'd-flex justify-center align-center' : 'd-flex justify-start align-center'">
+            <div>
+              <h1 style="font-size: 40px">CRAQUELINE</h1>
+              <p v-if="isOnTopOfThePage">MONTPELLIER</p>
+            </div>
+          </v-col>
+        </v-row>
       </v-col>
-      <v-col :cols="isShrunkOrMainPage ? '11':'12'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
+      <v-col :cols="isOnTopOfThePage ? '12':'6'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
         <v-menu v-if="isMobile">
           <template v-slot:activator="{ props }">
             <v-btn icon="mdi-menu" variant="outlined" size="x-large" v-bind="props"></v-btn>
@@ -86,13 +92,15 @@
 
 <script setup>
 
-import {ref, onMounted, onUnmounted} from 'vue'
+import {ref, onMounted, onUnmounted, computed} from 'vue'
 
-const isShrunkOrMainPage = ref(false)
+const isOnTopOfThePage = ref(false)
 const props = defineProps({isMobile: Boolean})
 
+const log = computed(() => window.scrollY)
+
 const handleScroll = () => {
-  isShrunkOrMainPage.value = window.scrollY > 50 || true
+  isOnTopOfThePage.value = window.scrollY < 50
 }
 
 onMounted(() => {
@@ -124,7 +132,6 @@ onUnmounted(() => {
 .logo-shrink {
   height: 100px;
   width: 100px;
-  left: 50px;
   transition: all 0.1s ease;
 }
 
