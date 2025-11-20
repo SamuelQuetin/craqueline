@@ -4,8 +4,8 @@
       color="quaternary"
       class="header"
   >
-    <v-row class="ma-0 pa-0">
-      <v-col :cols="isOnTopOfThePage ? '12':'6'">
+    <v-row class="ma-0 pa-0 d-flex justify-space-between">
+      <v-col :cols="isOnTopOfThePage ? '12':'9'">
         <v-row class="ma-0">
           <v-col :cols="isOnTopOfThePage ? '12':'3'" class="d-flex justify-center align-center">
             <v-img
@@ -21,7 +21,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col :cols="isOnTopOfThePage ? '12':'6'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
+      <v-col :cols="isOnTopOfThePage ? '12':'3'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
         <v-menu v-if="isMobile"
                 content-class="menu-fullscreen">
           <template v-slot:activator="{ props }">
@@ -120,7 +120,7 @@ onUnmounted(() => {
 .logo-shrink {
   height: 100px;
   width: 100px;
-  left: 50px;
+  min-width: 100px;
   transition: all 0.1s ease;
 }
 
