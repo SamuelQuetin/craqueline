@@ -1,27 +1,43 @@
 <template>
-  <div :style="isOnTopOfThePage ? 'height:20dvh' : 'height:13dvh'"></div>
+  <div v-if="isUnderHeaderPosition" style="height: 170px;"></div>
   <v-sheet
+      ref="headerRef"
       color="quaternary"
-      class="header"
+      :class="isUnderHeaderPosition ? 'header-fix' : 'header-relative'"
   >
     <v-row class="ma-0 pa-0 d-flex justify-space-between">
-      <v-col :cols="isOnTopOfThePage ? '12':'9'">
-        <v-row class="ma-0">
-          <v-col :cols="isOnTopOfThePage ? '12':'3'" class="d-flex justify-center align-center">
+      <v-col cols="8" xs="8" sm="8" md="6">
+        <v-row class="ma-0" v-if="!isMobile">
+          <v-col cols="3" class="d-flex justify-center align-center">
             <v-img
                 src="@/assets/logoSeul.webp"
-                :class="!isOnTopOfThePage? 'logo-shrink' : 'logo'"
+                height="100px"
+                width="100px"
+                min-width="100px"
+                class="logo-shrink"
             />
+
           </v-col>
-          <v-col :cols="isOnTopOfThePage ? '12':'9'" :class="isOnTopOfThePage ? 'd-flex justify-center align-center' : 'd-flex justify-start align-center'">
+          <v-col cols="9" class="d-flex justify-start align-center">
             <div>
               <h1 style="font-size: 40px">CRAQUELINE</h1>
-              <p v-if="isOnTopOfThePage">MONTPELLIER</p>
+              <p>MONTPELLIER</p>
             </div>
           </v-col>
         </v-row>
+        <v-row class="ma-0" v-else>
+          <v-col cols="12" class="d-flex justify-center align-center">
+            <v-img
+                src="@/assets/logoCraque.svg"
+                height="100px"
+                width="100px"
+                min-width="100px"
+                class="logo-shrink"
+            />
+          </v-col>
+        </v-row>
       </v-col>
-      <v-col :cols="isOnTopOfThePage ? '12':'3'" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
+      <v-col cols="4" xs="4" sm="4" md="6" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
         <v-menu v-if="isMobile"
                 content-class="menu-fullscreen">
           <template v-slot:activator="{ props }">
@@ -77,33 +93,53 @@
 import {ref, onMounted, onUnmounted, computed} from 'vue'
 
 const isOnTopOfThePage = ref(false)
+
 const props = defineProps({isMobile: Boolean})
 
 const emits = defineEmits(['onClick'])
+
+const headerRef = ref(null)
+const scrollY = ref(0)
+const headerTop = ref(0)
 
 function scrollto(section){
   emits('onClick',section)
 }
 
-const log = computed(() => window.scrollY)
-
 const handleScroll = () => {
-  isOnTopOfThePage.value = window.scrollY < 50
+  scrollY.value = window.scrollY
+  isOnTopOfThePage.value = scrollY.value < 50
 }
 
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  headerTop.value = headerRef.value.$el.getBoundingClientRect().top + window.scrollY
+
+  window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
+
+const isUnderHeaderPosition = computed(() => {
+  return scrollY.value > headerTop.value
+})
 </script>
 
 <style scoped>
-.header {
+.header-fix{
   position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.1s ease;
+  padding: 1rem 0;
+}
+
+.header-relative{
+  position: relative;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -118,9 +154,6 @@ onUnmounted(() => {
 }
 
 .logo-shrink {
-  height: 100px;
-  width: 100px;
-  min-width: 100px;
   transition: all 0.1s ease;
 }
 
