@@ -39,7 +39,7 @@ const router = createRouter({
         if (to.hash) {
             return {
                 el: to.hash,
-                top: 180,
+                top: 180, // 180px is navbar height
                 behavior: 'smooth'
             };
         }
