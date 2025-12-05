@@ -1,35 +1,25 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'phpmailer/src/Exception.php';
-require 'phpmailer/src/PHPMailer.php';
-require 'phpmailer/src/SMTP.php';
-
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 
-$data = json_decode(file_get_contents("php://input"), true);
+$input = json_decode(file_get_contents("php://input"), true);
 
-$mail = new PHPMailer(true);
+$from = $input["from"] ?? null;
+$to = $input["to"] ?? null;
+$subject = $input["subject"] ?? "";
+$message = $input["message"] ?? "";
 
-try {
-    $mail->isSMTP();
-    $mail->Host = 'ssl0.ovh.net';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'contact@tondomaine.fr';
-    $mail->Password = 'TON_MOT_DE_PASSE';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
-
-    $mail->setFrom($data["from"]);
-    $mail->addAddress($data["to"]);
-    $mail->Subject = $data["subject"];
-    $mail->Body = $data["message"];
-
-    $mail->send();
-
-    echo json_encode(["success" => true]);
-} catch (Exception $e) {
-    echo json_encode(["success" => false, "error" => $mail->ErrorInfo]);
+if (!$from || !$to) {
+    http_response_code(400);
+    echo json_encode(["error" => "Missing parameters"]);
+    exit;
 }
+
+$headers = "From: " . $from . "\r\n" .
+    "Reply-To: " . $from . "\r\n" .
+    "Content-Type: text/plain; charset=UTF-8";
+
+$success = mail($to, $subject, $message, $headers);
+
+echo json_encode(["success" => $success]);
