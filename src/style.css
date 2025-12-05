@@ -23,3 +23,7 @@ p {
     font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
 }
+.bg_base {
+    z-index: 1;
+    background: rgba(var(--v-theme-primary));
+}

@@ -1,75 +1,50 @@
 <template>
   <v-app class="app-bg">
-    <v-main>
-      <section id="section-0">
+    <section v-if="router.currentRoute.value.name==='Accueil'" id="section-0">
       <v-parallax
-          src="@/assets/photo/parallax.png"
-          height="100vh"
           class="parallax"
+          height="100vh"
+          src="@/assets/photo/parallax.png"
       >
         <div class="d-flex flex-column fill-height justify-center align-center parallax-content text-center text-white">
 
-          <img src="@/assets/logoCraque.svg" :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE"/>
+          <img :width="isMobile ? '100%' : '70%'" alt="CRAQUELINE" src="@/assets/logoCraque.svg"/>
         </div>
-        <div class="parallax_blur" aria-hidden="true"></div>
+        <div aria-hidden="true" class="parallax_blur"></div>
 
-        <div class="scroll-cue"
-             :style="scrollCueStyle"
-             @click="scrollTo('#section-1')"
-             aria-label="Faites défiler">
+        <div :style="scrollCueStyle"
+             aria-label="Faites défiler"
+             class="scroll-cue"
+             @click="scrollTo('#section-1')">
           <v-icon size="28">mdi-chevron-down</v-icon>
           <small>Faites défiler</small>
         </div>
       </v-parallax>
-      </section>
-      <LeHeader :is-mobile="isMobile" @onClick="scrollTo"/>
-      <section id="section-1">
-        <Summary :is-mobile="isMobile" @onClick="scrollTo"></Summary>
-      </section>
-      <v-container class=" pa-5 bg_base" max-width="90em">
-
-        <section id="section-2" class="py-6">
-          <Bienvenue :is-mobile="isMobile"></Bienvenue>
-        </section>
-
-        <section id="section-3" class="py-6">
-          <LaCarte :is-mobile="isMobile"></LaCarte>
-        </section>
-
-        <section id="section-4" class="py-6">
-          <LaBoutique :is-mobile="isMobile"></LaBoutique>
-        </section>
-
-        <section id="section-5" class="py-6">
-          <AffichePhoto></AffichePhoto>
-        </section>
-      </v-container>
-      <MaintenanceBanner v-model="isMaintenance" ></MaintenanceBanner>
+    </section>
+    <LeHeader :isMobile="isMobile" @onClick="scrollTo"></LeHeader>
+    <v-main>
+      <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>
+      <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
     </v-main>
     <LeFooter></LeFooter>
   </v-app>
 
 
-
 </template>
 <script setup>
-import Bienvenue from './components/Bienvenue.vue';
 import MaintenanceBanner from "@/components/MaintenanceBanner.vue";
-import {ref, computed, onMounted, onUnmounted} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {useDisplay} from 'vuetify'
-import LaBoutique from "@/components/LaBoutique.vue";
-import Summary from "@/components/Summary.vue";
-import LaCarte from "@/components/LaCarte.vue";
 import LeFooter from "@/components/LeFooter.vue";
+import router from "@/router/index.js";
 import LeHeader from "@/components/LeHeader.vue";
-import AffichePhoto from "@/components/AffichePhoto.vue";
 
 const isMaintenance = ref(false);
 
-const cueOpacity = ref(1)
 
 const {mobile: isMobile} = useDisplay()
 
+const cueOpacity = ref(1)
 const updateOpacity = () => {
   const y = window.scrollY || 0
   const vh = Math.max(window.innerHeight, 1)
@@ -78,6 +53,11 @@ const updateOpacity = () => {
   const o = 1 - Math.min(y / fadeDistance, 1)
   cueOpacity.value = Math.max(0, Math.min(1, +o.toFixed(3)))
 }
+const scrollCueStyle = computed(() => ({
+  opacity: cueOpacity.value,
+  pointerEvents: cueOpacity.value < 0.1 ? 'none' : 'auto',
+  visibility: cueOpacity.value < 0.02 ? 'hidden' : 'visible',
+}))
 
 onMounted(() => {
   updateOpacity()
@@ -88,20 +68,16 @@ onUnmounted(() => {
   window.removeEventListener('scroll', updateOpacity)
   window.removeEventListener('resize', updateOpacity)
 })
-
-const scrollTo = (selector) => {
+function scrollTo(selector) {
+  if(router.currentRoute.value.name !== "Accueil"){
+    router.push({name: 'Accueil'})
+  }
   const element = document.querySelector(selector)
   if (element) {
     const y = element.getBoundingClientRect().top + window.scrollY - 180
     window.scrollTo({top: y, behavior: 'smooth'})
   }
 }
-
-const scrollCueStyle = computed(() => ({
-  opacity: cueOpacity.value,
-  pointerEvents: cueOpacity.value < 0.1 ? 'none' : 'auto',
-  visibility: cueOpacity.value < 0.02 ? 'hidden' : 'visible',
-}))
 
 </script>
 <style scoped>
@@ -148,7 +124,6 @@ const scrollCueStyle = computed(() => ({
 .scroll-cue .v-icon {
   animation: bounce 1.6s ease-in-out infinite;
 }
-
 .scroll-cue small {
   font-size: .72rem;
   letter-spacing: .08em;
@@ -165,7 +140,6 @@ const scrollCueStyle = computed(() => ({
   }
 }
 
-
 /* Conteneur de page */
 .app-bg {
   position: relative;
@@ -175,9 +149,5 @@ const scrollCueStyle = computed(() => ({
   background: rgb(var(--v-theme-tertiary)); /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
 }
 
-.bg_base {
-  z-index: 1;
-  background: rgba(var(--v-theme-primary));
-}
 
 </style>

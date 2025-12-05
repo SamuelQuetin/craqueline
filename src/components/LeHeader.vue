@@ -7,7 +7,7 @@
   >
     <v-row class="ma-0 pa-0 d-flex justify-space-between">
       <v-col cols="8" xs="8" sm="8" md="6">
-        <v-row class="ma-0" v-if="!isMobile">
+        <v-row class="ma-0" v-if="!props.isMobile">
           <v-col cols="3" class="d-flex justify-center align-center">
             <v-img
                 src="@/assets/logoSeul.webp"
@@ -37,17 +37,17 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="4" xs="4" sm="4" md="6" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
-        <v-menu v-if="isMobile"
+      <v-col cols="4" xs="4" sm="4" md="6" :class="props.isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
+        <v-menu v-if="props.isMobile"
                 content-class="menu-fullscreen">
           <template v-slot:activator="{ props }">
             <v-btn icon="mdi-menu" variant="outlined" size="x-large" v-bind="props"></v-btn>
           </template>
           <v-sheet elevation="2">
-            <v-btn block flat tile @click="scrollto('#section-1')">ACCUEIL</v-btn>
-            <v-btn block flat tile @click="scrollto('#section-2')">NOTRE HISTOIRE</v-btn>
-            <v-btn block flat tile @click="scrollto('#section-3')">LA CARTE</v-btn>
-            <v-btn block flat tile>CONTACT</v-btn>
+            <v-btn block flat tile @click="scrollTo('#section-1')">ACCUEIL</v-btn>
+            <v-btn block flat tile @click="scrollTo('#section-2')">NOTRE HISTOIRE</v-btn>
+            <v-btn block flat tile @click="scrollTo('#section-3')">LA CARTE</v-btn>
+            <v-btn block flat tile @click="goTo('Contact')">CONTACT</v-btn>
           </v-sheet>
         </v-menu>
         <div v-else class="py-4">
@@ -55,7 +55,7 @@
               class="mx-4"
               tile
               flat
-              @click="scrollto('#section-1')"
+              @click="scrollTo('#section-1')"
           >
             ACCUEIL
           </v-btn>
@@ -63,7 +63,7 @@
               class="mx-4"
               tile
               flat
-              @click="scrollto('#section-2')"
+              @click="scrollTo('#section-2')"
           >
             NOTRE HISTOIRE
           </v-btn>
@@ -71,7 +71,7 @@
               class="mx-4"
               tile
               flat
-              @click="scrollto('#section-3')"
+              @click="scrollTo('#section-3')"
           >
             LA CARTE
           </v-btn>
@@ -79,6 +79,7 @@
               class="mx-4"
               tile
               flat
+              @click="goTo('Contact')"
           >
             CONTACT
           </v-btn>
@@ -90,7 +91,8 @@
 
 <script setup>
 
-import {ref, onMounted, onUnmounted, computed} from 'vue'
+import {ref, onMounted, onUnmounted, computed, onUpdated} from 'vue'
+import router from "@/router/index.js";
 
 const isOnTopOfThePage = ref(false)
 
@@ -102,29 +104,38 @@ const headerRef = ref(null)
 const scrollY = ref(0)
 const headerTop = ref(0)
 
-function scrollto(section){
-  emits('onClick',section)
-}
 
 const handleScroll = () => {
   scrollY.value = window.scrollY
   isOnTopOfThePage.value = scrollY.value < 50
 }
-
+const isUnderHeaderPosition = computed(() => {
+  return scrollY.value > headerTop.value
+})
+function updateHeaderTop() {
+  if (!headerRef.value) return
+  headerTop.value = headerRef.value.$el.getBoundingClientRect().top + window.scrollY
+}
 
 onMounted(() => {
-  headerTop.value = headerRef.value.$el.getBoundingClientRect().top + window.scrollY
-
+  window.addEventListener('resize', updateHeaderTop)
+  window.addEventListener('load', updateHeaderTop)
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
+
+
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-const isUnderHeaderPosition = computed(() => {
-  return scrollY.value > headerTop.value
-})
+function scrollTo(section){
+  emits('onClick',section)
+}
+function goTo(page){
+  router.push({name: page})
+}
+
 </script>
 
 <style scoped>
