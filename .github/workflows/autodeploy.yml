@@ -9,12 +9,17 @@ concurrency:
   group: deploy-prod
   cancel-in-progress: true
 
+permissions:
+  id-token: write
+  contents: read
+  attestations: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -27,7 +32,17 @@ jobs:
 
       - name: Build
         run: npm run build
-        # si ton build sort ailleurs que "dist", adapte la suite
+
+      - name: Setup Attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: dist/
+
+      - name: Setup Artefact
+        uses: actions/upload-artifact@v5
+        with:
+          name: dist
+          path: dist/
 
       - name: Deploy via FTP to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
