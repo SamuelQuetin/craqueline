@@ -70,7 +70,7 @@ onUnmounted(() => {
 })
 function scrollTo(selector) {
   if(router.currentRoute.value.name !== "Accueil"){
-    router.push({name: 'Accueil'})
+    router.push({name: 'Accueil', hash: selector})
   }
   const element = document.querySelector(selector)
   if (element) {
