@@ -1,7 +1,9 @@
 <template>
   <v-container class=" pa-5 bg_base" max-width="90em">
     <h2>CONTACTEZ-NOUS</h2>
-    <v-form>
+    <v-form
+        v-model="validForm"
+    >
       <v-text-field
           v-model="nom"
           label="Nom"
@@ -55,7 +57,8 @@
           :rules="messageRules"
       ></v-textarea>
       <v-btn
-          @submit="sendMail">
+          :disabled="!validForm"
+          @click="sendMail">
         Envoyer
       </v-btn>
     </v-form>
@@ -74,6 +77,7 @@ const date = ref();
 const where = ref();
 const numPers = ref();
 const message = ref();
+const validForm = ref(false);
 
 const nameRules = [
   v => !!v || 'le champ Nom est obligatoire',
@@ -102,7 +106,7 @@ const allowedDates = (val) => {
   return new Date(val) >= today;
 };
 function sendMail() {
-
+  if(!validForm.value) return
   let data = ``;
 
   data += `<b>Nom :</b> ${nom.value}<br>`;
@@ -112,7 +116,7 @@ function sendMail() {
   data += where.value ? `<b>Lieu de l'évènement :</b> ${where.value}<br>` : ``;
   data += numPers.value ? `<b>Nombre de convives :</b> ${numPers.value}<br><br>` : ``;
 
-  data += `<b>Message :</b><br>${message.value}`;
+  data += `<b>Message :</b><br>${message.value.replace(/\n/g, '<br>')}`;
 
   mailService.sendMail(data).then(res => console.log(res)).catch(err => console.log(err))
 
