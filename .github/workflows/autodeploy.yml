@@ -33,22 +33,16 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Prepare deploy folder
-        run: |
-          mkdir deploy
-          cp -R dist deploy
-          cp -R api deploy/api
-
       - name: Setup Attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-path: deploy/
+          subject-path: dist/
 
       - name: Setup Artefact
         uses: actions/upload-artifact@v5
         with:
-          name: deploy
-          path: deploy/
+          name: dist
+          path: dist/
 
       - name: Deploy via FTP to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -57,7 +51,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port:     ${{ secrets.FTP_PORT || 21 }}
-          local-dir: deploy/
+          local-dir: dist/
           server-dir: ${{ secrets.FTP_DIR || '/www/' }}
           # supprime les anciens fichiers pour éviter les artefacts
           dangerous-clean-slate: true
