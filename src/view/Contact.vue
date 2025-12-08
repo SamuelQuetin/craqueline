@@ -30,14 +30,14 @@ const message = ref('Bonjkours je suis le petit Samuel pourquoi chatgpt a ajoute
 function sendMail(){
 
   let data = `<b>Nom :</b> `+ nom.value +`<br>
-    <b>E-mail :</b> `+ email +` <br>
-    <b>Numéro de téléphone :</b> `+ numPhone +` <br>
-    <b>Date de l'évènement :</b> `+ date +` <br>
-    <b>Lieu de l'évènement :</b> `+ where +` <br>
-    <b>Nombre de convives :</b> `+ numPers +` <br><br>
+    <b>E-mail :</b> `+ email.value +` <br>
+    <b>Numéro de téléphone :</b> `+ numPhone.value +` <br>
+    <b>Date de l'évènement :</b> `+ date.value +` <br>
+    <b>Lieu de l'évènement :</b> `+ where.value +` <br>
+    <b>Nombre de convives :</b> `+ numPers.value +` <br><br>
 
     <b>Message :</b><br>
-    `+ message +` `
+    `+ message.value +` `
   mailService.sendMail(data).then(res => console.log(res)).catch(err => console.log(err))
 
 }

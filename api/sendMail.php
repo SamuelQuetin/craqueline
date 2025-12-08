@@ -41,7 +41,8 @@ if (!$from || !$to) {
 // --- Envoi du mail ---
 $headers = "From: " . $from . "\r\n" .
     "Reply-To: " . $from . "\r\n" .
-    "Content-Type: text/plain; charset=UTF-8";
+    "MIME-Version: 1.0\r\n" .
+    "Content-Type: text/html; charset=UTF-8";
 
 $success = mail($to, $subject, $message, $headers);
 
