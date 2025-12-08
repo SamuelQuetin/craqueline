@@ -68,13 +68,13 @@ import {MailService} from "@/service/MailService.js";
 import {ref} from "vue";
 
 const mailService = new MailService();
-const nom = ref('Samuel');
-const email = ref('samquetinuel@gmail.com');
-const numPhone = ref('0619461765');
-const date = ref(' demain');
-const where = ref('ici');
-const numPers = ref('125');
-const message = ref('Bonjkours je suis le petit Samuel pourquoi chatgpt a ajouter petit devant samuel ? je vais le taper');
+const nom = ref();
+const email = ref();
+const numPhone = ref();
+const date = ref();
+const where = ref();
+const numPers = ref();
+const message = ref();
 
 const nameRules = [
   v => !!v || 'le champ Nom est obligatoire',
