@@ -21,11 +21,23 @@
         </div>
       </v-parallax>
     </section>
-    <LeHeader :isMobile="isMobile" @onClick="scrollTo"></LeHeader>
     <v-main>
-      <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>
-      <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
+            <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
     </v-main>
+    <v-sheet height="100vh" class="d-flex justify-center align-center">
+      <div class="construction-container">
+        <div class="construction-box">
+          <div class="icon">🚧</div>
+          <p class="text">
+            Site en construction<span class="dots"></span>
+          </p>
+        </div>
+      </div>
+    </v-sheet>
+<!--    <LeHeader :isMobile="isMobile" @onClick="scrollTo"></LeHeader>-->
+<!--    <v-main>-->
+<!--      <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>-->
+<!--    </v-main>-->
     <LeFooter></LeFooter>
   </v-app>
 
@@ -150,4 +162,51 @@ function scrollTo(selector) {
 }
 
 
+
+
+.construction-box {
+  text-align: center;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.icon {
+  font-size: 4rem;
+  animation: shake 1.2s ease-in-out infinite;
+}
+
+.text {
+  margin-top: 10px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #5a4635;
+}
+
+.dots::after {
+  content: "";
+  animation: dots 1.5s infinite;
+  font-size: 1.6rem;
+}
+
+/* Animation points ... */
+@keyframes dots {
+  0% { content: ""; }
+  33% { content: "."; }
+  66% { content: ".."; }
+  100% { content: "..."; }
+}
+
+/* Oscillation légère */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Animation tremblement */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
 </style>
