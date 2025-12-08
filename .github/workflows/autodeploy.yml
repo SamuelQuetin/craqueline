@@ -33,9 +33,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Insert API module in build
+      - name: Insert API module & .htaccess in build
         run: |
           mv ./api ./dist/api
+          mv ./.htaccess ./dist/.htaccess
 
       - name: Setup Attestation
         uses: actions/attest-build-provenance@v1
