@@ -55,7 +55,6 @@
           :rules="messageRules"
       ></v-textarea>
       <v-btn
-          type="submit"
           @submit="sendMail">
         Envoyer
       </v-btn>
