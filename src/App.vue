@@ -24,20 +24,20 @@
     <v-main>
             <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
     </v-main>
-    <v-sheet height="100vh" class="d-flex justify-center align-center">
-      <div class="construction-container">
-        <div class="construction-box">
-          <div class="icon">🚧</div>
-          <p class="text">
-            Site en construction<span class="dots"></span>
-          </p>
-        </div>
-      </div>
-    </v-sheet>
-<!--    <LeHeader :isMobile="isMobile" @onClick="scrollTo"></LeHeader>-->
-<!--    <v-main>-->
-<!--      <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>-->
-<!--    </v-main>-->
+<!--    <v-sheet height="100vh" class="d-flex justify-center align-center">-->
+<!--      <div class="construction-container">-->
+<!--        <div class="construction-box">-->
+<!--          <div class="icon">🚧</div>-->
+<!--          <p class="text">-->
+<!--            Site en construction<span class="dots"></span>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </v-sheet>-->
+    <LeHeader :isMobile="isMobile" @onClick="scrollTo"></LeHeader>
+    <v-main>
+      <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>
+    </v-main>
     <LeFooter></LeFooter>
   </v-app>
 
