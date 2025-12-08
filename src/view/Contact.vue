@@ -1,16 +1,64 @@
-
 <template>
   <v-container class=" pa-5 bg_base" max-width="90em">
     <h2>CONTACTEZ-NOUS</h2>
     <v-form>
-      <v-text-field label="Nom *" outlined v-model="nom"></v-text-field>
-      <v-text-field label="E-mail *" outlined v-model="email"></v-text-field>
-      <v-text-field label="Numéro de téléphone" outlined v-model="numPhone"></v-text-field>
-      <v-text-field label="Date de l'évènement" outlined v-model="date"></v-text-field>
-      <v-text-field label="Lieu de l'évènement" outlined v-model="where"></v-text-field>
-      <v-text-field label="Nombre de convive" outlined v-model="numPers"></v-text-field>
-      <v-text-field label="Votre message *" outlined v-model="message"></v-text-field>
-      <v-btn @click="sendMail"> Envoyer </v-btn>
+      <v-text-field
+          v-model="nom"
+          label="Nom"
+          :rules="nameRules"
+          outlined
+          required
+          type="text"
+      ></v-text-field>
+      <v-text-field
+          v-model="email"
+          label="E-mail"
+          :rules="emailRules"
+          outlined
+          required
+          type="email"
+      ></v-text-field>
+      <v-text-field
+          v-model="numPhone"
+          label="Numéro de téléphone"
+          :rules="phoneRules"
+          outlined
+          type="phone"
+      ></v-text-field>
+      <v-date-picker
+          v-model="date"
+          color="quaternary"
+          label="Date de l'évènement"
+          :allowed-dates="allowedDates"
+          outlined
+          type="date"
+          class="mb-4"
+      ></v-date-picker>
+      <v-text-field
+          v-model="where"
+          label="Lieu de l'évènement"
+          outlined
+      ></v-text-field>
+      <v-text-field
+          v-model="numPers"
+          label="Nombre de convive"
+          outlined
+      ></v-text-field>
+
+      <v-textarea
+          v-model="message"
+          label="Votre message *"
+          outlined
+          counter="1028"
+          required
+          type="text"
+          :rules="messageRules"
+      ></v-textarea>
+      <v-btn
+          type="submit"
+          @submit="sendMail">
+        Envoyer
+      </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -27,20 +75,50 @@ const date = ref(' demain');
 const where = ref('ici');
 const numPers = ref('125');
 const message = ref('Bonjkours je suis le petit Samuel pourquoi chatgpt a ajouter petit devant samuel ? je vais le taper');
-function sendMail(){
 
-  let data = `<b>Nom :</b> `+ nom.value +`<br>
-    <b>E-mail :</b> `+ email.value +` <br>
-    <b>Numéro de téléphone :</b> `+ numPhone.value +` <br>
-    <b>Date de l'évènement :</b> `+ date.value +` <br>
-    <b>Lieu de l'évènement :</b> `+ where.value +` <br>
-    <b>Nombre de convives :</b> `+ numPers.value +` <br><br>
+const nameRules = [
+  v => !!v || 'le champ Nom est obligatoire',
+  v => (v && v.length <= 100) || 'le champ Nom doit avoir moins de 100 characters',
+]
 
-    <b>Message :</b><br>
-    `+ message.value +` `
+const emailRules = [
+    v => !!v || "L'adresse email est requise",
+    v => /.+@.+\..+/.test(v) || "L'adresse email doit être valide",
+  ]
+
+const messageRules = [
+  v => !!v || 'Le message est requis',
+  v => (v && v.length <= 1028) || 'Le message doit être de 1028 caractères maximum',
+]
+
+const phoneRules = [
+  v => !v || /^\d{10}$/.test(v) || 'Le format doit être 10 chiffres (ex: 0612345678)',
+]
+
+
+const today = new Date();
+today.setHours(0, 0, 0, 0); // Réinitialiser l'heure pour comparer uniquement la date
+
+const allowedDates = (val) => {
+  return new Date(val) >= today;
+};
+function sendMail() {
+
+  let data = ``;
+
+  data += `<b>Nom :</b> ${nom.value}<br>`;
+  data += `<b>E-mail :</b> ${email.value}<br>`;
+  data += numPhone.value ? `<b>Numéro de téléphone :</b> ${numPhone.value}<br>` : ``;
+  data += date.value ? `<b>Date de l'évènement :</b> ${date.value}<br>` : ``;
+  data += where.value ? `<b>Lieu de l'évènement :</b> ${where.value}<br>` : ``;
+  data += numPers.value ? `<b>Nombre de convives :</b> ${numPers.value}<br><br>` : ``;
+
+  data += `<b>Message :</b><br>${message.value}`;
+
   mailService.sendMail(data).then(res => console.log(res)).catch(err => console.log(err))
 
 }
+
 </script>
 <style scoped>
 h2 {
