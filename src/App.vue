@@ -21,9 +21,6 @@
         </div>
       </v-parallax>
     </section>
-    <v-main>
-            <MaintenanceBanner v-model="isMaintenance"></MaintenanceBanner>
-    </v-main>
 <!--    <v-sheet height="100vh" class="d-flex justify-center align-center">-->
 <!--      <div class="construction-container">-->
 <!--        <div class="construction-box">-->

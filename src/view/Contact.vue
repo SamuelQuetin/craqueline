@@ -3,32 +3,44 @@
   <v-container class=" pa-5 bg_base" max-width="90em">
     <h2>CONTACTEZ-NOUS</h2>
     <v-form>
-      <v-text-field label="Nom *" outlined></v-text-field>
-      <v-text-field label="E-mail *" outlined></v-text-field>
-      <v-text-field label="Numéro de téléphone" outlined></v-text-field>
-      <v-text-field label="Date de l'évènement" outlined></v-text-field>
-      <v-text-field label="Lieu de l'évènement" outlined></v-text-field>
-      <v-text-field label="Nombre de convive" outlined></v-text-field>
-      <v-text-field label="Votre message *" outlined></v-text-field>
-      <v-btn :href="mailtoLink"></v-btn>
+      <v-text-field label="Nom *" outlined v-model="nom"></v-text-field>
+      <v-text-field label="E-mail *" outlined v-model="email"></v-text-field>
+      <v-text-field label="Numéro de téléphone" outlined v-model="numPhone"></v-text-field>
+      <v-text-field label="Date de l'évènement" outlined v-model="date"></v-text-field>
+      <v-text-field label="Lieu de l'évènement" outlined v-model="where"></v-text-field>
+      <v-text-field label="Nombre de convive" outlined v-model="numPers"></v-text-field>
+      <v-text-field label="Votre message *" outlined v-model="message"></v-text-field>
+      <v-btn @click="sendMail"> Envoyer </v-btn>
     </v-form>
   </v-container>
 </template>
 
 <script setup>
+import {MailService} from "@/service/MailService.js";
+import {ref} from "vue";
 
-  import { computed } from "vue";
+const mailService = new MailService();
+const nom = ref('Samuel');
+const email = ref('samquetinuel@gmail.com');
+const numPhone = ref('0619461765');
+const date = ref(' demain');
+const where = ref('ici');
+const numPers = ref('125');
+const message = ref('Bonjkours je suis le petit Samuel pourquoi chatgpt a ajouter petit devant samuel ? je vais le taper');
+function sendMail(){
 
-  const to = "contact@mon-site.fr";
+  let data = `<b>Nom :</b> `+ nom.value +`<br>
+    <b>E-mail :</b> `+ email +` <br>
+    <b>Numéro de téléphone :</b> `+ numPhone +` <br>
+    <b>Date de l'évènement :</b> `+ date +` <br>
+    <b>Lieu de l'évènement :</b> `+ where +` <br>
+    <b>Nombre de convives :</b> `+ numPers +` <br><br>
 
-  const subject = "Demande d'information";
-  const body = `Bonjour,
-  Je souhaite avoir plus d'informations.`;
+    <b>Message :</b><br>
+    `+ message +` `
+  mailService.sendMail(data).then(res => console.log(res)).catch(err => console.log(err))
 
-  // Construction du lien mailto
-  const mailtoLink = computed(() => {
-  return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
+}
 </script>
 <style scoped>
 h2 {
