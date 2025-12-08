@@ -98,10 +98,9 @@
         </v-btn>
         <v-btn
             size="x-small"
-            href=""
+            href="https://www.linkedin.com/company/craqueline/"
             target="_blank"
             aria-label="Ouvrir Linkedin (nouvel onglet)"
-            disabled
             class="mr-2"
             icon
             color="black"
@@ -112,13 +111,12 @@
             size="x-small"
             href=""
             target="_blank"
-            aria-label="Ouvrir Ulule (nouvel onglet)"
-            disabled
+            aria-label="Ouvrir Tripadvisor (nouvel onglet)"
             class="mr-2"
             icon
             color="black"
             elevation="0">
-          <v-icon color="secondary" size="25">mdi-help</v-icon>
+          <i style="color: rgb(var(--v-theme-secondary))" class="fa-brands fa-tripadvisor fa-xl"></i>
         </v-btn>
       </v-row>
     </v-col>
