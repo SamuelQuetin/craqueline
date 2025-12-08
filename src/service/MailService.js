@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class MailService {
     client = axios.create({
-        baseURL: "http://www.craqueline.fr/api/",
+        baseURL: "https://www.craqueline.fr/api/",
         headers: {"Content-Type": "application/json"}
     });
 
