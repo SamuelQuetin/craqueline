@@ -18,7 +18,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^7.0.0",
     "@vitejs/plugin-vue": "^6.0.1",
-    "axios": "1.12.2",
+    "axios": "^1.12.2",
     "prettier": "^3.2.5",
     "vite": "^7.2.6",
     "vite-plugin-vuetify": "^2.1.2"

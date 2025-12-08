@@ -1,0 +1,49 @@
+# ------------------------------
+# 🚀 1. Forcer le HTTPS
+# ------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ------------------------------
+# 🔒 2. Bloquer l'auto-index (évite d'afficher les dossiers)
+# ------------------------------
+Options -Indexes
+
+# ------------------------------
+# ⚡ 3. Compression GZIP
+# ------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/json application/xml application/xhtml+xml application/rss+xml application/font-woff2
+</IfModule>
+
+# ------------------------------
+# 🎨 4. Cache des assets (optimisé pour Vue)
+# ------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# ------------------------------
+# 🟦 5. Gestion du routing Vue.js (SPA)
+# Redirige TOUT vers index.html...
+# ------------------------------
+RewriteEngine On
+
+# ... sauf /api/
+RewriteCond %{REQUEST_URI} !^/api/
+
+# ... sauf si le fichier existe déjà (assets, images...)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirection fallback vers index.html
+RewriteRule . /index.html [L]
