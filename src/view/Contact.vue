@@ -4,63 +4,96 @@
     <v-form
         v-model="validForm"
     >
-      <v-text-field
-          v-model="nom"
-          label="Nom"
-          :rules="nameRules"
-          outlined
-          required
-          type="text"
-      ></v-text-field>
-      <v-text-field
-          v-model="email"
-          label="E-mail"
-          :rules="emailRules"
-          outlined
-          required
-          type="email"
-      ></v-text-field>
-      <v-text-field
-          v-model="numPhone"
-          label="Numéro de téléphone"
-          :rules="phoneRules"
-          outlined
-          type="phone"
-      ></v-text-field>
-      <v-date-picker
-          v-model="date"
-          color="quaternary"
-          label="Date de l'évènement"
-          :allowed-dates="allowedDates"
-          outlined
-          type="date"
-          class="mb-4"
-      ></v-date-picker>
-      <v-text-field
-          v-model="where"
-          label="Lieu de l'évènement"
-          outlined
-      ></v-text-field>
-      <v-text-field
-          v-model="numPers"
-          label="Nombre de convive"
-          outlined
-      ></v-text-field>
-
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-text-field
+              v-model="nom"
+              :rules="nameRules"
+              label="Nom"
+              outlined
+              required
+              type="text"
+              prepend-icon="mdi-account"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              outlined
+              required
+              type="email"
+              prepend-icon="mdi-email"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-text-field
+              v-model="numPhone"
+              :rules="phoneRules"
+              label="Numéro de téléphone"
+              outlined
+              type="phone"
+              prepend-icon="mdi-phone"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-text-field
+              v-model="date"
+              label="Date de l'évènement"
+              prepend-icon="mdi-calendar"
+          >
+            <v-menu
+                activator="parent"
+                location="bottom"
+            >
+              <v-date-picker
+                  v-model="date"
+                  :allowed-dates="allowedDates"
+                  color="quaternary"
+              >
+              </v-date-picker>
+            </v-menu>
+          </v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-text-field
+              v-model="where"
+              label="Lieu de l'évènement"
+              outlined
+              prepend-icon="mdi-map-marker"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-text-field
+              v-model="numPers"
+              label="Nombre de convives"
+              outlined
+              prepend-icon="mdi-account-multiple"
+          ></v-text-field>
+        </v-col>
+      </v-row>
       <v-textarea
           v-model="message"
+          :rules="messageRules"
+          counter="1028"
           label="Votre message *"
           outlined
-          counter="1028"
           required
           type="text"
-          :rules="messageRules"
       ></v-textarea>
       <v-btn
           :disabled="!validForm"
           @click="sendMail">
         Envoyer
       </v-btn>
+      <v-btn
+        @click="console.log(date)"
+      ></v-btn>
     </v-form>
   </v-container>
 </template>
@@ -85,9 +118,9 @@ const nameRules = [
 ]
 
 const emailRules = [
-    v => !!v || "L'adresse email est requise",
-    v => /.+@.+\..+/.test(v) || "L'adresse email doit être valide",
-  ]
+  v => !!v || "L'adresse email est requise",
+  v => /.+@.+\..+/.test(v) || "L'adresse email doit être valide",
+]
 
 const messageRules = [
   v => !!v || 'Le message est requis',
@@ -105,8 +138,9 @@ today.setHours(0, 0, 0, 0); // Réinitialiser l'heure pour comparer uniquement l
 const allowedDates = (val) => {
   return new Date(val) >= today;
 };
+
 function sendMail() {
-  if(!validForm.value) return
+  if (!validForm.value) return
   let data = ``;
 
   data += `<b>Nom :</b> ${nom.value}<br>`;
