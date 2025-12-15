@@ -35,7 +35,7 @@
     <v-main>
       <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>
     </v-main>
-    <LeFooter></LeFooter>
+    <LeFooter @onClick="scrollTo"></LeFooter>
   </v-app>
 
 
@@ -83,7 +83,7 @@ function scrollTo(selector) {
   }
   const element = document.querySelector(selector)
   if (element) {
-    const y = element.getBoundingClientRect().top + window.scrollY - 180
+    const y = element.getBoundingClientRect().top + window.scrollY - 150
     window.scrollTo({top: y, behavior: 'smooth'})
   }
 }

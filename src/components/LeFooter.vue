@@ -122,19 +122,19 @@
     <v-spacer cols="12" xs="0" sm="0" md="1" lg="2" xl="2"></v-spacer>
     <v-col cols="12" xs="12" sm="12" md="3" lg="2" xl="2" class="px-4" justify="center">
       <v-row>
-        <a href="#section-0">Accueil</a>
+        <a @click="scrollTo('section-1')">Accueil</a>
       </v-row>
       <v-row>
-        <a href="#section-2">Notre Histoire</a>
+        <a @click="scrollTo('section-2')">Notre Histoire</a>
       </v-row>
       <v-row>
-        <a href="#section-3">La Carte</a>
+        <a @click="scrollTo('section-3')">La Carte</a>
       </v-row>
       <v-row>
-        <a href="#section-4">La Boutique</a>
+        <a @click="scrollTo('section-4')">La Boutique</a>
       </v-row>
       <v-row>
-        <a href="#">Contact</a>
+        <a @click="goTo('Contact')">Contact</a>
       </v-row>
       <v-spacer class="py-4"></v-spacer>
       <v-row>
@@ -151,7 +151,15 @@
 </template>
 
 <script setup>
+import router from "@/router/index.js";
+const emits = defineEmits(['onClick'])
 
+function scrollTo(section){
+  emits('onClick',section)
+}
+function goTo(page){
+  router.push({name: page})
+}
 </script>
 
 <style scoped>
