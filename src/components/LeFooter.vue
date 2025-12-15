@@ -51,12 +51,11 @@
       <v-row class="mt-8">
         <v-btn
             size="x-small"
-
+            href="https://www.google.com/search?sa=X&sca_esv=69ce569418db93e5&sxsrf=AE3TifMpkJmyYEnSBK6Q_iGfpadQKJJ_GA:1765796238854&q=Craqueline+Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDWwMDO0NDE1MzcyszC2tLQ0NtjAyPiKkd-5KLGwNDUnMy9VwbEss3gRK7oIAMsNwbY_AAAA&rldimm=15086194567268399930&tbm=lcl&hl=fr-FR&ved=2ahUKEwih6b_Mt7-RAxUsSaQEHXWZENkQ9fQKegQILRAG&biw=1920&bih=945&dpr=1#lkt=LocalPoiReviews"
             target="_blank"
-            aria-label="Ouvrir XXXXXXXXX (nouvel onglet)"
+            aria-label="Ouvrir Google Avis (nouvel onglet)"
             class="mr-2"
             icon
-            disabled
             color="black"
             elevation="0">
           <v-icon color="secondary" size="25">mdi-google</v-icon>

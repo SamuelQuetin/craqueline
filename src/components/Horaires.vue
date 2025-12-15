@@ -1,6 +1,6 @@
 <template>
   <h2 :class="isMobile ? 'h2-mobile':'h2-default'">HORAIRES</h2>
-  <div class="padding-space">
+  <div :class="isMobile ? '' : 'padding-space'">
     <v-row
         class="px-16"
         v-for="(horaire, index) in horaires"
