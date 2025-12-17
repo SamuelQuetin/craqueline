@@ -31,6 +31,7 @@
             variant="outlined"
             color="black"
             size="x-large"
+            @click="goTo('Contact')"
             class="drop-right"
         >
           Demander un devis
@@ -77,6 +78,7 @@
               color="black"
               size="x-large"
               class="drop-right"
+              @click="goTo('Contact')"
           >
             Demander un devis
           </v-btn>
@@ -88,12 +90,17 @@
 </template>
 
 <script setup>
+import router from "@/router/index.js";
+
 const emits = defineEmits(['onClick'])
 
 const props = defineProps({isMobile: Boolean})
 
 function scrollto(section) {
   emits('onClick', section)
+}
+function goTo(page) {
+  router.push({name: page})
 }
 </script>
 

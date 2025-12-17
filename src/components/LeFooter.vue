@@ -120,31 +120,63 @@
       </v-row>
     </v-col>
     <v-spacer cols="12" xs="0" sm="0" md="1" lg="2" xl="2"></v-spacer>
-    <v-col cols="12" xs="12" sm="12" md="3" lg="2" xl="2" class="px-4" justify="center">
+    <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="px-4" justify="center">
       <v-row>
-        <a @click="scrollTo('section-1')">Accueil</a>
+        <v-btn
+            variant="text"
+            @click="scrollTo('#section-1')">
+          <p><u>Accueil</u></p>
+        </v-btn>
       </v-row>
       <v-row>
-        <a @click="scrollTo('section-2')">Notre Histoire</a>
+        <v-btn
+            variant="text"
+            @click="scrollTo('#section-2')">
+          <p><u>Notre Histoire</u></p>
+        </v-btn>
       </v-row>
       <v-row>
-        <a @click="scrollTo('section-3')">La Carte</a>
+        <v-btn
+            variant="text"
+            @click="scrollTo('#section-3')">
+          <p><u>La Carte</u></p>
+        </v-btn>
       </v-row>
       <v-row>
-        <a @click="scrollTo('section-4')">La Boutique</a>
+        <v-btn
+            variant="text"
+            @click="scrollTo('#section-4')">
+          <p><u>La Boutique</u></p>
+        </v-btn>
       </v-row>
       <v-row>
-        <a @click="goTo('Contact')">Contact</a>
+        <v-btn
+            variant="text"
+            @click="goTo('Contact')">
+          <p><u>Contact</u></p>
+        </v-btn>
       </v-row>
       <v-spacer class="py-4"></v-spacer>
       <v-row>
-        <a href="#">Mentions légales</a>
+        <v-btn
+            variant="text"
+        >
+          <p><u>Mentions légales</u></p>
+        </v-btn>
       </v-row>
       <v-row>
-        <a href="#">CGV</a>
+        <v-btn
+            variant="text"
+        >
+          <p><u>CGV</u></p>
+        </v-btn>
       </v-row>
       <v-row>
-        <a href="#">Politique de confidentialité</a>
+        <v-btn
+            variant="text"
+        >
+          <p><u>Politique de confidentialité</u></p>
+        </v-btn>
       </v-row>
     </v-col>
   </v-row>
@@ -152,12 +184,14 @@
 
 <script setup>
 import router from "@/router/index.js";
+
 const emits = defineEmits(['onClick'])
 
-function scrollTo(section){
-  emits('onClick',section)
+function scrollTo(section) {
+  emits('onClick', section)
 }
-function goTo(page){
+
+function goTo(page) {
   router.push({name: page})
 }
 </script>
@@ -171,6 +205,7 @@ h3 {
   font-size: 2em;
   font-weight: 550;
 }
+
 a {
   color: inherit;
 }

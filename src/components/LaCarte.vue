@@ -59,7 +59,12 @@
       <p>Raffinés, gourmands et personnalisables, ils allient traditions et élégance pour
         transformer vos instants précieux en souvenirs inoubliables.
       </p>
-      <v-btn class="mt-8" variant="outlined" elevation="0"> DEMANDER UN DEVIS </v-btn>
+      <v-btn
+          class="mt-8"
+          variant="outlined"
+          elevation="0"
+          @click="goTo('Contact')"
+      > DEMANDER UN DEVIS </v-btn>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center">
       <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>
@@ -72,61 +77,152 @@
       <v-carousel
           cycle
           interval="5000"
-          show-arrows="hover"
           touch
-          class="carousel-auto"
           :show-arrows="false"
+          :continuous="false"
+          class="carousel-auto"
       >
-        <v-carousel-item v-for="(image, i) in imagesSaintHono" :key="i" class="pa-6">
-          <v-img :src="image" width="100%"></v-img>
+        <v-carousel-item
+            v-for="(image, i) in imagesSaintHono"
+            :key="i"
+            class="pa-6"
+        >
+          <v-img
+              :src="image.png"
+              :srcset="image.webp ? `${image.webp} 1x` : null"
+              loading="lazy"
+              :eager="false"
+              width="100%"
+              aspect-ratio="1"
+          >
+            <template #placeholder>
+              <v-skeleton-loader
+                  type="image"
+                  class="w-100 h-100"
+              />
+            </template>
+          </v-img>
         </v-carousel-item>
       </v-carousel>
     </v-col>
   </v-row>
   <v-row class="row-bleed bg-s py-3 my-4" v-else>
     <v-col class="pa-0 ma-1" v-for="(image, i) in imagesSaintHono" :key="i" :width="(100/imagesSaintHono.length) + 'vw'">
-      <v-img :src="image" class="image-pop" width="100%"></v-img>
+      <v-img
+          :src="image.png"
+          :srcset="image.webp ? `${image.webp} 1x` : null"
+          loading="lazy"
+          :eager="false"
+          class="image-pop"
+          width="100%"
+          aspect-ratio="1"
+      >
+        <template #placeholder>
+          <v-skeleton-loader
+              type="image"
+              class="w-100 h-100"
+          />
+        </template>
+      </v-img>
     </v-col>
   </v-row>
   <v-row class="row-bleed bg-q" v-if="isMobile">
     <v-col class="pa-0">
       <v-carousel
+          :continuous="false"
           cycle
+          :show-arrows="false"
           interval="5000"
           touch
-          :show-arrows="false"
           class="carousel-auto"
       >
-        <v-carousel-item v-for="(image, i) in imagesCarte" :key="i" class="pa-6">
-          <v-img :src="image" width="100%"></v-img>
+        <v-carousel-item
+            v-for="(image, i) in imagesCarte"
+            :key="i"
+            class="pa-6"
+        >
+          <v-img
+              :src="image.png"
+              :srcset="image.webp ? `${image.webp} 1x` : null"
+              sizes="(max-width: 600px) 90vw, 600px"
+              loading="lazy"
+              :eager="false"
+              width="100%"
+              aspect-ratio="0"
+          >
+            <template #placeholder>
+              <v-skeleton-loader
+                  type="image"
+                  boilerplate
+              />
+            </template>
+          </v-img>
         </v-carousel-item>
       </v-carousel>
     </v-col>
   </v-row>
   <v-row class="row-bleed bg-q mt-4 pa-6" cols="12" v-else>
     <v-col v-for="(image, i) in imagesCarte" :key="i" cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="overflow-visible d-flex justify-center">
-      <v-img :src="image" class="image-pop"></v-img>
+      <v-img
+          :src="image.png"
+          :srcset="image.webp ? `${image.webp} 1x` : null"
+          loading="lazy"
+          :eager="false"
+          class="image-pop"
+          aspect-ratio="0">
+        <template #placeholder>
+          <v-skeleton-loader
+              type="image"
+              boilerplate
+          />
+        </template>
+      </v-img>
     </v-col>
   </v-row>
 </template>
 
 <script setup>
+import router from "@/router/index.js";
+
 const props= defineProps({isMobile: Boolean})
 
-const modulesCarte = import.meta.glob(
-    '/src/assets/photo/carte/*.{png,jpg,jpeg,webp,svg,gif}',
+const modulesCartePng = import.meta.glob(
+    '/src/assets/photo/carte/*.png',
     { eager: true, import: 'default' }
 )
-const imagesCarte = Object.entries(modulesCarte) // optionnel
-    .map(([, url]) => url)
 
-const modulesSaintHono = import.meta.glob(
-    '/src/assets/photo/saintHono/*.{png,jpg,jpeg,webp,svg,gif}',
+const modulesCarteWebp = import.meta.glob(
+    '/src/assets/photo/carte/*.webp',
     { eager: true, import: 'default' }
 )
-const imagesSaintHono = Object.entries(modulesSaintHono) // optionnel
-    .map(([, url]) => url)
 
+const imagesCarte = Object.keys(modulesCartePng).map((path) => {
+  const base = path.replace('.png', '')
+  return {
+    png: modulesCartePng[path],
+    webp: modulesCarteWebp[base + '.webp']
+  }
+})
+const modulesSaintHonoPng = import.meta.glob(
+    '/src/assets/photo/saintHono/*.png',
+    { eager: true, import: 'default' }
+)
+
+const modulesSaintHonoWebp = import.meta.glob(
+    '/src/assets/photo/saintHono/*.webp',
+    { eager: true, import: 'default' }
+)
+
+const imagesSaintHono = Object.keys(modulesSaintHonoPng).map((path) => {
+  const base = path.replace('.png', '')
+  return {
+    png: modulesSaintHonoPng[path],
+    webp: modulesSaintHonoWebp[base + '.webp']
+  }
+})
+function goTo(page) {
+  router.push({name: page})
+}
 </script>
 <style scoped>
 .h2-default {

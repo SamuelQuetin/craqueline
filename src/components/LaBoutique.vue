@@ -37,7 +37,10 @@
           <v-icon size="50" class="mr-2">mdi-email-outline</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" justify="center" align-self="center">
-          <v-btn variant="outlined">Nous Contacter</v-btn>
+          <v-btn
+              variant="outlined"
+              @click="goTo('Contact')"
+          >Nous Contacter</v-btn>
         </v-col>
       </v-row>
 
@@ -97,7 +100,12 @@
   </v-row>
 </template>
 <script setup>
+import router from "@/router/index.js";
+
 const props= defineProps({isMobile: Boolean})
+function goTo(page) {
+  router.push({name: page})
+}
 </script>
 <style scoped>
 h3 {

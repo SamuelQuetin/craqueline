@@ -1,7 +1,7 @@
 <template>
   <v-carousel
       v-model="model"
-      interval="500000"
+      interval="5000"
       show-arrows="hover"
       cycle
       :height="isMobile ? '90dvh' : '80dvh'"

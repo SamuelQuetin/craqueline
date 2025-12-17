@@ -115,6 +115,13 @@
   >
     Votre devis à bien été envoyé.
   </v-snackbar>
+  <v-snackbar
+      v-model="isMailOnError"
+      timeout="5000"
+      color="error"
+  >
+    {{ errorMessage }}
+  </v-snackbar>
 </template>
 
 <script setup>
@@ -133,6 +140,8 @@ const message = ref();
 const validForm = ref(false);
 const isLoadingToSendMail = ref(false);
 const isMailSended = ref(false);
+const isMailOnError = ref(false);
+const errorMessage = ref("")
 
 const nameRules = [
   v => !!v || 'le champ Nom est obligatoire',
@@ -182,11 +191,18 @@ function sendMail() {
     mailService.sendMailToUser(data, email.value).then(ress => {
       console.log(ress)
       isMailSended.value = true;
+    }).catch(err => {
+      console.log(err)
+      isMailOnError.value = true;
+      errorMessage.value = err;
     })
-  }).catch(err => console.log(err))
-      .finally(() => {
-        isLoadingToSendMail.value = false;
-      })
+  }).catch(err => {
+    console.log(err)
+    isMailOnError.value = true;
+    errorMessage.value = err;
+  }).finally(() => {
+    isLoadingToSendMail.value = false;
+  })
 
 }
 </script>
