@@ -1,5 +1,5 @@
 <template>
-  <h2 :class="isMobile ? 'h2-mobile':'h2-default'">ADDRESS</h2>
+  <h2 :class="isMobile ? 'h2-mobile':'h2-default'">ADRESSE</h2>
   <div>
     <span>
       4 rue Marceau,<br>
@@ -32,7 +32,7 @@ const props = defineProps({isMobile: Boolean})
 
 .h2-mobile {
   color: black;
-  font-size: 4em;
+  font-size: 40px;
   position: relative;
   margin-left: 0;
 }

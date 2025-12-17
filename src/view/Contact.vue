@@ -1,6 +1,6 @@
 <template>
   <v-container class="pa-5 bg_base" max-width="90em">
-    <v-row class="px-10">
+    <v-row :class="isMobile ? '':'px-10'">
       <v-col cols="12" order="1" order-md="1">
       <ContactForm :isMobile="isMobile"/>
       </v-col>

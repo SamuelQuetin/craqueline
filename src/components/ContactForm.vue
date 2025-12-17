@@ -97,13 +97,24 @@
             type="text"
         ></v-textarea>
         <v-btn
+            block
+            color="secondary"
             :disabled="!validForm"
-            @click="sendMail">
+            @click="sendMail"
+            :loading="isLoadingToSendMail"
+        >
           Envoyer
         </v-btn>
       </v-form>
     </v-col>
   </v-row>
+  <v-snackbar
+    v-model="isMailSended"
+    timeout="5000"
+    color="secondary"
+  >
+    Votre devis à bien été envoyé.
+  </v-snackbar>
 </template>
 
 <script setup>
@@ -120,6 +131,8 @@ const where = ref();
 const numPers = ref();
 const message = ref();
 const validForm = ref(false);
+const isLoadingToSendMail = ref(false);
+const isMailSended = ref(false);
 
 const nameRules = [
   v => !!v || 'le champ Nom est obligatoire',
@@ -152,6 +165,7 @@ const props = defineProps({isMobile: Boolean})
 
 function sendMail() {
   if (!validForm.value) return
+  isLoadingToSendMail.value = true;
   let data = ``;
 
   data += `<b>Nom :</b> ${nom.value}<br>`;
@@ -163,7 +177,16 @@ function sendMail() {
 
   data += `<b>Message :</b><br>${message.value.replace(/\n/g, '<br>')}`;
 
-  mailService.sendMail(data).then(res => console.log(res)).catch(err => console.log(err))
+  mailService.sendMail(data, nom.value).then(res => {
+    console.log(res);
+    mailService.sendMailToUser(data, email.value).then(ress => {
+      console.log(ress)
+      isMailSended.value = true;
+    })
+  }).catch(err => console.log(err))
+      .finally(() => {
+        isLoadingToSendMail.value = false;
+      })
 
 }
 </script>
@@ -178,7 +201,7 @@ function sendMail() {
 
 .h2-mobile {
   color: black;
-  font-size: 4em;
+  font-size: 40px;
   position: relative;
   margin-left: 0;
 }

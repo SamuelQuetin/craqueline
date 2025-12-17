@@ -2,7 +2,7 @@
   <h2 :class="isMobile ? 'h2-mobile':'h2-default'">HORAIRES</h2>
   <div :class="isMobile ? '' : 'padding-space'">
     <v-row
-        class="px-16"
+        :class="isMobile ? '' :'px-16'"
         v-for="(horaire, index) in horaires"
         :key="index"
 
@@ -50,9 +50,9 @@ const horaires = [
 
 .h2-mobile {
   color: black;
-  font-size: 4em;
+  font-size: 40px;
   position: relative;
-  margin-left: 0;
+  padding-bottom: 30px;
 }
 
 .padding-space {
