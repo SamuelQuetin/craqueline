@@ -31,12 +31,6 @@
       <v-img src="@/assets/photo/portrait1.png" max-width="25em"></v-img>
     </v-col>
   </v-row>
-  <div class="mb-4 d-flex justify-center align-center bg-subtitle">
-      <p>
-        "Le désir qu'une bouchée suffise à nous faire retomber en enfance,
-        C'est l'essence même de Craqueline"
-      </p>
-  </div>
 </template>
 <script setup>
 
