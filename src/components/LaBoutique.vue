@@ -83,14 +83,6 @@
               elevation="0">
             <i class="fa-brands fa-tiktok fa-xl"></i>
           </v-btn>
-          <v-btn
-              disabled
-              class="mr-2"
-              icon
-              color="black"
-              elevation="0">
-            <v-icon size="35">mdi-linkedin</v-icon>
-          </v-btn>
         </v-col>
       </v-row>
     </v-col>

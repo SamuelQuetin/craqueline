@@ -95,28 +95,6 @@
             elevation="0">
           <i style="color: rgb(var(--v-theme-secondary))" class="fa-brands fa-tiktok fa-xl"></i>
         </v-btn>
-        <v-btn
-            size="x-small"
-            href="https://www.linkedin.com/company/craqueline/"
-            target="_blank"
-            aria-label="Ouvrir Linkedin (nouvel onglet)"
-            class="mr-2"
-            icon
-            color="black"
-            elevation="0">
-          <v-icon color="secondary" size="25">mdi-linkedin</v-icon>
-        </v-btn>
-        <v-btn
-            size="x-small"
-            href=""
-            target="_blank"
-            aria-label="Ouvrir Tripadvisor (nouvel onglet)"
-            class="mr-2"
-            icon
-            color="black"
-            elevation="0">
-          <i style="color: rgb(var(--v-theme-secondary))" class="fa-brands fa-tripadvisor fa-xl"></i>
-        </v-btn>
       </v-row>
     </v-col>
     <v-spacer cols="12" xs="0" sm="0" md="1" lg="2" xl="2"></v-spacer>
