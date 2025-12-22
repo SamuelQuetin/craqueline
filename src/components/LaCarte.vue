@@ -90,11 +90,12 @@
             v-for="(image, i) in imagesSaintHono"
             :key="i"
             class="pa-6"
+            height="400"
         >
           <LazyPictures
-              :src="image.png"
-              :webp="image.webp"
-              ratio="0.75"
+              :src="image.webp"
+              :alt="image.alt"
+              color="secondary"
           />
         </v-carousel-item>
       </v-carousel>
@@ -104,9 +105,9 @@
     <v-col class="pa-0 ma-1" v-for="(image, i) in imagesSaintHono" :key="i"
            :width="(100/imagesSaintHono.length) + 'vw'">
       <LazyPictures
-          :src="image.png"
-          :webp="image.webp"
-          ratio="0.75"
+          :src="image.webp"
+          :alt="image.alt"
+          color="secondary"
       />
     </v-col>
   </v-row>
@@ -118,7 +119,7 @@
           :show-arrows="false"
           interval="5000"
           touch
-          class="carousel-auto"
+          height="600"
       >
         <v-carousel-item
             v-for="(image, i) in imagesCarte"
@@ -126,10 +127,10 @@
             class="pa-6"
         >
           <LazyPictures
-              :src="image.png"
-              :webp="image.webp"
+              :src="image.webp"
               :alt="image.alt"
-              ratio="0.75"
+              ratio="2/3"
+              color="quaternary"
           />
         </v-carousel-item>
       </v-carousel>
@@ -139,10 +140,10 @@
     <v-col v-for="(image, i) in imagesCarte" :key="i" cols="12" xs="12" sm="12" md="3" lg="3" xl="3"
            class="overflow-visible d-flex justify-center">
       <LazyPictures
-          :src="image.png"
-          :webp="image.webp"
+          :src="image.webp"
           :alt="image.alt"
-          ratio="0.75"
+          ratio="2/3"
+          color="quaternary"
       />
     </v-col>
   </v-row>
@@ -152,48 +153,55 @@
 import router from "@/router/index.js";
 import LazyPictures from "@/components/LazyPictures.vue";
 
+import NOS_SPECIALITE_AFFICHE from '@/assets/photo/carte/1_NOS_SPECIALITE_AFFICHE.webp'
+import NOS_CHOUX_AFFICHE from '@/assets/photo/carte/2_NOS_CHOUX_AFFICHE.webp'
+import NOS_BOISSONS_CHAUDES_AFFICHE from '@/assets/photo/carte/3_NOS_BOISSONS_CHAUDES_AFFICHE.webp'
+import NOS_BOISSONS_FRAICHES_AFFICHE from '@/assets/photo/carte/4_NOS_BOISSONS_FRAICHES_AFFICHE.webp'
+
+import shchoco from '@/assets/photo/saintHono/shchoco.webp'
+import shclassic from '@/assets/photo/saintHono/shclassic.webp'
+import shfraise from '@/assets/photo/saintHono/shfraise.webp'
+import shtrio from '@/assets/photo/saintHono/shtrio.webp'
+
 const props = defineProps({isMobile: Boolean})
 
 const imagesCarte = [
   {
-    png: "@/assets/photo/carte/1_NOS_SPECIALITE_AFFICHE.png",
-    webp: "@/assets/photo/carte/1_NOS_SPECIALITE_AFFICHE.webp",
+    webp: NOS_SPECIALITE_AFFICHE,
     alt: "Menu \"Nos spécialités à partager\" proposant un Saint Honoré Classique (42€), un Saint Ho' du moment (48€) et un Paris-Brest Classique (38€). Les pâtisseries sont disponibles le vendredi, samedi ou sur commande 48h à l'avance."
   },
   {
-    png: "@/assets/photo/carte/2_NOS_CHOUX_AFFICHE.png",
-    webp: "@/assets/photo/carte/2_NOS_CHOUX_AFFICHE.webp",
+    webp: NOS_CHOUX_AFFICHE,
     alt: "Menu \"Nos Choux\" présentant les tarifs à l'unité (3,30€), par 6 (19€), par 12 (37€) et par 18 (55€), ainsi que le chou du jour (3,50€). Les parfums listés sont Vanille, Chocolat, Caramel, Café, Citron Yuzu, Praliné, Pistache et Fruit de la passion."
   },
   {
-    png: "@/assets/photo/carte/3_NOS_BOISSONS_CHAUDES_AFFICHE.png",
-    webp: "@/assets/photo/carte/3_NOS_BOISSONS_CHAUDES_AFFICHE.webp",
+    webp: NOS_BOISSONS_CHAUDES_AFFICHE,
     alt: "Menu \"Nos Boissons Chaudes\" listant les cafés, thés et autres spécialités : Ristretto (1,50€), Espresso (2€), Double espresso ou Americano (2,50€), Espresso macchiato (3€), Cappuccino (4€), Latté macchiato (4,50€), Chaï Latté (5€), Matcha Latté (5€), Chocolat Guanaja Valrhona (4,50€), Mocaccino (5,50€) et Thé ou Infusions (4€). Une option lait végétal (avoine) est disponible pour un supplément de 0,30€."
   },
   {
-    png: "@/assets/photo/carte/4_NOS_BOISSONS_FRAICHES_AFFICHE.png",
-    webp: "@/assets/photo/carte/4_NOS_BOISSONS_FRAICHES_AFFICHE.webp",
+    webp: NOS_BOISSONS_FRAICHES_AFFICHE,
     alt: "Menu \"Nos Boissons Fraîches\" proposant : Café glacé (4€), Café latté glacé (5€), Chaï ou Matcha latté glacé (5,50€), Chocolat glacé (5€), Moccacino glacé (6€), Milkshake vanille/fraise/chocolat/banane (6€), Citronnade ou Thé glacé maison (4,50€), Kombucha (5,50€), Jus de fruit abricot/pomme-gingembre/pêche (4€), Eau plate (2,50€) et Eau pétillante (3€). Option lait d'avoine disponible pour +0,30€."
   }
 ]
 
-const modulesSaintHonoPng = import.meta.glob(
-    '/src/assets/photo/saintHono/*.png',
-    {eager: true, import: 'default'}
-)
-
-const modulesSaintHonoWebp = import.meta.glob(
-    '/src/assets/photo/saintHono/*.webp',
-    {eager: true, import: 'default'}
-)
-
-const imagesSaintHono = Object.keys(modulesSaintHonoPng).map((path) => {
-  const base = path.replace('.png', '')
-  return {
-    png: modulesSaintHonoPng[path],
-    webp: modulesSaintHonoWebp[base + '.webp']
-  }
-})
+const imagesSaintHono = [
+  {
+    webp: shchoco,
+    alt: "Saint-Honoré au chocolat avec choux garnis et crème chocolat."
+  },
+  {
+    webp: shfraise,
+    alt: "Saint-Honoré a la fraise avec choux garnis et crème de fraise."
+  },
+  {
+    webp: shclassic,
+    alt: "Saint-Honoré classique avec choux garnis et crème vanille."
+  },
+  {
+    webp: shtrio,
+    alt: "Les 3 Saint-Honorés"
+  },
+]
 
 function goTo(page) {
   router.push({name: page})
