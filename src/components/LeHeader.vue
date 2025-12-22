@@ -5,33 +5,12 @@
       class="header"
   >
     <v-row class="ma-0 pa-0 d-flex justify-space-between">
-      <v-col cols="8" xs="8" sm="8" md="6">
-        <v-row class="ma-0" v-if="!isMobile">
-          <v-col cols="3" class="d-flex justify-center align-center">
-            <v-img
-                src="@/assets/logoSeul.webp"
-                height="100px"
-                width="100px"
-                min-width="100px"
-                class="logo-shrink"
-            />
-
-          </v-col>
-          <v-col cols="9" class="d-flex justify-start align-center">
-            <div>
-              <h1 style="font-size: 40px">CRAQUELINE</h1>
-              <p>MONTPELLIER</p>
-            </div>
-          </v-col>
-        </v-row>
-        <v-row class="ma-0" v-else>
-          <v-col cols="12" class="d-flex justify-center align-center">
-            <v-img
-                src="@/assets/logoCraque.svg"
-                class="logo-shrink"
-            />
-          </v-col>
-        </v-row>
+      <v-col cols="8" xs="8" sm="8" md="4" class="d-flex justify-start align-center">
+        <v-img
+            src="@/assets/logoCraque.svg"
+            class="logo-shrink d-flex justify-start justify-self-start"
+            height="100px"
+        />
       </v-col>
       <v-col cols="4" xs="4" sm="4" md="6" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
         <v-menu v-if="isMobile"
