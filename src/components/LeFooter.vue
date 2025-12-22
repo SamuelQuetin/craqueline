@@ -125,35 +125,35 @@
         <v-btn
             variant="text"
             @click="scrollTo('#section-1')">
-          <p><u>Accueil</u></p>
+          <p>Accueil</p>
         </v-btn>
       </v-row>
       <v-row>
         <v-btn
             variant="text"
             @click="scrollTo('#section-2')">
-          <p><u>Notre Histoire</u></p>
+          <p>Notre Histoire</p>
         </v-btn>
       </v-row>
       <v-row>
         <v-btn
             variant="text"
             @click="scrollTo('#section-3')">
-          <p><u>La Carte</u></p>
+          <p>La Carte</p>
         </v-btn>
       </v-row>
       <v-row>
         <v-btn
             variant="text"
             @click="scrollTo('#section-4')">
-          <p><u>La Boutique</u></p>
+          <p>La Boutique</p>
         </v-btn>
       </v-row>
       <v-row>
         <v-btn
             variant="text"
             @click="goTo('Contact')">
-          <p><u>Contact</u></p>
+          <p>Contact</p>
         </v-btn>
       </v-row>
       <v-spacer class="py-4"></v-spacer>
@@ -161,21 +161,21 @@
         <v-btn
             variant="text"
         >
-          <p><u>Mentions légales</u></p>
+          <p>Mentions légales</p>
         </v-btn>
       </v-row>
       <v-row>
         <v-btn
             variant="text"
         >
-          <p><u>CGV</u></p>
+          <p>CGV</p>
         </v-btn>
       </v-row>
       <v-row>
         <v-btn
             variant="text"
         >
-          <p><u>Politique de confidentialité</u></p>
+          <p>Politique de confidentialité</p>
         </v-btn>
       </v-row>
     </v-col>
