@@ -26,7 +26,6 @@
         maximum en circuit court et avec des produits de grande qualité
       </p>
       <ul class="marging-text justify-list">
-        <li><p>Oeufs BIO de la maison Trébuchon (Pic Saint Loup)</p></li>
         <li><p>Farine BIO du moulin de Sauret (Montpellier)</p></li>
         <li><p>Chocolats et pralinés haut de gamme Valrhona (Tain-l'Hermitage)</p></li>
       </ul>
