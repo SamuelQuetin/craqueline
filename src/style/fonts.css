@@ -5,3 +5,9 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'FT Milky Free';
+    src: url('/fonts/FTMilky-FREE.otf') format('opentype');
+    font-style: normal;
+    font-display: swap;
+}

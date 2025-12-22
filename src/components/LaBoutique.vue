@@ -87,12 +87,15 @@
       </v-row>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="d-flex justify-center">
-      <v-img src="@/assets/photo/devanture.png" max-width="30em"></v-img>
+      <LazyPictures :src="devanture"></LazyPictures>
     </v-col>
   </v-row>
 </template>
 <script setup>
 import router from "@/router/index.js";
+import LazyPictures from "@/components/LazyPictures.vue";
+
+import devanture from '@/assets/photo/devanture.png'
 
 const props= defineProps({isMobile: Boolean})
 function goTo(page) {

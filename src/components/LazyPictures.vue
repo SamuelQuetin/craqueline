@@ -44,7 +44,7 @@ defineProps({
   },
   color:{
     type: String,
-    default: ''
+    default: 'primary'
   }
 })
 

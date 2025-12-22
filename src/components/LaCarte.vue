@@ -6,12 +6,12 @@
 
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center" order="2" order-xs="2"
            order-sm="2" order-md="1" order-lg="1" order-xl="1">
-      <v-img src="@/assets/photo/chouxLaCarte.png" max-width="20em"></v-img>
+      <LazyPictures :src="chouxLaCarte"></LazyPictures>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="9" lg="9" xl="9" class=" justify-text" order="1" order-xs="1" order-sm="1"
            order-md="2" order-lg="2" order-xl="2">
       <h3 class="pb-8">UN SAVOIR - FAIRE ARTISANAL</h3>
-      <p class="marging-text pb-4"> Chaque jour,<br> nous produisons une vaste gamme de chou à la crème.
+      <p class="marging-text pb-4"> Chaque jour,<br> nous produisons une vaste gamme de choux à la crème.
       </p>
       <p class="marging-text">
         Adoptant une démarche responsable,<br> nous respectons la saisonnalité des produits, c’est pourquoi certains
@@ -31,13 +31,13 @@
       </ul>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center">
-      <v-img src="@/assets/photo/chouxNoisette.jpg" max-width="20em"></v-img>
+      <LazyPictures :src="chouxNoisette"></LazyPictures>
     </v-col>
   </v-row>
   <v-row align="center">
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center" order="2" order-xs="2"
            order-sm="2" order-md="1" order-lg="1" order-xl="1">
-      <v-img src="@/assets/photo/chouxNoisette.jpg" max-width="20em"></v-img>
+      <LazyPictures :src="chouxNoisette2"></LazyPictures>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="9" lg="9" xl="9" class=" justify-text" order="1" order-xs="1" order-sm="1"
            order-md="2" order-lg="2" order-xl="2">
@@ -71,7 +71,8 @@
       </v-btn>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center">
-      <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>
+      <LazyPictures :src="PieceMontee"></LazyPictures>
+<!--      <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>-->
     </v-col>
 
   </v-row>
@@ -152,6 +153,13 @@
 <script setup>
 import router from "@/router/index.js";
 import LazyPictures from "@/components/LazyPictures.vue";
+
+import chouxLaCarte from '@/assets/photo/chouxLaCarte.png'
+
+import chouxNoisette from '@/assets/photo/chouxNoisette.jpg'
+import chouxNoisette2 from '@/assets/photo/chouxNoisette.jpg'
+
+import PieceMontee from '@/assets/photo/PieceMontee.png'
 
 import NOS_SPECIALITE_AFFICHE from '@/assets/photo/carte/1_NOS_SPECIALITE_AFFICHE.webp'
 import NOS_CHOUX_AFFICHE from '@/assets/photo/carte/2_NOS_CHOUX_AFFICHE.webp'
