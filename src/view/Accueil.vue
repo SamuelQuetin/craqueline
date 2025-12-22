@@ -1,23 +1,23 @@
 <template>
   <section id="section-1">
-    <Summary :is-mobile="props.isMobile" @onClick="scrollTo"></Summary>
+    <Summary :is-mobile="isMobile" @onClick="scrollTo"></Summary>
   </section>
   <v-container class=" pa-5 bg_base" max-width="90em">
 
     <section id="section-2" class="py-6">
-      <Bienvenue :is-mobile="props.isMobile"></Bienvenue>
+      <Bienvenue :is-mobile="isMobile"></Bienvenue>
     </section>
 
     <section id="section-3" class="py-6">
-      <LaCarte :is-mobile="props.isMobile"></LaCarte>
+      <LaCarte :is-mobile="isMobile"></LaCarte>
     </section>
 
     <section id="section-4" class="py-6">
-      <LaBoutique :is-mobile="props.isMobile"></LaBoutique>
+      <LaBoutique :is-mobile="isMobile"></LaBoutique>
     </section>
 
     <section id="section-5" class="py-6">
-      <AffichePhoto></AffichePhoto>
+      <AffichePhoto :is-mobile="isMobile"></AffichePhoto>
     </section>
   </v-container>
 </template>

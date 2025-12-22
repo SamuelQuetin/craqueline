@@ -1,5 +1,27 @@
 <template>
-  <div class="bleed">
+  <v-carousel
+      v-if="isMobile"
+      cycle
+      interval="5000"
+      touch
+      :show-arrows="false"
+      class="carousel-auto"
+  >
+    <v-carousel-item
+        v-for="(image, i) in images"
+        :key="i"
+        class="pa-6"
+        height="400"
+    >
+      <LazyPictures
+          :src="image.src"
+          :alt="image.alt"
+          ratio="0.4"
+          color="quaternary"
+      />
+    </v-carousel-item>
+  </v-carousel>
+  <div class="bleed" v-else>
     <div
         class="scroller"
         @mouseenter="slowDown"
@@ -19,8 +41,8 @@
         <img
             v-for="(image, i) in [...images, ...images, ...images]"
             :key="i"
-            :src="image"
-            alt="photo de choux"
+            :src="image.src"
+            :alt="image.alt"
         />
       </div>
     </div>
@@ -29,12 +51,59 @@
 
 <script setup>
 import {ref, onMounted, onUnmounted} from "vue"
+import LazyPictures from "@/components/LazyPictures.vue";
 
-const modules = import.meta.glob(
-    '/src/assets/photo/choux/*.{png,jpg,jpeg,webp,svg,gif}',
-    {eager: true, import: 'default'}
-)
-const images = Object.entries(modules).map(([, url]) => url)
+import Choux from "@/assets/photo/choux/10Choux.png"
+import ChouPistache from "@/assets/photo/choux/chou_pistache.jpg"
+import ChouNoisette from "@/assets/photo/choux/chounoisette.jpg"
+import DuoChou from "@/assets/photo/choux/DuoChou.png"
+import PieceMontee from "@/assets/photo/choux/PieceMontee.png"
+import post4 from "@/assets/photo/choux/post4.png"
+import publiInsta from "@/assets/photo/choux/publi_instaa.png"
+import SaintHo1 from "@/assets/photo/choux/Saint-Ho1.png"
+import TrioRoses from "@/assets/photo/choux/TrioRoses.png"
+
+const props = defineProps({isMobile: Boolean})
+
+const images = [
+  {
+    src: Choux,
+    alt: "Photo de choux"
+  },
+  {
+    src: ChouPistache,
+    alt: "Photo de choux pistache"
+  },
+  {
+    src: ChouNoisette,
+    alt: "Photo de choux Noisette"
+  },
+  {
+    src: DuoChou,
+    alt: "Photo de Duo de Choux"
+  },
+  {
+    src: PieceMontee,
+    alt: "Photo de Piece Montée"
+  },
+  {
+    src: post4,
+    alt: "Photo de Piece choux"
+  },
+  {
+    src: publiInsta,
+    alt: "Photo de choux"
+  },
+  {
+    src: SaintHo1,
+    alt: "Photo de saint honorée"
+  },
+  {
+    src: TrioRoses,
+    alt: "Photo de TrioRoses"
+  }
+]
+
 
 const track = ref(null)
 const offset = ref(500)
