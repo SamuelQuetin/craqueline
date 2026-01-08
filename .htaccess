@@ -1,17 +1,42 @@
 # ------------------------------
-# 🚀 1. Forcer le HTTPS
+# 🚀 Forcer le HTTPS
 # ------------------------------
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ------------------------------
-# 🔒 2. Bloquer l'auto-index (évite d'afficher les dossiers)
+# 🔒 Bloquer l'auto-index (évite d'afficher les dossiers)
 # ------------------------------
 Options -Indexes
 
 # ------------------------------
-# ⚡ 3. Compression GZIP
+# 🔐 Headers de sécurité
+# ------------------------------
+<IfModule mod_headers.c>
+
+    # HSTS (HTTPS obligatoire)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Protection clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # Empêche le MIME sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Contrôle des referers
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions navigateur
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+    # CSP compatible Vue (safe)
+    Header set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:;"
+
+</IfModule>
+
+# ------------------------------
+# ⚡ Compression GZIP
 # ------------------------------
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
@@ -19,7 +44,7 @@ Options -Indexes
 </IfModule>
 
 # ------------------------------
-# 🎨 4. Cache des assets (optimisé pour Vue)
+# 🎨 Cache des assets (optimisé pour Vue)
 # ------------------------------
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -33,7 +58,7 @@ Options -Indexes
 </IfModule>
 
 # ------------------------------
-# 🟦 5. Gestion du routing Vue.js (SPA)
+# 🟦 Gestion du routing Vue.js (SPA)
 # Redirige TOUT vers index.html...
 # ------------------------------
 RewriteEngine On
