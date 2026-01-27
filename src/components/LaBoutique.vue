@@ -25,9 +25,12 @@
           <v-icon size="50" class="mr-2">mdi-clock-outline</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" justify="center" align-self="center">
+
+          <p class="pb-2">Lundi de 13h30 à 17h30</p>
           <p class="pb-2">Du Mardi au Samedi de 10h à 19h</p>
-          <p class="pb-2">Dimache de 9h à 13h</p>
-          <p>Fermé le Lundi</p>
+<!--          <p class="pb-2">Dimache de 9h à 13h</p>-->
+<!--          <p>Fermé le Lundi</p>-->
+          <p>Fermé le Dimanche</p>
         </v-col>
       </v-row>
 

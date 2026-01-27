@@ -17,8 +17,8 @@
       </v-row>
       <v-row>
         <p>
+          Lundi de 13h30 à 17h30<br/>
           Du Mardi au Samedi de 10h à 19h<br/>
-          Dimanche de 9h à 13h
         </p>
       </v-row>
     </v-col>
