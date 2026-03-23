@@ -9,7 +9,7 @@
   >
     <template v-slot:prev="{ props }">
       <v-btn
-          :color="(model===0) ? 'white' : 'black'"
+          color="black"
           icon="mdi-chevron-left"
           variant="outlined"
           @click="props.onClick"
@@ -17,7 +17,7 @@
     </template>
     <template v-slot:next="{ props }">
       <v-btn
-          :color="(model===0) ? 'white' : 'black'"
+          color="black"
           icon="mdi-chevron-right"
           variant="outlined"
           @click="props.onClick"

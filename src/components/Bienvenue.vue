@@ -33,7 +33,7 @@
   </v-row>
 </template>
 <script setup>
-import portrait from "@/assets/photo/portrait1.png";
+import portrait from "@/assets/photo/portrait1.jpg";
 import LazyPictures from "@/components/LazyPictures.vue";
 
 const props = defineProps({ isMobile: Boolean })

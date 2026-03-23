@@ -1,15 +1,16 @@
 <template>
   <v-sheet
       ref="headerRef"
-      color="quaternary"
+      color="secondary"
       class="header"
   >
     <v-row class="ma-0 pa-0 d-flex justify-space-between">
       <v-col cols="8" xs="8" sm="8" md="4" class="d-flex justify-start align-center">
         <v-img
             src="@/assets/logoCraque.svg"
-            class="logo-shrink d-flex justify-start justify-self-start"
+            class="logo-shrink logo d-flex justify-start justify-self-start"
             height="100px"
+            @click="goUp()"
         />
       </v-col>
       <v-col cols="4" xs="4" sm="4" md="6" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
@@ -78,6 +79,13 @@ function goTo(page){
   router.push({name: page})
 }
 
+function goUp() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
 </script>
 
 <style scoped>
@@ -91,9 +99,7 @@ function goTo(page){
 }
 
 .logo {
-  height: 20vh;
-  width: 15vw;
-  transition: all 0.1s ease;
+  cursor: pointer;
 }
 
 .logo-shrink {
@@ -101,7 +107,7 @@ function goTo(page){
 }
 
 .v-btn {
-  background-color:  rgb(var(--v-theme-quaternary));
+  background-color:  rgb(var(--v-theme-secondary));
   color: white;
 }
 

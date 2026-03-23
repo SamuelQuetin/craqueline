@@ -17,7 +17,7 @@
           :src="image.src"
           :alt="image.alt"
           ratio="0.4"
-          color="quaternary"
+          color="secondary"
       />
     </v-carousel-item>
   </v-carousel>
@@ -198,7 +198,7 @@ onUnmounted(() => {
   max-width: 100vw;
   margin: 0;
   overflow: visible;
-  background-color: rgba(var(--v-theme-quaternary), 0.5 );
+  background-color: rgba(var(--v-theme-secondary), 0.5 );
 }
 
 .scroller {

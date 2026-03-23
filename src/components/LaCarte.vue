@@ -4,9 +4,9 @@
   <v-spacer v-if="!isMobile" class="padding-v-spacer-h2"></v-spacer>
   <v-row align="center">
 
-    <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center" order="2" order-xs="2"
+    <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center pt-10" order="2" order-xs="2"
            order-sm="2" order-md="1" order-lg="1" order-xl="1">
-      <LazyPictures :src="chouxLaCarte"></LazyPictures>
+      <LazyPictures :src="chouxBcp"></LazyPictures>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="9" lg="9" xl="9" class=" justify-text" order="1" order-xs="1" order-sm="1"
            order-md="2" order-lg="2" order-xl="2">
@@ -26,18 +26,19 @@
         maximum en circuit court et avec des produits de grande qualité
       </p>
       <ul class="marging-text justify-list">
-        <li><p>Farine BIO du moulin de Sauret (Montpellier)</p></li>
-        <li><p>Chocolats et pralinés haut de gamme Valrhona (Tain-l'Hermitage)</p></li>
+        <li><p>Farine BIO du moulin de Sauret (Montpellier) </p></li>
+        <li><p>Œufs frais du Pic Saint Loup (Mas-de-Londres)</p></li>
+        <li><p>Chocolats Valrhona (Tain-l'Hermitage)</p></li>
       </ul>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center">
-      <LazyPictures :src="chouxNoisette"></LazyPictures>
+      <LazyPictures :src="chouxCoco"></LazyPictures>
     </v-col>
   </v-row>
   <v-row align="center">
     <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center" order="2" order-xs="2"
            order-sm="2" order-md="1" order-lg="1" order-xl="1">
-      <LazyPictures :src="chouxNoisette2"></LazyPictures>
+      <LazyPictures :src="cafe"></LazyPictures>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="9" lg="9" xl="9" class=" justify-text" order="1" order-xs="1" order-sm="1"
            order-md="2" order-lg="2" order-xl="2">
@@ -53,111 +54,16 @@
       </ul>
     </v-col>
   </v-row>
-  <v-row>
-    <v-col cols="12" xs="12" sm="12" md="9" lg="9" xl="9" class=" justify-text">
-      <h3 class="pb-8">VOS ÉVÈNEMENTS SUBLIMÉS</h3>
-      <p class=" pb-4">Mariage, anniversaire ou réception privée : émerveillez vos invités avec nos pièces
-        montées de choux et nos Saint-Honoré d'exception.
-      </p>
-      <p>Raffinés, gourmands et personnalisables, ils allient traditions et élégance pour
-        transformer vos instants précieux en souvenirs inoubliables.
-      </p>
-      <v-btn
-          class="mt-8"
-          variant="outlined"
-          elevation="0"
-          @click="goTo('Contact')"
-      > DEMANDER UN DEVIS
-      </v-btn>
-    </v-col>
-    <v-col cols="12" xs="12" sm="12" md="3" lg="3" xl="3" class="d-flex justify-center">
-      <LazyPictures :src="PieceMontee"></LazyPictures>
-<!--      <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>-->
-    </v-col>
-
-  </v-row>
-
-  <v-row class="row-bleed bg-s" v-if="isMobile">
-    <v-col class="pa-0 ma-0">
-      <v-carousel
-          cycle
-          interval="5000"
-          touch
-          :show-arrows="false"
-          :continuous="false"
-          class="carousel-auto"
-      >
-        <v-carousel-item
-            v-for="(image, i) in imagesSaintHono"
-            :key="i"
-            class="pa-6"
-            height="400"
-        >
-          <LazyPictures
-              :src="image.webp"
-              :alt="image.alt"
-              color="secondary"
-          />
-        </v-carousel-item>
-      </v-carousel>
-    </v-col>
-  </v-row>
-  <v-row class="row-bleed bg-s py-3 my-4" v-else>
-    <v-col class="pa-0 ma-1" v-for="(image, i) in imagesSaintHono" :key="i"
-           :width="(100/imagesSaintHono.length) + 'vw'">
-      <LazyPictures
-          :src="image.webp"
-          :alt="image.alt"
-          color="secondary"
-      />
-    </v-col>
-  </v-row>
-  <v-row class="row-bleed bg-q" v-if="isMobile">
-    <v-col class="pa-0">
-      <v-carousel
-          :continuous="false"
-          cycle
-          :show-arrows="false"
-          interval="5000"
-          touch
-          height="600"
-      >
-        <v-carousel-item
-            v-for="(image, i) in imagesCarte"
-            :key="i"
-            class="pa-6"
-        >
-          <LazyPictures
-              :src="image.webp"
-              :alt="image.alt"
-              ratio="2/3"
-              color="quaternary"
-          />
-        </v-carousel-item>
-      </v-carousel>
-    </v-col>
-  </v-row>
-  <v-row class="row-bleed bg-q mt-4 pa-6" cols="12" v-else>
-    <v-col v-for="(image, i) in imagesCarte" :key="i" cols="12" xs="12" sm="12" md="3" lg="3" xl="3"
-           class="overflow-visible d-flex justify-center">
-      <LazyPictures
-          :src="image.webp"
-          :alt="image.alt"
-          ratio="2/3"
-          color="quaternary"
-      />
-    </v-col>
-  </v-row>
 </template>
 
 <script setup>
 import router from "@/router/index.js";
 import LazyPictures from "@/components/LazyPictures.vue";
 
-import chouxLaCarte from '@/assets/photo/chouxLaCarte.png'
+import chouxBcp from '@/assets/photo/chouxBcp.jpg'
 
-import chouxNoisette from '@/assets/photo/chouxNoisette.jpg'
-import chouxNoisette2 from '@/assets/photo/chouxNoisette.jpg'
+import chouxCoco from '@/assets/photo/chouxCoco.jpg'
+import cafe from '@/assets/photo/cafe.jpg'
 
 import PieceMontee from '@/assets/photo/PieceMontee.png'
 
@@ -170,6 +76,7 @@ import shchoco from '@/assets/photo/saintHono/shchoco.webp'
 import shclassic from '@/assets/photo/saintHono/shclassic.webp'
 import shfraise from '@/assets/photo/saintHono/shfraise.webp'
 import shtrio from '@/assets/photo/saintHono/shtrio.webp'
+import Evenements from "@/components/Evenements.vue";
 
 const props = defineProps({isMobile: Boolean})
 
@@ -261,7 +168,7 @@ h3 {
 }
 
 .bg-q {
-  background-color: rgb(var(--v-theme-quaternary), 0.5);;
+  background-color: rgb(var(--v-theme-secondary), 0.5);;
 }
 
 .bg-s {

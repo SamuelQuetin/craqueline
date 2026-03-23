@@ -9,13 +9,12 @@
           class="d-flex flex-column align-center justify-center h-100"
       >
         <v-img
-            src="@/assets/photo/chouxFleury.png"
+            src="@/assets/photo/chouCookie.jpg"
             class="drop-out"
             width="300"
         ></v-img>
         <v-btn
             variant="outlined"
-            color="tertiary"
             size="x-large"
             class="drop-left mt-4"
             @click="scrollto('#savoir-faire')"
@@ -34,7 +33,7 @@
         </div>
         <v-img
             class="drop-in"
-            src="@/assets/photo/chouxSoft.png"
+            src="@/assets/photo/boiteChoux.jpg"
             width="300"
         ></v-img>
       </v-col>
@@ -48,7 +47,7 @@
             cols="6"
             class="d-flex flex-column align-center justify-center w-100 h-100">
           <v-img
-              src="@/assets/photo/chouxFleury.png"
+              src="@/assets/photo/chouCookie.jpg"
               class="drop-out img-mobile"
           ></v-img>
         </v-col>
@@ -57,7 +56,7 @@
             class="d-flex flex-column align-center justify-center mt-12 h-100 w-100">
           <v-img
               class="drop-in img-mobile"
-              src="@/assets/photo/chouxSoft.png"
+              src="@/assets/photo/boiteChoux.jpg"
           ></v-img>
         </v-col>
       </v-row>
@@ -99,15 +98,15 @@ function scrollto(section) {
 
 <style scoped>
 .bg-1 {
-  background-color: rgb(var(--v-theme-quaternary));
+  background-color: rgb(var(--v-theme-tertiary));
 }
 
 p {
-  color: rgb(var(--v-theme-tertiary));
+  color: black;
 }
 
 h2 {
-  color: rgb(var(--v-theme-tertiary));
+  color: black;
 }
 
 .h2-defaut {

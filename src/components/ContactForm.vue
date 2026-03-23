@@ -62,7 +62,7 @@
                 <v-date-picker
                     v-model="date"
                     :allowed-dates="allowedDates"
-                    color="quaternary"
+                    color="secondary"
                 >
                 </v-date-picker>
               </v-menu>

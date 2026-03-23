@@ -4,12 +4,12 @@
   </section>
   <v-container class=" pa-5 bg_base" max-width="90em">
 
-    <section id="section-2" class="py-6">
-      <Bienvenue :is-mobile="isMobile"></Bienvenue>
-    </section>
-
     <section id="section-3" class="py-6">
       <LaCarte :is-mobile="isMobile"></LaCarte>
+    </section>
+
+    <section id="section-2" class="py-6">
+      <Bienvenue :is-mobile="isMobile"></Bienvenue>
     </section>
 
     <section id="section-4" class="py-6">

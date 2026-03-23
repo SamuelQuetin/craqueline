@@ -24,7 +24,7 @@
       >
         <v-img
             class="drop-in"
-            src="@/assets/photo/chouxTour.png"
+            src="@/assets/photo/saintHonoCoulant.jpg"
             width="300"
         ></v-img>
         <v-btn
@@ -58,7 +58,7 @@
             class="d-flex flex-column align-center justify-center mt-12 h-100 w-100">
           <v-img
               class="drop-in"
-              src="@/assets/photo/chouxTour.png"
+              src="@/assets/photo/saintHonoCoulant.jpg"
               width="300"
           ></v-img>
         </v-col>

@@ -56,7 +56,7 @@
             aria-label="Ouvrir Google Avis (nouvel onglet)"
             class="mr-2"
             icon
-            color="black"
+            color="white"
             elevation="0">
           <v-icon color="secondary" size="25">mdi-google</v-icon>
         </v-btn>
@@ -68,7 +68,7 @@
             aria-label="Ouvrir Facebook (nouvel onglet)"
             class="mr-2"
             icon
-            color="black"
+            color="white"
             elevation="0">
           <v-icon color="secondary" size="25">mdi-facebook</v-icon>
         </v-btn>
@@ -80,7 +80,7 @@
             aria-label="Ouvrir Instagram (nouvel onglet)"
             class="mr-2"
             icon
-            color="black"
+            color="white"
             elevation="0">
           <v-icon color="secondary" size="25">mdi-instagram</v-icon>
         </v-btn>
@@ -91,7 +91,7 @@
             aria-label="Ouvrir TikTok (nouvel onglet)"
             class="mr-2"
             icon
-            color="black"
+            color="white"
             elevation="0">
           <i style="color: rgb(var(--v-theme-secondary))" class="fa-brands fa-tiktok fa-xl"></i>
         </v-btn>
@@ -182,9 +182,14 @@ function goTo(page) {
 h3 {
   font-size: 2em;
   font-weight: 550;
+  color: white;
+}
+
+p {
+  color: white;
 }
 
 a {
-  color: inherit;
+  color: white;
 }
 </style>
