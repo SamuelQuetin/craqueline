@@ -2,13 +2,7 @@
   <h2 :class="isMobile ? 'h2-mobile':'h2-default'">CONTACTEZ-NOUS</h2>
   <v-row>
     <v-col cols="12" md="6">
-        <span>
-            Besoin d’un devis sur mesure ?<br>
-            D’un renseignement ?<br>
-            <br>
-            Nous vous invitons à compléter le formulaire de contact ci-après.<br>
-            Nous y répondrons dans les plus brefs délais.<br>
-        </span>
+      <LazyPictures :src="chouPecan2"></LazyPictures>
     </v-col>
     <v-col cols="12" md="6">
       <v-form
@@ -21,7 +15,6 @@
                 :rules="nameRules"
                 label="Nom"
                 outlined
-                required
                 type="text"
                 prepend-icon="mdi-account"
             ></v-text-field>
@@ -30,7 +23,7 @@
             <v-text-field
                 v-model="email"
                 :rules="emailRules"
-                label="E-mail"
+                label="E-mail *"
                 outlined
                 required
                 type="email"
@@ -128,6 +121,8 @@
 
 import {MailService} from "@/service/MailService.js";
 import {ref} from "vue";
+import chouPecan2 from "@/assets/photo/chouPecan2.jpg"
+import LazyPictures from "@/components/LazyPictures.vue";
 
 const mailService = new MailService();
 const nom = ref();
@@ -144,8 +139,7 @@ const isMailOnError = ref(false);
 const errorMessage = ref("")
 
 const nameRules = [
-  v => !!v || 'le champ Nom est obligatoire',
-  v => (v && v.length <= 100) || 'le champ Nom doit avoir moins de 100 characters',
+  v => (v.length <= 100) || 'le champ Nom doit avoir moins de 100 characters',
 ]
 
 const emailRules = [

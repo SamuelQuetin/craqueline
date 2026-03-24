@@ -19,7 +19,7 @@ import {en, fr} from 'vuetify/locale'
 const lightTheme = {
   dark: false,
   colors: {
-    background: '#FFFFFF',
+    background: '#faf4ee',
     surface: '#FFFFFF',
     primary: '#faf4ee',
     secondary : '#6d3914',

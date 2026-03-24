@@ -2,7 +2,7 @@
   <v-container class="pa-5 bg_base" max-width="90em">
     <v-row :class="isMobile ? '':'px-10'">
       <v-col cols="12" order="1" order-md="1">
-      <ContactForm :isMobile="isMobile"/>
+        <ContactForm :isMobile="isMobile"/>
       </v-col>
       <v-col cols="12" md="6" order="3" order-md="2">
         <Address :isMobile="isMobile"/>

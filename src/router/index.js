@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Accueil from "@/view/Accueil.vue";
 import Contact from "@/view/Contact.vue";
+import Evenement from "@/view/Evenement.vue";
 
 
 const routes = [
@@ -17,7 +18,12 @@ const routes = [
         meta: { title: 'Contact' },
         component: Contact,
     },
-
+    {
+        path: '/events',
+        name: "Evenements",
+        meta: { title: 'Evenements'},
+        component: Evenement,
+    },
 
     // la route "catch-all" change en Vue Router 4 :
     {

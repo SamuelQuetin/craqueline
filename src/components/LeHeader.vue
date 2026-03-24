@@ -21,8 +21,9 @@
           </template>
           <v-sheet elevation="2">
             <v-btn block flat tile @click="scrollTo('#section-1')">ACCUEIL</v-btn>
-            <v-btn block flat tile @click="scrollTo('#section-2')">NOTRE HISTOIRE</v-btn>
             <v-btn block flat tile @click="scrollTo('#section-3')">LA CARTE</v-btn>
+            <v-btn block flat tile @click="scrollTo('#section-2')">NOTRE HISTOIRE</v-btn>
+            <v-btn block flat tile @click="goTo('Evenements')">EVENEMENTS</v-btn>
             <v-btn block flat tile @click="goTo('Contact')">CONTACT</v-btn>
           </v-sheet>
         </v-menu>
@@ -39,6 +40,14 @@
               class="mx-4"
               tile
               flat
+              @click="scrollTo('#section-3')"
+          >
+            LA CARTE
+          </v-btn>
+          <v-btn
+              class="mx-4"
+              tile
+              flat
               @click="scrollTo('#section-2')"
           >
             NOTRE HISTOIRE
@@ -47,9 +56,9 @@
               class="mx-4"
               tile
               flat
-              @click="scrollTo('#section-3')"
+              @click="goTo('Evenements')"
           >
-            LA CARTE
+            EVENEMENTS
           </v-btn>
           <v-btn
               class="mx-4"

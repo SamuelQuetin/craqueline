@@ -29,13 +29,13 @@
 const props = defineProps({isMobile: Boolean})
 
 const horaires = [
+  {jour: 'Lundi', heure: '13h30 - 17h30'},
   {jour: 'Mardi', heure: '10h00 - 19h00'},
   {jour: 'Mercredi', heure: '10h00 - 19h00'},
   {jour: 'Jeudi', heure: '10h00 - 19h00'},
   {jour: 'Vendredi', heure: '10h00 - 19h00'},
   {jour: 'Samedi', heure: '10h00 - 19h00'},
-  {jour: 'Dimanche', heure: '9h00 - 13h00'},
-  {jour: 'Lundi', ferme: true}
+  {jour: 'Dimanche', ferme: true}
 ]
 
 </script>

@@ -155,7 +155,7 @@ function scrollTo(selector) {
   min-height: 100dvh;
   isolation: isolate; /* crée un nouveau stacking context */
   overflow: clip; /* ou hidden si tu préfères */
-  background: rgb(var(--v-theme-tertiary)); /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
+  background: rgb(var(--v-theme-background)); /* couleur de fond proche du gradient pour éviter tout "flash" blanc */
 }
 
 
