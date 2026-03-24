@@ -24,14 +24,14 @@
       </v-btn>
     </v-col>
     <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" >
-      <LazyPictures :src="choux3"></LazyPictures>
+      <LazyPictures :src="chouxBcp2"></LazyPictures>
       <!--      <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>-->
     </v-col>
   </v-row>
 </template>
 
 <script setup>
-import choux3 from "@/assets/photo/choux3.jpg"
+import chouxBcp2 from "@/assets/photo/chouxBcp2.jpg"
 import LazyPictures from "@/components/LazyPictures.vue"
 import router from "@/router/index.js";
 
