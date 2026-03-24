@@ -9,7 +9,7 @@
   <div class="pt-4">
     <iframe
         class="map"
-        src="https://www.google.com/maps?q=4%20rue%20Marceau%2034000%20Montpellier&output=embed"
+        src="https://maps.google.com/maps?q=4+rue+Marceau,+34000+Montpellier,+France&output=embed&hl=fr"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         allowfullscreen>
