@@ -10,7 +10,7 @@ export class MailService {
         return this.client.post("sendMail.php",{
             "from":"contact@craqueline.fr",
             "to":"contact@craqueline.fr",
-            "subject":"Demande de devis de "+ nom,
+            "subject":"Demande de devis "+ nom,
             "message": data
         })
     }

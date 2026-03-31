@@ -196,7 +196,7 @@ function sendMail() {
 
   data += `<b>Message :</b><br>${message.value.replace(/\n/g, '<br>')}`;
 
-  mailService.sendMail(data, nom.value).then(res => {
+  mailService.sendMail(data, nom.value ? nom.value : '').then(res => {
     console.log(res);
     mailService.sendMailToUser(data, email.value).then(ress => {
       console.log(ress)
