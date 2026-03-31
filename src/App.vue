@@ -1,5 +1,8 @@
 <template>
   <v-app class="app-bg">
+
+    <!--    Pour index google -->
+    <h1 style="width: 0;height: 0" class="position-absolute">CRAQUELINE . FR ou CRAQUELINE . CHOU</h1>
     <section v-if="router.currentRoute.value.name==='Accueil'" id="section-0">
       <v-parallax
           class="parallax"
