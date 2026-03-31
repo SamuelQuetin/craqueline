@@ -44,18 +44,21 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-                v-model="date"
+                v-model="dateFormatted"
                 label="Date de l'évènement"
                 prepend-icon="mdi-calendar"
+                readonly
             >
               <v-menu
+                  v-model="menuOpen"
                   activator="parent"
                   location="bottom"
-              >
+                  :close-on-content-click="false">
                 <v-date-picker
                     v-model="date"
                     :allowed-dates="allowedDates"
                     color="secondary"
+                    @update:model-value="onDateSelected"
                 >
                 </v-date-picker>
               </v-menu>
@@ -120,7 +123,7 @@
 <script setup>
 
 import {MailService} from "@/service/MailService.js";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import chouPecan2 from "@/assets/photo/chouPecan2.jpg"
 import LazyPictures from "@/components/LazyPictures.vue";
 
@@ -137,6 +140,7 @@ const isLoadingToSendMail = ref(false);
 const isMailSended = ref(false);
 const isMailOnError = ref(false);
 const errorMessage = ref("")
+
 
 const nameRules = [
   v => !v || (v.length <= 100) || 'le champ Nom doit avoir moins de 100 characters',
@@ -163,6 +167,18 @@ today.setHours(0, 0, 0, 0); // Réinitialiser l'heure pour comparer uniquement l
 const allowedDates = (val) => {
   return new Date(val) >= today;
 };
+
+const menuOpen = ref(false)
+
+const onDateSelected = (val) => {
+  date.value = val
+  menuOpen.value = false
+}
+
+const dateFormatted = computed(() => {
+  if (!date.value) return ''
+  return new Date(date.value).toLocaleDateString('fr-FR') // ex: 31/03/2026
+})
 
 const props = defineProps({isMobile: Boolean})
 
