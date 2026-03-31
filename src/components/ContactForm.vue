@@ -187,7 +187,7 @@ function sendMail() {
   isLoadingToSendMail.value = true;
   let data = ``;
 
-  data += `<b>Nom :</b> ${nom.value}<br>`;
+  data += nom.value ? `<b>Nom :</b> ${nom.value}<br>` : ``;
   data += `<b>E-mail :</b> ${email.value}<br>`;
   data += numPhone.value ? `<b>Numéro de téléphone :</b> ${numPhone.value}<br>` : ``;
   data += date.value ? `<b>Date de l'évènement :</b> ${date.value}<br>` : ``;
