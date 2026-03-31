@@ -139,7 +139,7 @@ const isMailOnError = ref(false);
 const errorMessage = ref("")
 
 const nameRules = [
-  v => (v.length <= 100) || 'le champ Nom doit avoir moins de 100 characters',
+  v => !v || (v.length <= 100) || 'le champ Nom doit avoir moins de 100 characters',
 ]
 
 const emailRules = [
