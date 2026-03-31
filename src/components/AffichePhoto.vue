@@ -22,7 +22,13 @@
     </v-carousel-item>
   </v-carousel>
   <div v-else class="d-flex flex-wrap justify-center">
-    <SquareImagePopup v-for="(image, i) in images" :key="i" :src="image.src" class="pa-2"></SquareImagePopup>
+    <InstagramFeed
+        :count="12"
+        accessToken=""
+        :pagination="true"
+        :caption="true"
+    ></InstagramFeed>
+<!--    <SquareImagePopup v-for="(image, i) in images" :key="i" :src="image.src" class="pa-2"></SquareImagePopup>-->
   </div>
 </template>
 
