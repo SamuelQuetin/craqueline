@@ -2,7 +2,7 @@
   <v-app class="app-bg">
 
     <!--    Pour index google -->
-    <h1 style="position: absolute; left: -9999px" class="position-absolute">CRAQUELINE . FR ou CRAQUELINE . CHOU</h1>
+    <h1 style="position: absolute; left: -9999px" class="position-absolute">CRAQUELINE FR CRAQUELINE CHOU</h1>
     <section v-if="router.currentRoute.value.name==='Accueil'" id="section-0">
       <v-parallax
           class="parallax"
