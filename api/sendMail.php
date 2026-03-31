@@ -5,8 +5,7 @@ header("Content-Type: application/json");
 // Autorise les requêtes venant du site + du localhost
 $allowedOrigins = [
     "https://www.craqueline.fr",
-    "https://craquey.cluster100.hosting.ovh.net",
-    "http://localhost:8080"
+    "https://craquey.cluster100.hosting.ovh.net"
 ];
 
 $origin = $_SERVER["HTTP_ORIGIN"] ?? "";
