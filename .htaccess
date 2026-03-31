@@ -31,7 +31,7 @@ Options -Indexes
     Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 
     # CSP compatible Vue (safe)
-    Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: https://*.google.com https://*.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; frame-src https://maps.google.com https://www.google.com;"
+    Header set Content-Security-Policy "default-src 'self'; connect-src 'self' https://www.craqueline.fr; img-src 'self' data: https://*.google.com https://*.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; frame-src https://maps.google.com https://www.google.com;"
 </IfModule>
 
 # ------------------------------
