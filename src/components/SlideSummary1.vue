@@ -19,8 +19,9 @@
             class="drop-left mt-4"
             @click="scrollto('#savoir-faire')"
         >
-          voir la carte
+          voir nos produits
         </v-btn>
+<!--        TODO mettre voir la carte quand la page la carte existera -->
         <v-spacer></v-spacer>
       </v-col>
       <v-col

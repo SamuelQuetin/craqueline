@@ -1,5 +1,7 @@
 <template>
+
   <v-row class="bg-footer px-10 py-8">
+    <AffichePhoto :is-mobile="isMobile"></AffichePhoto>
     <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4" class="px-4 pb-4" justify="center">
       <v-row>
         <h3>ADRESSE</h3>
@@ -107,25 +109,19 @@
         </v-btn>
       </v-row>
       <v-row>
-        <v-btn
-            variant="text"
-            @click="scrollTo('#section-2')">
-          <p>Notre Histoire</p>
-        </v-btn>
-      </v-row>
-      <v-row>
-        <v-btn
-            variant="text"
-            @click="scrollTo('#section-3')">
-          <p>La Carte</p>
-        </v-btn>
-      </v-row>
-      <v-row>
-        <v-btn
-            variant="text"
-            @click="scrollTo('#section-4')">
-          <p>La Boutique</p>
-        </v-btn>
+        <v-tooltip text="En cours de préparation... comme nos choux ! 👨‍🍳">
+          <template #activator="{ props }">
+            <span v-bind="props">
+              <v-btn
+                  variant="text"
+
+                  disabled
+              >
+                <p>La Carte</p>
+              </v-btn>
+            </span>
+          </template>
+        </v-tooltip>
       </v-row>
       <v-row>
         <v-btn
@@ -146,13 +142,6 @@
         <v-btn
             variant="text"
         >
-          <p>CGV</p>
-        </v-btn>
-      </v-row>
-      <v-row>
-        <v-btn
-            variant="text"
-        >
           <p>Politique de confidentialité</p>
         </v-btn>
       </v-row>
@@ -162,8 +151,10 @@
 
 <script setup>
 import router from "@/router/index.js";
+import AffichePhoto from "@/components/AffichePhoto.vue";
 
 const emits = defineEmits(['onClick'])
+const props = defineProps({isMobile: Boolean})
 
 function scrollTo(section) {
   emits('onClick', section)

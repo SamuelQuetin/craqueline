@@ -13,16 +13,26 @@
             @click="goUp()"
         />
       </v-col>
-      <v-col cols="4" xs="4" sm="4" md="6" :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
+      <v-col cols="4" xs="4" sm="4" md="6"
+             :class="isMobile ? 'd-flex justify-end align-center' : 'd-flex justify-center align-center'">
         <v-menu v-if="isMobile"
                 content-class="menu-fullscreen">
           <template v-slot:activator="{ props }">
-            <v-btn icon="mdi-menu" variant="outlined"  v-bind="props"></v-btn>
+            <v-btn icon="mdi-menu" variant="outlined" v-bind="props"></v-btn>
           </template>
           <v-sheet elevation="2">
             <v-btn block flat tile @click="scrollTo('#section-1')">ACCUEIL</v-btn>
-            <v-btn block flat tile @click="scrollTo('#section-3')">LA CARTE</v-btn>
-            <v-btn block flat tile @click="scrollTo('#section-2')">NOTRE HISTOIRE</v-btn>
+
+
+            <v-tooltip text="En cours de préparation... comme nos choux ! 👨‍🍳">
+              <template #activator="{ props }">
+                <span v-bind="props">
+                  <v-btn block flat tile disabled>LA CARTE</v-btn>
+                </span>
+              </template>
+            </v-tooltip>
+
+
             <v-btn block flat tile @click="goTo('Evenements')">EVENEMENTS</v-btn>
             <v-btn block flat tile @click="goTo('Contact')">CONTACT</v-btn>
           </v-sheet>
@@ -36,22 +46,20 @@
           >
             ACCUEIL
           </v-btn>
-          <v-btn
-              class="mx-4"
-              tile
-              flat
-              @click="scrollTo('#section-3')"
-          >
-            LA CARTE
-          </v-btn>
-          <v-btn
-              class="mx-4"
-              tile
-              flat
-              @click="scrollTo('#section-2')"
-          >
-            NOTRE HISTOIRE
-          </v-btn>
+          <v-tooltip location="bottom" text="En cours de préparation... comme nos choux ! 👨‍🍳">
+            <template #activator="{ props }">
+              <span v-bind="props">
+                <v-btn
+                    class="mx-4"
+                    tile
+                    flat
+                    disabled
+                >
+                  LA CARTE
+                </v-btn>
+              </span>
+            </template>
+          </v-tooltip>
           <v-btn
               class="mx-4"
               tile
@@ -81,10 +89,11 @@ const props = defineProps({isMobile: Boolean})
 
 const emits = defineEmits(['onClick'])
 
-function scrollTo(section){
-  emits('onClick',section)
+function scrollTo(section) {
+  emits('onClick', section)
 }
-function goTo(page){
+
+function goTo(page) {
   router.push({name: page})
 }
 
@@ -98,7 +107,7 @@ function goUp() {
 </script>
 
 <style scoped>
-.header{
+.header {
   position: sticky;
   top: 0;
   left: 0;
@@ -116,7 +125,7 @@ function goUp() {
 }
 
 .v-btn {
-  background-color:  rgb(var(--v-theme-secondary));
+  background-color: rgb(var(--v-theme-secondary));
   color: white;
 }
 

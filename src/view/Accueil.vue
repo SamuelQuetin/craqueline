@@ -5,7 +5,7 @@
   <v-container class=" pa-5 bg_base" max-width="90em">
 
     <section id="section-3" class="py-6">
-      <LaCarte :is-mobile="isMobile"></LaCarte>
+      <NosProduits :is-mobile="isMobile"></NosProduits>
     </section>
 
     <section id="section-2" class="py-6">
@@ -15,19 +15,14 @@
     <section id="section-4" class="py-6">
       <LaBoutique :is-mobile="isMobile"></LaBoutique>
     </section>
-
-    <section id="section-5" class="py-6">
-      <AffichePhoto :is-mobile="isMobile"></AffichePhoto>
-    </section>
   </v-container>
 </template>
 
 <script setup>
 import LaBoutique from "@/components/LaBoutique.vue";
 import Summary from "@/components/Summary.vue";
-import AffichePhoto from "@/components/AffichePhoto.vue";
 import Bienvenue from "@/components/Bienvenue.vue";
-import LaCarte from "@/components/LaCarte.vue";
+import NosProduits from "@/components/NosProduits.vue";
 
 const props = defineProps({isMobile: Boolean})
 const emit = defineEmits(['scrollTo'])

@@ -35,7 +35,7 @@
     <v-main>
       <router-view :isMobile="isMobile" @scrollTo="scrollTo"></router-view>
     </v-main>
-    <LeFooter @onClick="scrollTo"></LeFooter>
+    <LeFooter :isMobile="isMobile" @onClick="scrollTo"></LeFooter>
   </v-app>
 
 

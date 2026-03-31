@@ -1,29 +1,31 @@
 <template>
-  <v-carousel
-      v-if="isMobile"
-      cycle
-      interval="5000"
-      touch
-      :show-arrows="false"
-      class="carousel-auto"
-  >
-    <v-carousel-item
-        v-for="(image, i) in images"
-        :key="i"
-        class="pa-6"
-        height="400"
+  <v-container class="mx-16">
+    <v-carousel
+        v-if="isMobile"
+        cycle
+        interval="5000"
+        touch
+        :show-arrows="false"
+        class="carousel-auto"
     >
-      <LazyPictures
-          :src="image.src"
-          :alt="image.alt"
-          ratio="0.4"
-          color="secondary"
-      />
-    </v-carousel-item>
-  </v-carousel>
-  <div v-else class="d-flex flex-wrap justify-center">
-    <SquareImagePopup v-for="(image, i) in images" :key="i" :src="image.src" class="pa-2"></SquareImagePopup>
-  </div>
+      <v-carousel-item
+          v-for="(image, i) in images"
+          :key="i"
+          class="pa-6"
+          height="400"
+      >
+        <LazyPictures
+            :src="image.src"
+            :alt="image.alt"
+            ratio="0.4"
+            color="secondary"
+        />
+      </v-carousel-item>
+    </v-carousel>
+    <div v-else class="d-flex flex-wrap justify-center">
+      <SquareImagePopup v-for="(image, i) in images" :key="i" :src="image.src" class="pa-2"></SquareImagePopup>
+    </div>
+  </v-container>
 </template>
 
 <script setup>
@@ -73,7 +75,8 @@ const images = [
     src: cafeLate,
     alt: "Café Laté"
   },
-  {src: theGlace,
+  {
+    src: theGlace,
     alt: "Thé Glacé"
   },
   {
