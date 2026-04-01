@@ -1,5 +1,5 @@
 <template>
-  <h2 :class="isMobile ? 'h2-mobile':'h2-default'">Nos Produits</h2>
+  <h2 :class="isMobile ? 'h2-mobile':'h2-default'">NOS PRODUITS</h2>
   <section id="savoir-faire"/>
   <v-spacer v-if="!isMobile" class="padding-v-spacer-h2"></v-spacer>
   <v-row align="center">
