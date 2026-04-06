@@ -20,7 +20,7 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "axios": "1.13.5",
     "prettier": "^3.2.5",
-    "vite": "^7.2.6",
+    "vite": "^7.3.2",
     "vite-plugin-vuetify": "^2.1.2"
   }
 }
