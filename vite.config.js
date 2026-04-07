@@ -1,7 +1,6 @@
 // Plugins
 import Vue from '@vitejs/plugin-vue'
 import Vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
-import prerender from 'vite-plugin-prerender'
 
 // Utilities
 import {defineConfig} from 'vite'
@@ -15,11 +14,13 @@ export default defineConfig({
       template: {transformAssetUrls}
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
-    Vuetify(),
-    prerender({
-      routes: ['/', '/contact', '/events'],
-    })
+    Vuetify({
+      autoImport: true,
+    }),
   ],
+  ssr: {
+    noExternal: ['vuetify'],
+  },
   define: {
     'process.env': {
       PACKAGE_VERSION: JSON.stringify(packageJson.version)

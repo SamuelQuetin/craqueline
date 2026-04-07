@@ -1,11 +1,11 @@
 // router/index.js
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 import Accueil from "@/view/Accueil.vue";
 import Contact from "@/view/Contact.vue";
 import Evenement from "@/view/Evenement.vue";
 
 
-const routes = [
+export const routes = [
     {
         path: '/',
         name: "Accueil",
@@ -36,7 +36,7 @@ const routes = [
 
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
     routes,
     scrollBehavior: (to, from, savedPosition) => {
         if (savedPosition) {
