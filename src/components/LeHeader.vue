@@ -83,8 +83,8 @@
 </template>
 
 <script setup>
-import router from "@/router/index.js";
-
+import {useRouter} from 'vue-router';
+const router = useRouter();
 const props = defineProps({isMobile: Boolean})
 
 const emits = defineEmits(['onClick'])

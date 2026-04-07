@@ -95,8 +95,10 @@
   </v-row>
 </template>
 <script setup>
-import router from "@/router/index.js";
+import {useRouter} from 'vue-router';
 import LazyPictures from "@/components/LazyPictures.vue";
+
+const router = useRouter();
 
 import local from '@/assets/photo/local.jpg'
 

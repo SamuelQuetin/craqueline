@@ -150,9 +150,10 @@
 </template>
 
 <script setup>
-import router from "@/router/index.js";
+import {useRouter} from 'vue-router';
 import AffichePhoto from "@/components/AffichePhoto.vue";
 
+const router = useRouter();
 const emits = defineEmits(['onClick'])
 const props = defineProps({isMobile: Boolean})
 

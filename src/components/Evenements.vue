@@ -31,9 +31,10 @@
 </template>
 
 <script setup>
+import {useRouter} from 'vue-router';
 import chouxBcp2 from "@/assets/photo/chouxBcp2.jpg"
 import LazyPictures from "@/components/LazyPictures.vue"
-import router from "@/router/index.js";
+const router = useRouter();
 
 defineProps({
   isMobile: Boolean

@@ -15,5 +15,7 @@ export const createApp = ViteSSG(
   { routes },
   ({ app, router, routes, isClient, initialState }) => {
     app.use(vuetify)
+    // On peut aussi utiliser app.provide('router', router) si besoin, 
+    // mais router-view et les composables useRoute/useRouter devraient fonctionner.
   }
 )

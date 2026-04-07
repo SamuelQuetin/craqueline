@@ -43,11 +43,12 @@
 
 </template>
 <script setup>
+import {useRouter} from 'vue-router';
 import MaintenanceBanner from "@/components/MaintenanceBanner.vue";
 import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {useDisplay} from 'vuetify'
 import LeFooter from "@/components/LeFooter.vue";
-import router from "@/router/index.js";
+const router = useRouter();
 import LeHeader from "@/components/LeHeader.vue";
 
 const isMaintenance = ref(false);

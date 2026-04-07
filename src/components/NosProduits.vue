@@ -57,8 +57,10 @@
 </template>
 
 <script setup>
-import router from "@/router/index.js";
+import {useRouter} from 'vue-router';
 import LazyPictures from "@/components/LazyPictures.vue";
+
+const router = useRouter();
 
 import chouxBcp from '@/assets/photo/chouxBcp.jpg'
 
