@@ -21,6 +21,7 @@
     "axios": "1.13.5",
     "prettier": "^3.2.5",
     "vite": "^7.2.6",
+    "vite-plugin-prerender": "^1.0.8",
     "vite-plugin-vuetify": "^2.1.2"
   }
 }
