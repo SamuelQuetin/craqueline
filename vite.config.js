@@ -1,6 +1,7 @@
 // Plugins
 import Vue from '@vitejs/plugin-vue'
 import Vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // Utilities
 import {defineConfig} from 'vite'
@@ -16,6 +17,10 @@ export default defineConfig({
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify({
       autoImport: true,
+    }),
+    ViteImageOptimizer({
+      /* options de configuration si nécessaire */
+      test: /\.(jpe?g|png|gif|tiff|webp|svg|avif)$/i,
     }),
   ],
   ssr: {
