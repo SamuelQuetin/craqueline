@@ -15,16 +15,17 @@ const PLACE_ID = 'ChIJCdBTVaisuhIRASTRMMc9y40';
 const API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY || ''; 
 
 export const getBusinessHours = async () => {
-  // Si pas de clé API, on renvoie les horaires par défaut
+  // Si pas de clé API, on renvoie les horaires par défaut et calculons l'état localement
   if (!API_KEY) {
     console.warn("Google Places API Key manquante. Utilisation des horaires par défaut.");
-    return getDefaultHours();
+    const defaultHours = getDefaultHours();
+    return {
+      weekdayText: defaultHours,
+      isOpen: calculateIsOpen(defaultHours)
+    };
   }
 
   try {
-    // Note: En client-side pur, cela peut poser des problèmes de CORS. 
-    // Idéalement, cet appel devrait passer par un proxy ou un backend (Serverless Function).
-    // Mais pour une intégration simple, on utilise l'endpoint standard.
     const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json`, {
       params: {
         place_id: PLACE_ID,
@@ -35,13 +36,60 @@ export const getBusinessHours = async () => {
     });
 
     if (response.data && response.data.result && response.data.result.opening_hours) {
-      return response.data.result.opening_hours.weekday_text;
+      return {
+        weekdayText: response.data.result.opening_hours.weekday_text,
+        isOpen: response.data.result.opening_hours.open_now
+      };
     }
   } catch (error) {
     console.error("Erreur lors de la récupération des horaires Google :", error);
   }
 
-  return getDefaultHours();
+  const defaultHours = getDefaultHours();
+  return {
+    weekdayText: defaultHours,
+    isOpen: calculateIsOpen(defaultHours)
+  };
+};
+
+/**
+ * Calcule si la boutique est ouverte en fonction des horaires par défaut
+ * @param {Array} hours 
+ * @returns {Boolean}
+ */
+const calculateIsOpen = (hours) => {
+  const now = new Date();
+  const dayIndex = now.getDay(); // 0 = Dimanche, 1 = Lundi, ...
+  
+  // Dans hours[], Lundi est à l'index 0, Mardi à 1... Dimanche à 6
+  // dayIndex: 0(Dim) -> index 6, 1(Lun) -> index 0, 2(Mar) -> index 1...
+  const mappedIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+  const todayHours = hours[mappedIndex];
+
+  if (todayHours.includes("Fermé")) return false;
+
+  // Format attendu : "Jour: HH:MM – HH:MM" ou "Jour: HH:MM – HH:MM, HH:MM – HH:MM"
+  const timePart = todayHours.split(": ")[1];
+  if (!timePart) return false;
+
+  const periods = timePart.split(", ");
+  const currentTime = now.getHours() * 60 + now.getMinutes();
+
+  for (const period of periods) {
+    const times = period.split(" – ");
+    if (times.length === 2) {
+      const start = parseTime(times[0]);
+      const end = parseTime(times[1]);
+      if (currentTime >= start && currentTime < end) return true;
+    }
+  }
+
+  return false;
+};
+
+const parseTime = (timeStr) => {
+  const [hours, minutes] = timeStr.trim().split(":").map(Number);
+  return hours * 60 + minutes;
 };
 
 export const getDefaultHours = () => {

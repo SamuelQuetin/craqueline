@@ -163,7 +163,8 @@ const props = defineProps({isMobile: Boolean})
 const groupedHours = ref([]);
 
 onMounted(async () => {
-  groupedHours.value = await getBusinessHours();
+  const data = await getBusinessHours();
+  groupedHours.value = data.weekdayText;
 })
 
 function scrollTo(section) {

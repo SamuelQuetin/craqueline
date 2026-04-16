@@ -25,7 +25,21 @@
           <v-icon size="50" class="mr-2">mdi-clock-outline</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" justify="center" align-self="center">
-          <p v-for="(day, index) in groupedHours" :key="index" class="pb-2">
+          <div class="d-flex align-center pb-2">
+            <v-chip
+                v-if="isOpen !== null"
+                :color="isOpen ? 'success' : 'error'"
+                size="small"
+                class="mr-2"
+                variant="flat"
+            >
+              {{ isOpen ? 'OUVERT' : 'FERMÉ' }}
+            </v-chip>
+            <span v-if="isOpen !== null" class="text-caption text-grey">
+              {{ isOpen ? 'Passez nous voir !' : 'On se retrouve bientôt !' }}
+            </span>
+          </div>
+          <p v-for="(day, index) in groupedHours" :key="index" class="pb-1" :class="{'font-weight-bold': isToday(index)}">
             {{ day }}
           </p>
         </v-col>
@@ -103,10 +117,19 @@ import local from '@/assets/photo/local.jpg'
 
 const props= defineProps({isMobile: Boolean})
 const groupedHours = ref([]);
+const isOpen = ref(null);
 
 onMounted(async () => {
-  groupedHours.value = await getBusinessHours();
+  const data = await getBusinessHours();
+  groupedHours.value = data.weekdayText;
+  isOpen.value = data.isOpen;
 })
+
+const isToday = (index) => {
+  const day = new Date().getDay();
+  const mappedIndex = day === 0 ? 6 : day - 1;
+  return index === mappedIndex;
+}
 
 function goTo(page) {
   router.push({name: page})
