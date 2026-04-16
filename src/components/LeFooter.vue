@@ -19,8 +19,9 @@
       </v-row>
       <v-row>
         <p>
-          Lundi de 13h30 à 17h30<br/>
-          Du Mardi au Samedi de 10h à 19h<br/>
+          <span v-for="(day, index) in groupedHours" :key="index">
+            {{ day }}<br/>
+          </span>
         </p>
       </v-row>
     </v-col>
@@ -152,10 +153,18 @@
 <script setup>
 import {useRouter} from 'vue-router';
 import AffichePhoto from "@/components/AffichePhoto.vue";
+import {onMounted, ref} from "vue";
+import {getBusinessHours} from "@/service/hoursService.js";
 
 const router = useRouter();
 const emits = defineEmits(['onClick'])
 const props = defineProps({isMobile: Boolean})
+
+const groupedHours = ref([]);
+
+onMounted(async () => {
+  groupedHours.value = await getBusinessHours();
+})
 
 function scrollTo(section) {
   emits('onClick', section)

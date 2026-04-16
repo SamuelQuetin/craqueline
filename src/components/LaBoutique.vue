@@ -25,12 +25,9 @@
           <v-icon size="50" class="mr-2">mdi-clock-outline</v-icon>
         </v-col>
         <v-col cols="12" xs="10" sm="10" md="10" lg="10" xl="10" justify="center" align-self="center">
-
-          <p class="pb-2">Lundi de 13h30 à 17h30</p>
-          <p class="pb-2">Du Mardi au Samedi de 10h à 19h</p>
-<!--          <p class="pb-2">Dimache de 9h à 13h</p>-->
-<!--          <p>Fermé le Lundi</p>-->
-          <p>Fermé le Dimanche</p>
+          <p v-for="(day, index) in groupedHours" :key="index" class="pb-2">
+            {{ day }}
+          </p>
         </v-col>
       </v-row>
 
@@ -97,12 +94,20 @@
 <script setup>
 import {useRouter} from 'vue-router';
 import LazyPictures from "@/components/LazyPictures.vue";
+import {onMounted, ref} from "vue";
+import {getBusinessHours} from "@/service/hoursService.js";
 
 const router = useRouter();
 
 import local from '@/assets/photo/local.jpg'
 
 const props= defineProps({isMobile: Boolean})
+const groupedHours = ref([]);
+
+onMounted(async () => {
+  groupedHours.value = await getBusinessHours();
+})
+
 function goTo(page) {
   router.push({name: page})
 }
