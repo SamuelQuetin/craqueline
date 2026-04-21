@@ -13,6 +13,7 @@
             :thumbnail="chouCookieThumbnail"
             class="drop-out"
             width="300"
+            max-width="300"
         ></LazyPictures>
         <v-btn
             variant="outlined"
@@ -37,6 +38,7 @@
             class="drop-in"
             :src="boiteChoux"
             :thumbnail="boiteChouxThumbnail"
+            max-width="300"
             width="300"
         ></LazyPictures>
       </v-col>
@@ -52,6 +54,7 @@
           <LazyPictures
               :src="chouCookie"
               :thumbnail="chouCookieThumbnail"
+              :is-mobile="isMobile"
               class="drop-out img-mobile"
           ></LazyPictures>
         </v-col>
@@ -59,9 +62,10 @@
             cols="6"
             class="d-flex flex-column align-center justify-center mt-12 h-100 w-100">
           <LazyPictures
-              class="drop-in img-mobile"
+              :is-mobile="isMobile"
               :src="boiteChoux"
               :thumbnail="boiteChouxThumbnail"
+              class="drop-in img-mobile"
           ></LazyPictures>
         </v-col>
       </v-row>
@@ -130,7 +134,6 @@ h2 {
   font-weight: 100;
 }
 
-/* Mobile image sizing */
 .img-mobile {
   width: clamp(180px, 45vw, 320px);
   height: auto;

@@ -16,6 +16,7 @@
             :src="chouxSaintHono"
             :thumbnail="chouxSaintHonoThumbnail"
             class="drop-out"
+            max-width="300"
             width="300"
         ></LazyPictures>
       </v-col>
@@ -27,6 +28,7 @@
             class="drop-in"
             :src="saintHonoCoulant"
             :thumbnail="saintHonoCoulantThumbnail"
+            max-width="300"
             width="300"
         ></LazyPictures>
         <v-btn
@@ -52,18 +54,18 @@
           <LazyPictures
               :src="chouxSaintHono"
               :thumbnail="chouxSaintHonoThumbnail"
-              class="drop-out"
-              width="300"
+              :is-mobile="isMobile"
+              class="drop-out img-mobile"
           ></LazyPictures>
         </v-col>
         <v-col
             cols="6"
             class="d-flex flex-column align-center justify-center mt-12 h-100 w-100">
           <LazyPictures
-              class="drop-in"
               :src="saintHonoCoulant"
               :thumbnail="saintHonoCoulantThumbnail"
-              width="300"
+              :is-mobile="isMobile"
+              class="drop-in img-mobile"
           ></LazyPictures>
         </v-col>
       </v-row>
@@ -128,6 +130,11 @@ function goTo(page) {
   font-size: 2em;
   font-weight: 100;
 }
+.img-mobile {
+  width: clamp(180px, 45vw, 320px);
+  height: auto;
+}
+
 p {
   color: black;
 }

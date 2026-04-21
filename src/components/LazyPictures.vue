@@ -10,7 +10,6 @@
       :aspect-ratio="ratio"
       :max-width="maxWidth"
       class="mx-auto"
-      contain
   >
     <template #placeholder>
       <LoadingSpinner v-if="loading" :color="color"/>
@@ -49,6 +48,10 @@ defineProps({
   maxWidth: {
     type: String,
     default: '600'
+  },
+  isMobile: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -59,6 +62,6 @@ const onLoad = (e) => {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
