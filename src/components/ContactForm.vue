@@ -2,7 +2,7 @@
   <h2 :class="isMobile ? 'h2-mobile':'h2-default'">CONTACTEZ-NOUS</h2>
   <v-row>
     <v-col cols="12" md="6">
-      <LazyPictures :src="chouPecan2"></LazyPictures>
+      <LazyPictures :src="chouPecan2" :thumbnail="chouPecan2Thumbnail"></LazyPictures>
     </v-col>
     <v-col cols="12" md="6">
       <v-form
@@ -125,6 +125,7 @@
 import {MailService} from "@/service/MailService.js";
 import {computed, ref} from "vue";
 import chouPecan2 from "@/assets/photo/chouPecan2.jpg"
+import chouPecan2Thumbnail from "@/assets/thumbnail/chouPecan2.jpg"
 import LazyPictures from "@/components/LazyPictures.vue";
 
 const mailService = new MailService();

@@ -8,11 +8,12 @@
           cols="12" xs="5" sm="5" md="5" lg="5" xl="5"
           class="d-flex flex-column align-center justify-center h-100"
       >
-        <v-img
-            src="@/assets/photo/chouCookie.jpg"
+        <LazyPictures
+            :src="chouCookie"
+            :thumbnail="chouCookieThumbnail"
             class="drop-out"
             width="300"
-        ></v-img>
+        ></LazyPictures>
         <v-btn
             variant="outlined"
             size="x-large"
@@ -32,11 +33,12 @@
           <p>Découvrez notre gamme de choux</p>
           <h2 class="h2-defaut">UN SAVOIR-FAIRE<br>ARTISANAL</h2>
         </div>
-        <v-img
+        <LazyPictures
             class="drop-in"
-            src="@/assets/photo/boiteChoux.jpg"
+            :src="boiteChoux"
+            :thumbnail="boiteChouxThumbnail"
             width="300"
-        ></v-img>
+        ></LazyPictures>
       </v-col>
       <v-spacer
           cols="12" xs="1" sm="1" md="1" lg="1" xl="1"
@@ -47,18 +49,20 @@
         <v-col
             cols="6"
             class="d-flex flex-column align-center justify-center w-100 h-100">
-          <v-img
-              src="@/assets/photo/chouCookie.jpg"
+          <LazyPictures
+              :src="chouCookie"
+              :thumbnail="chouCookieThumbnail"
               class="drop-out img-mobile"
-          ></v-img>
+          ></LazyPictures>
         </v-col>
         <v-col
             cols="6"
             class="d-flex flex-column align-center justify-center mt-12 h-100 w-100">
-          <v-img
+          <LazyPictures
               class="drop-in img-mobile"
-              src="@/assets/photo/boiteChoux.jpg"
-          ></v-img>
+              :src="boiteChoux"
+              :thumbnail="boiteChouxThumbnail"
+          ></LazyPictures>
         </v-col>
       </v-row>
       <v-row class="w-100">
@@ -88,6 +92,12 @@
 </template>
 
 <script setup>
+import LazyPictures from "@/components/LazyPictures.vue";
+import chouCookie from "@/assets/photo/chouCookie.jpg";
+import chouCookieThumbnail from "@/assets/thumbnail/chouCookie.jpg";
+import boiteChoux from "@/assets/photo/boiteChoux.jpg";
+import boiteChouxThumbnail from "@/assets/thumbnail/boiteChoux.jpg";
+
 const emits = defineEmits(['onClick'])
 
 const props = defineProps({isMobile: Boolean})

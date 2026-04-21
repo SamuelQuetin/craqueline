@@ -12,21 +12,23 @@
           <p>Sublimez vos évenements</p>
           <h2 class="h2-defaut">FAITES L'EXPERIENCE<br/>D'UNE PÂTISSERIE<br/>AUTHENTIQUE</h2>
         </div>
-        <v-img
-            src="@/assets/photo/chouxSaintHono.png"
+        <LazyPictures
+            :src="chouxSaintHono"
+            :thumbnail="chouxSaintHonoThumbnail"
             class="drop-out"
             width="300"
-        ></v-img>
+        ></LazyPictures>
       </v-col>
       <v-col
           cols="5" xs="5" sm="5" md="5" lg="5" xl="5"
           class="d-flex flex-column align-center h-100"
       >
-        <v-img
+        <LazyPictures
             class="drop-in"
-            src="@/assets/photo/saintHonoCoulant.jpg"
+            :src="saintHonoCoulant"
+            :thumbnail="saintHonoCoulantThumbnail"
             width="300"
-        ></v-img>
+        ></LazyPictures>
         <v-btn
             variant="outlined"
             color="black"
@@ -47,20 +49,22 @@
         <v-col
             cols="6"
             class="d-flex flex-column align-center justify-center w-100 h-100">
-          <v-img
-              src="@/assets/photo/chouxSaintHono.png"
+          <LazyPictures
+              :src="chouxSaintHono"
+              :thumbnail="chouxSaintHonoThumbnail"
               class="drop-out"
               width="300"
-          ></v-img>
+          ></LazyPictures>
         </v-col>
         <v-col
             cols="6"
             class="d-flex flex-column align-center justify-center mt-12 h-100 w-100">
-          <v-img
+          <LazyPictures
               class="drop-in"
-              src="@/assets/photo/saintHonoCoulant.jpg"
+              :src="saintHonoCoulant"
+              :thumbnail="saintHonoCoulantThumbnail"
               width="300"
-          ></v-img>
+          ></LazyPictures>
         </v-col>
       </v-row>
       <v-row class="w-100">
@@ -91,6 +95,12 @@
 
 <script setup>
 import {useRouter} from 'vue-router';
+import LazyPictures from "@/components/LazyPictures.vue";
+import chouxSaintHono from "@/assets/photo/choux2/Saint-Ho1.png";
+import chouxSaintHonoThumbnail from "@/assets/thumbnail/choux2/Saint-Ho1.png";
+import saintHonoCoulant from "@/assets/photo/saintHonoCoulant.jpg";
+import saintHonoCoulantThumbnail from "@/assets/thumbnail/saintHonoCoulant.jpg";
+
 const router = useRouter();
 
 const emits = defineEmits(['onClick'])

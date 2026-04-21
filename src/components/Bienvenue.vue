@@ -28,12 +28,13 @@
       </v-row>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" :class="isMobile ? 'padding-marging-pic-mobile d-flex justify-center':'padding-marging-pic-defaut d-flex justify-center'">
-      <LazyPictures :src="portrait"></LazyPictures>
+      <LazyPictures :src="portrait" :thumbnail="portraitThumbnail"></LazyPictures>
     </v-col>
   </v-row>
 </template>
 <script setup>
 import portrait from "@/assets/photo/portrait1.jpg";
+import portraitThumbnail from "@/assets/thumbnail/portrait1.jpg";
 import LazyPictures from "@/components/LazyPictures.vue";
 
 const props = defineProps({ isMobile: Boolean })

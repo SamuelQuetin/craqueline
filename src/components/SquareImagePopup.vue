@@ -2,6 +2,7 @@
   <div class="square-image-container">
     <v-img
         :src="src"
+        :lazy-src="thumbnail"
         aspect-ratio="1"
         cover
         width="200px"
@@ -9,21 +10,18 @@
         @click="dialog = true"
     >
       <template v-slot:placeholder>
-        <v-row class="fill-height ma-0" align="center" justify="center">
-          <v-progress-circular indeterminate color="grey-lighten-5"/>
-        </v-row>
+        <LoadingSpinner color="grey-lighten-5"/>
       </template>
     </v-img>
 
     <v-dialog v-model="dialog" height="100vh" class="image-popup">
       <v-img
           :src="src"
+          :lazy-src="thumbnail"
           @click="dialog = false"
       >
         <template v-slot:placeholder>
-          <v-row class="fill-height ma-0" align="center" justify="center">
-            <v-progress-circular indeterminate color="white"/>
-          </v-row>
+          <LoadingSpinner color="white"/>
         </template>
       </v-img>
     </v-dialog>
@@ -32,11 +30,16 @@
 
 <script setup>
 import {ref} from 'vue'
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 defineProps({
   src: {
     type: String,
     required: true
+  },
+  thumbnail: {
+    type: String,
+    required: false
   }
 })
 

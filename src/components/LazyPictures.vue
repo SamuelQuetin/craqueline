@@ -1,35 +1,35 @@
 <template>
   <v-img
       :src="src"
+      :lazy-src="thumbnail"
       :alt="alt"
       :loading="lazy ? 'lazy' : 'eager'"
       :eager="!lazy"
       @loadstart="loading = true"
       @load="onLoad()"
       :aspect-ratio="ratio"
-      @click="console.log(ratio)"
-      max-width="600"
+      :max-width="maxWidth"
       class="mx-auto"
       contain
   >
     <template #placeholder>
-      <v-skeleton-loader
-          v-if="loading"
-          type="image"
-          class="w-100 h-100"
-          :color="color"
-      />
+      <LoadingSpinner v-if="loading" :color="color"/>
     </template>
   </v-img>
 </template>
 
 <script setup>
 import {ref} from "vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 defineProps({
   src: {
     type: String,
     required: true
+  },
+  thumbnail: {
+    type: String,
+    required: false
   },
   alt: {
     type: String,
@@ -45,6 +45,10 @@ defineProps({
   color:{
     type: String,
     default: 'primary'
+  },
+  maxWidth: {
+    type: String,
+    default: '600'
   }
 })
 

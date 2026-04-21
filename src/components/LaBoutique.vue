@@ -101,7 +101,7 @@
       </v-row>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="12" lg="6" xl="6" class="d-flex justify-center">
-      <LazyPictures :src="local"></LazyPictures>
+      <LazyPictures :src="local" :thumbnail="localThumbnail"></LazyPictures>
     </v-col>
   </v-row>
 </template>
@@ -114,6 +114,7 @@ import {getBusinessHours} from "@/service/hoursService.js";
 const router = useRouter();
 
 import local from '@/assets/photo/local.jpg'
+import localThumbnail from '@/assets/thumbnail/local.jpg'
 
 const props= defineProps({isMobile: Boolean})
 const groupedHours = ref([]);

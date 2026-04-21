@@ -24,7 +24,7 @@
       </v-btn>
     </v-col>
     <v-col cols="12" xs="12" sm="3" md="3" lg="3" xl="3" >
-      <LazyPictures :src="chouxBcp2"></LazyPictures>
+      <LazyPictures :src="chouxBcp2" :thumbnail="chouxBcp2Thumbnail"></LazyPictures>
       <!--      <v-img src="@/assets/photo/PieceMontee.png" max-width="20em"></v-img>-->
     </v-col>
   </v-row>
@@ -33,6 +33,7 @@
 <script setup>
 import {useRouter} from 'vue-router';
 import chouxBcp2 from "@/assets/photo/chouxBcp2.jpg"
+import chouxBcp2Thumbnail from "@/assets/thumbnail/chouxBcp2.jpg"
 import LazyPictures from "@/components/LazyPictures.vue"
 const router = useRouter();
 
