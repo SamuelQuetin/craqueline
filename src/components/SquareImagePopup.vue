@@ -9,9 +9,6 @@
         class="cursor-pointer hover-effect"
         @click="dialog = true"
     >
-      <template v-slot:placeholder>
-        <LoadingSpinner color="grey-lighten-5"/>
-      </template>
     </v-img>
 
     <v-dialog v-model="dialog" height="100vh" class="image-popup">
@@ -20,9 +17,6 @@
           :lazy-src="thumbnail"
           @click="dialog = false"
       >
-        <template v-slot:placeholder>
-          <LoadingSpinner color="white"/>
-        </template>
       </v-img>
     </v-dialog>
   </div>
@@ -73,5 +67,9 @@ const dialog = ref(false)
 
 :deep(.v-card) {
   background-color: transparent !important;
+}
+
+.no-blur .v-img__img--preload {
+  filter: none !important;
 }
 </style>
