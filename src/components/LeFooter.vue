@@ -24,6 +24,28 @@
           </span>
         </p>
       </v-row>
+      <v-row v-if="hasExceptionalSchedule" class="mt-5">
+        <p>
+          <span class="font-weight-bold">Horaires exceptionnels en cours : ce n'est pas le
+            <a href="#" @click.prevent="showRegularHoursDialog = true">planning habituel</a>
+            de chaque semaine.
+          </span>
+        </p>
+      </v-row>
+      <v-dialog v-model="showRegularHoursDialog" max-width="500">
+        <v-card>
+          <v-card-title>Planning habituel</v-card-title>
+          <v-card-text>
+            <p v-for="(day, index) in regularHours" :key="`footer-regular-${index}`" class="pb-1 text-black">
+              {{ day }}
+            </p>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn variant="text" @click="showRegularHoursDialog = false">Fermer</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-col>
     <v-col cols="12" xs="12" sm="12" md="4" lg="4" xl="4" class="px-4 pb-4" justify="center">
       <v-row>
@@ -161,10 +183,15 @@ const emits = defineEmits(['onClick'])
 const props = defineProps({isMobile: Boolean})
 
 const groupedHours = ref([]);
+const hasExceptionalSchedule = ref(false);
+const showRegularHoursDialog = ref(false);
+const regularHours = ref([]);
 
 onMounted(async () => {
   const data = await getBusinessHours();
-  groupedHours.value = data.weekdayText;
+  groupedHours.value = data?.weekdayText || [];
+  hasExceptionalSchedule.value = data?.hasExceptionalSchedule === true;
+  regularHours.value = data?.regularWeekdayText || [];
 })
 
 function scrollTo(section) {

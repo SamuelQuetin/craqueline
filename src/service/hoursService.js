@@ -13,42 +13,146 @@ const PLACE_ID = 'ChIJY8aYKQCvtg0ROvt1YgfuXNE';
 // En environnement de prod, il faudrait utiliser une variable d'env
 const API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY || '';
 
+let cachedBusinessHours = null;
+let pendingBusinessHoursRequest = null;
+
+const formatSpecialDate = (dateString) => {
+  if (!dateString) return null;
+
+  const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return null;
+
+  const dayLabel = new Intl.DateTimeFormat('fr-FR', {weekday: 'long'}).format(date);
+  const dateLabel = new Intl.DateTimeFormat('fr-FR', {day: '2-digit', month: '2-digit'}).format(date);
+
+  return `${dayLabel} ${dateLabel}`;
+};
+
+const normalizeDayName = (dayText = '') => {
+  return dayText
+      .split(':')[0]
+      ?.trim()
+      .toLowerCase();
+};
+
+const createExceptionalClosureMessage = (dayOrDateLabel) => {
+  if (!dayOrDateLabel) return null;
+  return `${dayOrDateLabel} : Fermeture exceptionnelle`;
+};
+
+const extractExceptionalClosures = (currentOpeningHours, openingHours) => {
+  const specialDays = currentOpeningHours?.special_days || [];
+
+  const closuresFromSpecialDays = specialDays
+      .filter((specialDay) => specialDay && specialDay.exceptional_hours === false)
+      .map((specialDay) => {
+        const formattedDate = formatSpecialDate(specialDay.date);
+        return createExceptionalClosureMessage(formattedDate);
+      })
+      .filter(Boolean);
+
+  const regularWeekdayText = Array.isArray(openingHours?.weekday_text) ? openingHours.weekday_text : [];
+  const currentWeekdayText = Array.isArray(currentOpeningHours?.weekday_text) ? currentOpeningHours.weekday_text : [];
+
+  if (!regularWeekdayText.length || !currentWeekdayText.length) {
+    return closuresFromSpecialDays;
+  }
+
+  const regularByDay = new Map();
+  regularWeekdayText.forEach((line) => {
+    const dayName = normalizeDayName(line);
+    if (dayName) regularByDay.set(dayName, line.toLowerCase());
+  });
+
+  const closuresFromWeekDiff = currentWeekdayText
+      .filter((line) => typeof line === 'string' && line.toLowerCase().includes('fermé'))
+      .map((line) => {
+        const dayName = normalizeDayName(line);
+        if (!dayName) return null;
+        const regularLine = regularByDay.get(dayName);
+        if (!regularLine || regularLine.includes('fermé')) return null;
+        const dayLabel = line.split(':')[0]?.trim();
+        return createExceptionalClosureMessage(dayLabel);
+      })
+      .filter(Boolean);
+
+  return [...new Set([...closuresFromSpecialDays, ...closuresFromWeekDiff])];
+};
+
+const hasExceptionalSchedule = (currentOpeningHours) => {
+  const specialDays = currentOpeningHours?.special_days || [];
+  return specialDays.length > 0;
+};
+
 export const getBusinessHours = async () => {
-  // Si pas de clé API, on renvoie les horaires par défaut et calculons l'état localement
-  if (!API_KEY) {
-    console.warn("Google Places API Key manquante. Utilisation des horaires par défaut.");
+  if (cachedBusinessHours) {
+    return cachedBusinessHours;
+  }
+
+  if (pendingBusinessHoursRequest) {
+    return pendingBusinessHoursRequest;
+  }
+
+  const fetchBusinessHours = async () => {
+    // Si pas de clé API, on renvoie les horaires par défaut et calculons l'état localement
+    if (!API_KEY) {
+      console.warn("Google Places API Key manquante. Utilisation des horaires par défaut.");
+      const defaultHours = getDefaultHours();
+      return {
+        weekdayText: defaultHours,
+        regularWeekdayText: defaultHours,
+        isOpen: calculateIsOpen(defaultHours),
+        exceptionalClosures: [],
+        hasExceptionalSchedule: false
+      };
+    }
+
+    try {
+      const response = await axios.get(`/google/maps/api/place/details/json`, {
+        params: {
+          place_id: PLACE_ID,
+          fields: 'opening_hours,current_opening_hours',
+          key: API_KEY,
+          language: 'fr'
+        }
+      });
+
+      if (response.data && response.data.result && (response.data.result.opening_hours || response.data.result.current_opening_hours)) {
+        const openingHours = response.data.result.opening_hours;
+        const currentOpeningHours = response.data.result.current_opening_hours;
+
+        return {
+          weekdayText: currentOpeningHours?.weekday_text || openingHours?.weekday_text || getDefaultHours(),
+          regularWeekdayText: openingHours?.weekday_text || getDefaultHours(),
+          isOpen: currentOpeningHours?.open_now ?? openingHours?.open_now ?? calculateIsOpen(getDefaultHours()),
+          exceptionalClosures: extractExceptionalClosures(currentOpeningHours, openingHours),
+          hasExceptionalSchedule: hasExceptionalSchedule(currentOpeningHours)
+        };
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération des horaires Google :", error);
+    }
+
     const defaultHours = getDefaultHours();
     return {
       weekdayText: defaultHours,
-      isOpen: calculateIsOpen(defaultHours)
+      regularWeekdayText: defaultHours,
+      isOpen: calculateIsOpen(defaultHours),
+      exceptionalClosures: [],
+      hasExceptionalSchedule: false
     };
-  }
-
-  try {
-    const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json`, {
-      params: {
-        place_id: PLACE_ID,
-        fields: 'opening_hours',
-        key: API_KEY,
-        language: 'fr'
-      }
-    });
-
-    if (response.data && response.data.result && response.data.result.opening_hours) {
-      return {
-        weekdayText: response.data.result.opening_hours.weekday_text,
-        isOpen: response.data.result.opening_hours.open_now
-      };
-    }
-  } catch (error) {
-    console.error("Erreur lors de la récupération des horaires Google :", error);
-  }
-
-  const defaultHours = getDefaultHours();
-  return {
-    weekdayText: defaultHours,
-    isOpen: calculateIsOpen(defaultHours)
   };
+
+  pendingBusinessHoursRequest = fetchBusinessHours()
+      .then((data) => {
+        cachedBusinessHours = data;
+        return data;
+      })
+      .finally(() => {
+        pendingBusinessHoursRequest = null;
+      });
+
+  return pendingBusinessHoursRequest;
 };
 
 /**

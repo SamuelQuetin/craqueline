@@ -42,6 +42,31 @@
           <p v-for="(day, index) in groupedHours" :key="index" class="pb-1" :class="{'font-weight-bold': isToday(index)}">
             {{ day }}
           </p>
+          <v-alert
+              v-if="hasExceptionalSchedule"
+              type="warning"
+              variant="tonal"
+              density="comfortable"
+              class="mt-3"
+          >
+            Horaires exceptionnels en cours : ce n'est pas le
+            <a href="#" @click.prevent="showRegularHoursDialog = true">planning habituel</a>
+            de chaque semaine.
+          </v-alert>
+          <v-dialog v-model="showRegularHoursDialog" max-width="500">
+            <v-card>
+              <v-card-title>Planning habituel</v-card-title>
+              <v-card-text>
+                <p v-for="(day, index) in regularHours" :key="`regular-${index}`" class="pb-1">
+                  {{ day }}
+                </p>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn variant="text" @click="showRegularHoursDialog = false">Fermer</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-col>
       </v-row>
 
@@ -119,11 +144,16 @@ import localThumbnail from '@/assets/thumbnail/local.jpg'
 const props= defineProps({isMobile: Boolean})
 const groupedHours = ref([]);
 const isOpen = ref(null);
+const hasExceptionalSchedule = ref(false);
+const showRegularHoursDialog = ref(false);
+const regularHours = ref([]);
 
 onMounted(async () => {
   const data = await getBusinessHours();
-  groupedHours.value = data.weekdayText;
-  isOpen.value = data.isOpen;
+  groupedHours.value = data?.weekdayText || [];
+  isOpen.value = data?.isOpen ?? null;
+  hasExceptionalSchedule.value = data?.hasExceptionalSchedule === true;
+  regularHours.value = data?.regularWeekdayText || [];
 })
 
 const isToday = (index) => {

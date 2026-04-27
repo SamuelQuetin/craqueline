@@ -39,6 +39,13 @@ export default defineConfig({
     extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue']
   },
   server: {
-    port: 8080
+    port: 8080,
+    proxy: {
+      '/google': {
+        target: 'https://maps.googleapis.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/google/, ''),
+      }
+    }
   }
 })
