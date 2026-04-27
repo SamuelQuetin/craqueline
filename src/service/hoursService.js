@@ -10,7 +10,7 @@ import axios from 'axios';
 // https://www.google.com/maps/place/4+Rue+Marceau,+34000+Montpellier/@43.6080465,3.8729604,19.75z/data=!4m6!3m5!1s0x12b6afa85553d009:0x8dcb3dc730c52416!8m2!3d43.6081004!4d3.8731839!16s%2Fg%2F11q2vwqkmm
 const PLACE_ID = 'ChIJY8aYKQCvtg0ROvt1YgfuXNE';
 
-// En environnement de prod, il faudrait utiliser une variable d'env
+// Clé gardée uniquement pour le fallback dev via proxy Vite
 const API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY || '';
 
 let cachedBusinessHours = null;
@@ -94,28 +94,8 @@ export const getBusinessHours = async () => {
   }
 
   const fetchBusinessHours = async () => {
-    // Si pas de clé API, on renvoie les horaires par défaut et calculons l'état localement
-    if (!API_KEY) {
-      console.warn("Google Places API Key manquante. Utilisation des horaires par défaut.");
-      const defaultHours = getDefaultHours();
-      return {
-        weekdayText: defaultHours,
-        regularWeekdayText: defaultHours,
-        isOpen: calculateIsOpen(defaultHours),
-        exceptionalClosures: [],
-        hasExceptionalSchedule: false
-      };
-    }
-
     try {
-      const response = await axios.get(`/google/maps/api/place/details/json`, {
-        params: {
-          place_id: PLACE_ID,
-          fields: 'opening_hours,current_opening_hours',
-          key: API_KEY,
-          language: 'fr'
-        }
-      });
+      const response = await axios.get('/api/hours.php');
 
       if (response.data && response.data.result && (response.data.result.opening_hours || response.data.result.current_opening_hours)) {
         const openingHours = response.data.result.opening_hours;
@@ -129,8 +109,54 @@ export const getBusinessHours = async () => {
           hasExceptionalSchedule: hasExceptionalSchedule(currentOpeningHours)
         };
       }
-    } catch (error) {
-      console.error("Erreur lors de la récupération des horaires Google :", error);
+    } catch (backendError) {
+      // Fallback développement: proxy Vite vers Google quand l'API PHP n'est pas disponible localement.
+      if (!API_KEY) {
+        const defaultHours = getDefaultHours();
+
+        if (backendError?.response?.status && backendError.response.status !== 404) {
+          console.error("Erreur API backend des horaires :", backendError);
+        }
+
+        console.warn("Google Places API Key manquante. Utilisation des horaires par défaut.");
+        return {
+          weekdayText: defaultHours,
+          regularWeekdayText: defaultHours,
+          isOpen: calculateIsOpen(defaultHours),
+          exceptionalClosures: [],
+          hasExceptionalSchedule: false
+        };
+      }
+
+      try {
+        const response = await axios.get('/google/maps/api/place/details/json', {
+          params: {
+            place_id: PLACE_ID,
+            fields: 'opening_hours,current_opening_hours',
+            key: API_KEY,
+            language: 'fr'
+          }
+        });
+
+        if (response.data && response.data.result && (response.data.result.opening_hours || response.data.result.current_opening_hours)) {
+          const openingHours = response.data.result.opening_hours;
+          const currentOpeningHours = response.data.result.current_opening_hours;
+
+          return {
+            weekdayText: currentOpeningHours?.weekday_text || openingHours?.weekday_text || getDefaultHours(),
+            regularWeekdayText: openingHours?.weekday_text || getDefaultHours(),
+            isOpen: currentOpeningHours?.open_now ?? openingHours?.open_now ?? calculateIsOpen(getDefaultHours()),
+            exceptionalClosures: extractExceptionalClosures(currentOpeningHours, openingHours),
+            hasExceptionalSchedule: hasExceptionalSchedule(currentOpeningHours)
+          };
+        }
+      } catch (proxyError) {
+        console.error("Erreur lors de la récupération des horaires Google :", proxyError);
+      }
+
+      if (backendError?.response?.status && backendError.response.status !== 404) {
+        console.error("Erreur API backend des horaires :", backendError);
+      }
     }
 
     const defaultHours = getDefaultHours();
