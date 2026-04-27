@@ -2,11 +2,12 @@
   <v-container>
     <v-carousel
         v-if="isMobile"
+
+        height="300"
         cycle
         interval="5000"
         touch
         :show-arrows="false"
-        class="carousel-auto"
     >
       <v-carousel-item
           v-for="(image, i) in images"
@@ -116,4 +117,11 @@ const images = [
 ]
 </script>
 <style scoped>
+.v-carousel-item {
+  padding: 0 !important;
+}
+
+.v-window-item {
+  margin: 0 !important;
+}
 </style>

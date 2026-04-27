@@ -9,11 +9,8 @@
       @load="onLoad()"
       :aspect-ratio="ratio"
       :max-width="maxWidth"
-      class="mx-auto"
+      class="mx-auto no-blur"
   >
-    <template #placeholder>
-      <LoadingSpinner v-if="loading" :color="color"/>
-    </template>
   </v-img>
 </template>
 
@@ -63,5 +60,7 @@ const onLoad = (e) => {
 </script>
 
 <style>
-
+.no-blur .v-img__img--preload {
+  filter: none !important;
+}
 </style>
