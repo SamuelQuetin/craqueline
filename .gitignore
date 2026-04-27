@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Clés locales non versionnées
+api/google_places_key.local.php

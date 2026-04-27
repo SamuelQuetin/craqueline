@@ -31,11 +31,33 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 }
 
 $placeId = "ChIJY8aYKQCvtg0ROvt1YgfuXNE";
-$apiKey = getenv("GOOGLE_PLACES_API_KEY") ?: getenv("VITE_GOOGLE_PLACES_API_KEY");
+
+// 1) Priorité à un fichier local NON versionné (pratique sur OVH mutualisé)
+// Vous pouvez surcharger le chemin via GOOGLE_PLACES_KEY_FILE
+$customKeyFile = getenv("GOOGLE_PLACES_KEY_FILE") ?: null;
+$defaultLocalKeyFile = __DIR__ . DIRECTORY_SEPARATOR . "google_places_key.local.php";
+
+$apiKey = null;
+$keyFilePath = $customKeyFile ?: $defaultLocalKeyFile;
+
+if (is_readable($keyFilePath)) {
+    $loadedKey = require $keyFilePath;
+    if (is_string($loadedKey)) {
+        $apiKey = trim($loadedKey);
+    }
+}
+
+// 2) Fallback compatibilité: variables d'environnement serveur
+if (!$apiKey) {
+    $apiKey = getenv("GOOGLE_PLACES_API_KEY") ?: getenv("VITE_GOOGLE_PLACES_API_KEY");
+}
 
 if (!$apiKey) {
     http_response_code(500);
-    echo json_encode(["error" => "Google Places API key is missing on server"]);
+    echo json_encode([
+        "error" => "Google Places API key is missing on server",
+        "hint" => "Create api/google_places_key.local.php returning your API key string"
+    ]);
     exit;
 }
 
