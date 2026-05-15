@@ -7,9 +7,9 @@
       :eager="!lazy"
       @loadstart="loading = true"
       @load="onLoad()"
-      :aspect-ratio="ratio"
       :max-width="maxWidth"
-      class="mx-auto no-blur"
+      :max-height="maxHeight"
+      class="no-blur"
   >
   </v-img>
 </template>
@@ -35,9 +35,6 @@ defineProps({
     type: Boolean,
     default: true
   },
-  ratio:{
-    default: 1
-  },
   color:{
     type: String,
     default: 'primary'
@@ -45,6 +42,9 @@ defineProps({
   maxWidth: {
     type: String,
     default: '600'
+  },
+  maxHeight: {
+    type: String,
   },
   isMobile: {
     type: Boolean,

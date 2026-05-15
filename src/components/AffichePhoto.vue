@@ -2,12 +2,11 @@
   <v-container>
     <v-carousel
         v-if="isMobile"
-
         height="300"
         cycle
         interval="5000"
         touch
-        :show-arrows="false"
+        hide-delimiters
     >
       <v-carousel-item
           v-for="(image, i) in images"

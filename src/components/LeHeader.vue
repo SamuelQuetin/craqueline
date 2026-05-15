@@ -24,15 +24,16 @@
             <v-btn block flat tile @click="scrollTo('#section-1')">ACCUEIL</v-btn>
 
 
-            <v-tooltip text="En cours de préparation... comme nos choux ! 👨‍🍳">
-              <template #activator="{ props }">
-                <span v-bind="props">
-                  <v-btn block flat tile disabled>LA CARTE</v-btn>
-                </span>
-              </template>
-            </v-tooltip>
+<!--            <v-tooltip text="En cours de préparation... comme nos choux ! 👨‍🍳">-->
+<!--              <template #activator="{ props }">-->
+<!--                <span v-bind="props">-->
+<!--                  <v-btn block flat tile disabled>LA CARTE</v-btn>-->
+<!--                </span>-->
+<!--              </template>-->
+<!--            </v-tooltip>-->
 
 
+            <v-btn block flat tile @click="goTo('Cartes')">LA CARTE</v-btn>
             <v-btn block flat tile @click="goTo('Evenements')">EVENEMENTS</v-btn>
             <v-btn block flat tile @click="goTo('Contact')">CONTACT</v-btn>
           </v-sheet>
@@ -46,20 +47,28 @@
           >
             ACCUEIL
           </v-btn>
-          <v-tooltip location="bottom" text="En cours de préparation... comme nos choux ! 👨‍🍳">
-            <template #activator="{ props }">
-              <span v-bind="props">
-                <v-btn
-                    class="mx-4"
-                    tile
-                    flat
-                    disabled
-                >
-                  LA CARTE
-                </v-btn>
-              </span>
-            </template>
-          </v-tooltip>
+<!--          <v-tooltip location="bottom" text="En cours de préparation... comme nos choux ! 👨‍🍳">-->
+<!--            <template #activator="{ props }">-->
+<!--              <span v-bind="props">-->
+<!--                <v-btn-->
+<!--                    class="mx-4"-->
+<!--                    tile-->
+<!--                    flat-->
+<!--                    disabled-->
+<!--                >-->
+<!--                  LA CARTE-->
+<!--                </v-btn>-->
+<!--              </span>-->
+<!--            </template>-->
+<!--          </v-tooltip>-->
+          <v-btn
+              class="mx-4"
+              tile
+              flat
+              @click="goTo('Cartes')"
+          >
+            LA CARTE
+          </v-btn>
           <v-btn
               class="mx-4"
               tile
