@@ -24,14 +24,19 @@
 
 <script setup>
 import LazyPictures from "@/components/LazyPictures.vue";
+import {computed} from "vue";
 import Carte1 from "@/assets/carte/Carte1.jpg"
 import Carte2 from "@/assets/carte/Carte2.jpg"
 import Carte3 from "@/assets/carte/Carte3.jpg"
 import Carte4 from "@/assets/carte/Carte4.jpg"
+import CarteMobile1 from "@/assets/carte/CarteMobile1.jpg"
+import CarteMobile2 from "@/assets/carte/CarteMobile2.jpg"
+import CarteMobile3 from "@/assets/carte/CarteMobile3.jpg"
+import CarteMobile4 from "@/assets/carte/CarteMobile4.jpg"
 
 const props = defineProps({isMobile: Boolean})
 
-const images = [
+const desktopImages = [
     {
       src : Carte1,
       alt : "Carte menu \"Nos Boissons Chaudes\" : Ristretto 1,50€, Espresso 2€, Double espresso 3,50€, Americano 2,50€. Espresso macchiato 3€, Cappuccino 4€, Latté macchiato 4,50€. Chaï Latté 5€, Matcha Latté 5€, Chocolat Guanaja Valrhona 4,50€, Mocaccino 5,50€. Thé et infusions 4€."
@@ -49,4 +54,25 @@ const images = [
       alt : "Carte menu \"Nos Spécialités à Partager\" (sur commande 48h à l'avance). Saint Ho' Classique, vanille de Madagascar et caramel vanillé au beurre salé : 3/4 parts 26€, 4/6 parts 36€, 6/8 parts 42€. Saint Ho' du Moment, parfum variable (chocolat, noisette, pistache, pécan, cacahuète, marron, fruit de saison…) : 3/4 parts 30€, 4/6 parts 40€, 6/8 parts 46€."
     },
 ]
+
+const mobileImages = [
+    {
+      src : CarteMobile1,
+      alt : desktopImages[0].alt,
+    },
+    {
+      src : CarteMobile2,
+      alt : desktopImages[1].alt,
+    },
+    {
+      src : CarteMobile3,
+      alt : desktopImages[2].alt,
+    },
+    {
+      src : CarteMobile4,
+      alt : desktopImages[3].alt,
+    },
+]
+
+const images = computed(() => props.isMobile ? mobileImages : desktopImages)
 </script>

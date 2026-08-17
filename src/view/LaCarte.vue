@@ -1,6 +1,6 @@
 
 <template>
-  <Cartes :isMobiles="isMobiles"></Cartes>
+  <Cartes :isMobile="isMobile"></Cartes>
 </template>
 
 <script setup>
