@@ -25,3 +25,4 @@ dist-ssr
 
 # Clés locales non versionnées
 api/google_places_key.local.php
+api/hours.cache.json

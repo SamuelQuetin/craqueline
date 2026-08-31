@@ -100,11 +100,16 @@ export const getBusinessHours = async () => {
       if (response.data && response.data.result && (response.data.result.opening_hours || response.data.result.current_opening_hours)) {
         const openingHours = response.data.result.opening_hours;
         const currentOpeningHours = response.data.result.current_opening_hours;
+        const weekdayText = currentOpeningHours?.weekday_text || openingHours?.weekday_text || getDefaultHours();
+        const regularWeekdayText = openingHours?.weekday_text || getDefaultHours();
+        const shouldCalculateIsOpen = ['cache', 'stale_cache', 'default'].includes(response.data.source);
 
         return {
-          weekdayText: currentOpeningHours?.weekday_text || openingHours?.weekday_text || getDefaultHours(),
-          regularWeekdayText: openingHours?.weekday_text || getDefaultHours(),
-          isOpen: currentOpeningHours?.open_now ?? openingHours?.open_now ?? calculateIsOpen(getDefaultHours()),
+          weekdayText,
+          regularWeekdayText,
+          isOpen: shouldCalculateIsOpen
+              ? calculateIsOpen(weekdayText)
+              : currentOpeningHours?.open_now ?? openingHours?.open_now ?? calculateIsOpen(weekdayText),
           exceptionalClosures: extractExceptionalClosures(currentOpeningHours, openingHours),
           hasExceptionalSchedule: hasExceptionalSchedule(currentOpeningHours)
         };
@@ -223,13 +228,13 @@ const parseTime = (timeStr) => {
 
 export const getDefaultHours = () => {
   return [
-    "Lundi: 13:30 – 17:30",
-    "Mardi: 10:00 – 19:00",
+    "Lundi: Fermé",
+    "Mardi: Fermé",
     "Mercredi: 10:00 – 19:00",
     "Jeudi: 10:00 – 19:00",
     "Vendredi: 10:00 – 19:00",
     "Samedi: 10:00 – 19:00",
-    "Dimanche: Fermé"
+    "Dimanche: 10:00 – 18:00"
   ];
 };
 

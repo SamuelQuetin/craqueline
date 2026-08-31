@@ -6,6 +6,9 @@ Ce projet utilise l'API Google Places pour récupérer les horaires d'ouverture 
 
 Le frontend appelle `api/hours.php` et la clé Google doit être lue côté serveur.
 
+`api/hours.php` garde les horaires Google en cache pendant 12h dans `api/hours.cache.json`.
+Si Google ou la clé API est indisponible, l'API renvoie le dernier cache connu, puis les horaires par défaut si aucun cache n'existe encore.
+
 ### Option recommandée (OVH/local sans variables d'environnement)
 
 1. Copiez `api/google_places_key.local.example.php` vers `api/google_places_key.local.php`.

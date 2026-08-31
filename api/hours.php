@@ -30,7 +30,64 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     exit;
 }
 
-$placeId = "ChIJY8aYKQCvtg0ROvt1YgfuXNE";
+$placeId = "ChIJY8aYKwCvthIROvt1YgfuXNE";
+$cacheFile = __DIR__ . DIRECTORY_SEPARATOR . "hours.cache.json";
+$cacheTtl = 12 * 60 * 60;
+
+$defaultWeekdayText = [
+    "Lundi: Fermé",
+    "Mardi: Fermé",
+    "Mercredi: 10:00 – 19:00",
+    "Jeudi: 10:00 – 19:00",
+    "Vendredi: 10:00 – 19:00",
+    "Samedi: 10:00 – 19:00",
+    "Dimanche: 10:00 – 18:00"
+];
+
+function buildHoursPayload($openingHours, $currentOpeningHours, $source, $fetchedAt = null)
+{
+    return [
+        "result" => [
+            "opening_hours" => $openingHours,
+            "current_opening_hours" => $currentOpeningHours
+        ],
+        "status" => "OK",
+        "source" => $source,
+        "fetched_at" => $fetchedAt ?: gmdate("c")
+    ];
+}
+
+function readCache($cacheFile)
+{
+    if (!is_readable($cacheFile)) {
+        return null;
+    }
+
+    $cacheContent = file_get_contents($cacheFile);
+    if ($cacheContent === false) {
+        return null;
+    }
+
+    $cachedPayload = json_decode($cacheContent, true);
+    if (!is_array($cachedPayload) || ($cachedPayload["status"] ?? "") !== "OK") {
+        return null;
+    }
+
+    return $cachedPayload;
+}
+
+function sendJson($payload)
+{
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+$cachedPayload = readCache($cacheFile);
+
+if ($cachedPayload && (time() - filemtime($cacheFile)) < $cacheTtl) {
+    $cachedPayload["source"] = "cache";
+    sendJson($cachedPayload);
+}
 
 // 1) Priorité à un fichier local NON versionné (pratique sur OVH mutualisé)
 // Vous pouvez surcharger le chemin via GOOGLE_PLACES_KEY_FILE
@@ -53,12 +110,16 @@ if (!$apiKey) {
 }
 
 if (!$apiKey) {
-    http_response_code(500);
-    echo json_encode([
-        "error" => "Google Places API key is missing on server",
-        "hint" => "Create api/google_places_key.local.php returning your API key string"
-    ]);
-    exit;
+    if ($cachedPayload) {
+        $cachedPayload["source"] = "stale_cache";
+        sendJson($cachedPayload);
+    }
+
+    sendJson(buildHoursPayload(
+        ["weekday_text" => $defaultWeekdayText],
+        null,
+        "default"
+    ));
 }
 
 $query = http_build_query([
@@ -81,25 +142,39 @@ $context = stream_context_create([
 $googleResponse = @file_get_contents($googleUrl, false, $context);
 
 if ($googleResponse === false) {
-    http_response_code(502);
-    echo json_encode(["error" => "Failed to reach Google Places API"]);
-    exit;
+    if ($cachedPayload) {
+        $cachedPayload["source"] = "stale_cache";
+        sendJson($cachedPayload);
+    }
+
+    sendJson(buildHoursPayload(
+        ["weekday_text" => $defaultWeekdayText],
+        null,
+        "default"
+    ));
 }
 
 $decoded = json_decode($googleResponse, true);
 if (!$decoded || ($decoded["status"] ?? "") !== "OK") {
-    http_response_code(502);
-    echo json_encode([
-        "error" => "Invalid Google Places API response",
-        "google_status" => $decoded["status"] ?? null
-    ]);
-    exit;
+    if ($cachedPayload) {
+        $cachedPayload["source"] = "stale_cache";
+        $cachedPayload["google_status"] = $decoded["status"] ?? null;
+        sendJson($cachedPayload);
+    }
+
+    sendJson(buildHoursPayload(
+        ["weekday_text" => $defaultWeekdayText],
+        null,
+        "default"
+    ));
 }
 
-echo json_encode([
-    "result" => [
-        "opening_hours" => $decoded["result"]["opening_hours"] ?? null,
-        "current_opening_hours" => $decoded["result"]["current_opening_hours"] ?? null
-    ],
-    "status" => "OK"
-]);
+$payload = buildHoursPayload(
+    $decoded["result"]["opening_hours"] ?? null,
+    $decoded["result"]["current_opening_hours"] ?? null,
+    "google"
+);
+
+file_put_contents($cacheFile, json_encode($payload, JSON_UNESCAPED_UNICODE), LOCK_EX);
+
+sendJson($payload);

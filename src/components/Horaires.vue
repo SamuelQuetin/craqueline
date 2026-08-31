@@ -25,18 +25,31 @@
 </template>
 
 <script setup>
+import {onMounted, ref} from "vue";
+import {getBusinessHours, getDefaultHours} from "@/service/hoursService.js";
 
 const props = defineProps({isMobile: Boolean})
 
-const horaires = [
-  {jour: 'Lundi', heure: '13h30 - 17h30'},
-  {jour: 'Mardi', heure: '10h00 - 19h00'},
-  {jour: 'Mercredi', heure: '10h00 - 19h00'},
-  {jour: 'Jeudi', heure: '10h00 - 19h00'},
-  {jour: 'Vendredi', heure: '10h00 - 19h00'},
-  {jour: 'Samedi', heure: '10h00 - 19h00'},
-  {jour: 'Dimanche', ferme: true}
-]
+const horaires = ref(formatHours(getDefaultHours()));
+
+onMounted(async () => {
+  const data = await getBusinessHours();
+  horaires.value = formatHours(data?.weekdayText || getDefaultHours());
+});
+
+function formatHours(weekdayText) {
+  return weekdayText.map((line) => {
+    const [day, ...timeParts] = line.split(':');
+    const time = timeParts.join(':').trim();
+    const isClosed = time.toLowerCase().includes('fermé');
+
+    return {
+      jour: day.trim(),
+      heure: time.replaceAll(':', 'h').replaceAll('–', '-'),
+      ferme: isClosed
+    };
+  });
+}
 
 </script>
 
