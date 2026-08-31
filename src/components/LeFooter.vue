@@ -132,19 +132,12 @@
         </v-btn>
       </v-row>
       <v-row>
-        <v-tooltip text="En cours de préparation... comme nos choux ! 👨‍🍳">
-          <template #activator="{ props }">
-            <span v-bind="props">
-              <v-btn
-                  variant="text"
-
-                  disabled
-              >
-                <p>La Carte</p>
-              </v-btn>
-            </span>
-          </template>
-        </v-tooltip>
+        <v-btn
+            variant="text"
+            @click="goTo('Cartes')"
+        >
+          LA CARTE
+        </v-btn>
       </v-row>
       <v-row>
         <v-btn
