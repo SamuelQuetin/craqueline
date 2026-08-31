@@ -136,7 +136,7 @@
             variant="text"
             @click="goTo('Cartes')"
         >
-          LA CARTE
+          <p>LA CARTE</p>
         </v-btn>
       </v-row>
       <v-row>
