@@ -82,6 +82,11 @@ function sendJson($payload)
     exit;
 }
 
+function writeCache($cacheFile, $payload)
+{
+    @file_put_contents($cacheFile, json_encode($payload, JSON_UNESCAPED_UNICODE), LOCK_EX);
+}
+
 $cachedPayload = readCache($cacheFile);
 
 if ($cachedPayload && (time() - filemtime($cacheFile)) < $cacheTtl) {
@@ -115,11 +120,14 @@ if (!$apiKey) {
         sendJson($cachedPayload);
     }
 
-    sendJson(buildHoursPayload(
+    $defaultPayload = buildHoursPayload(
         ["weekday_text" => $defaultWeekdayText],
         null,
         "default"
-    ));
+    );
+
+    writeCache($cacheFile, $defaultPayload);
+    sendJson($defaultPayload);
 }
 
 $query = http_build_query([
@@ -147,11 +155,14 @@ if ($googleResponse === false) {
         sendJson($cachedPayload);
     }
 
-    sendJson(buildHoursPayload(
+    $defaultPayload = buildHoursPayload(
         ["weekday_text" => $defaultWeekdayText],
         null,
         "default"
-    ));
+    );
+
+    writeCache($cacheFile, $defaultPayload);
+    sendJson($defaultPayload);
 }
 
 $decoded = json_decode($googleResponse, true);
@@ -162,11 +173,14 @@ if (!$decoded || ($decoded["status"] ?? "") !== "OK") {
         sendJson($cachedPayload);
     }
 
-    sendJson(buildHoursPayload(
+    $defaultPayload = buildHoursPayload(
         ["weekday_text" => $defaultWeekdayText],
         null,
         "default"
-    ));
+    );
+
+    writeCache($cacheFile, $defaultPayload);
+    sendJson($defaultPayload);
 }
 
 $payload = buildHoursPayload(
@@ -175,6 +189,6 @@ $payload = buildHoursPayload(
     "google"
 );
 
-file_put_contents($cacheFile, json_encode($payload, JSON_UNESCAPED_UNICODE), LOCK_EX);
+writeCache($cacheFile, $payload);
 
 sendJson($payload);
